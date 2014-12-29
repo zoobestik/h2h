@@ -11,4 +11,11 @@ gulp.task('link:components', function() {
         .pipe(symlink('./node_modules/components', { force: true }));
 });
 
-gulp.task('postinstall', [ 'link:app', 'link:components' ]);
+gulp.task('link:config', function() {
+    var env = process.env.NODE_ENV || 'development';
+
+    return gulp.src('./configs/' + env)
+        .pipe(symlink('./configs/current', { force: true }));
+});
+
+gulp.task('postinstall', [ 'link:app', 'link:components', 'link:config' ]);
