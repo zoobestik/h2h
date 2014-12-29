@@ -1,0 +1,35 @@
+{
+  "name": "h2h",
+  "version": "0.1.0",
+  "description": "",
+  "main": "app/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "listen": "./node_modules/.bin/luster ./configs/current/luster.js",
+    "postinstall": "./node_modules/.bin/gulp postinstall"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zoobestik/h2h.git"
+  },
+  "author": "zoobestik <kb.chernenko@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zoobestik/h2h/issues"
+  },
+  "homepage": "https://github.com/zoobestik/h2h",
+  "dependencies": {
+    "express": "^4.10.6",
+    "express-react-views": "^0.6.0",
+    "luster": "^0.5.3",
+    "luster-log-file": "^0.2.1",
+    "react": "^0.12.2",
+    "react-async": "^2.0.1",
+    "react-router-component": "^0.23.2",
+    "serve-static": "^1.7.1"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.10",
+    "gulp-symlink": "^2.1.0"
+  }
+}
