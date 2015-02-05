@@ -1,24 +1,33 @@
+'use strict';
+
 var path = require('path'),
     express = require('express'),
-    basePath = path.join(__dirname, '..'),
-    app = express(),
-    Dispatcher = require('app/lib/dispatcher'),
-    dispatcher = new Dispatcher();
+    logger = require('morgan'),
+    bodyParser = require('body-parser'),
+    cookieParser = require('cookie-parser'),
+    app = express();
 
 app.disable('x-powered-by');
 
-app.set('views', path.join(basePath, 'components'));
-app.set('view engine', 'jsx');
+app.use(logger(app.get('env') === 'production' ? 'combined' : 'dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
 
-app.engine('jsx', require('express-react-views').createEngine({
-    jsx: { harmony: true }
-}));
+app.use(express.static(path.join(__dirname, '../public')));
 
-app.use(dispatcher.staticFiles(path.join(basePath, 'dist')));
-app.use(dispatcher.reactRouter());
+app.use('/', require('./lib/react-middleware'));
+
+app.use(function (err, req, res, next) {
+    res.status(500);
+
+    if (app.get('env') !== 'production') {
+        res.send('<pre>' + err.stack + '</pre>');
+    }
+});
+
+app.set('port', process.env.port || 3000);
+
+app.listen(app.get('port'));
 
 module.exports = app;
-
-if (process.env.port) {
-    app.listen(process.env.port);
-}

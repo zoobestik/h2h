@@ -1,10 +1,9 @@
 var React = require('react'),
-    App = React.createFactory(require('components/app')),
     Page;
 
 Page = React.createClass({
     render: function() {
-        var rawHtmlContent = React.renderToString(App({ path: this.props.path }));
+        var rawHtmlContent = React.renderToString(this.props.component);
         return (
             <html lang="en" id="no-js">
                 <head>
