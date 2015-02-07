@@ -3,7 +3,9 @@ var React = require('react'),
 
 Page = React.createClass({
     render: function() {
-        var rawHtmlContent = React.renderToString(this.props.component);
+        var strInit = JSON.stringify(this.props.data),
+            rawHtmlContent = React.renderToString(this.props.component);
+
         return (
             <html lang="en" id="no-js">
                 <head>
@@ -14,9 +16,8 @@ Page = React.createClass({
                     <title>h2h.zoobestik.io</title>
                 </head>
                 <body>
-                    <div id="content" dangerouslySetInnerHTML={{__html: rawHtmlContent }} />
+                    <div id="wrapper" data-init={strInit} dangerouslySetInnerHTML={{ __html: rawHtmlContent }} />
                     <script src="http://fb.me/react-0.12.2.js"/>
-                    { /* <script async src="/pages/main.js"></script> */ }
                 </body>
             </html>
         );

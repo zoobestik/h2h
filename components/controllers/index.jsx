@@ -3,10 +3,22 @@ var React = require('react'),
     IndexPage;
 
 IndexPage = React.createClass({
+    statics: {
+        Controller: require('app/controllers/pages')
+    },
+
+    getInitialState: function() {
+        var data = this.props.data;
+
+        return {
+            name: data.commonInfo.name
+        };
+    },
+
     render: function() {
         return (
             <ul>
-                <li><Link to="app">user page</Link></li>
+                <li><Link to="app">{ this.state.name }</Link></li>
             </ul>
         );
     }

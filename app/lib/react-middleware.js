@@ -9,17 +9,42 @@ require('node-jsx').install({
     stripTypes: false
 });
 
+function getController(state) {
+    var Controller;
+
+    for (let routes = state.routes, i = routes.length-1; i >= 0; i--) {
+        let handler = routes[i].handler;
+
+        if (handler.Controller) {
+            Controller = handler.Controller;
+            break;
+        }
+    }
+
+    return Controller;
+}
+
 module.exports = function(req, res, next) {
     Router.run(require('components/routes'), req.url, function(Handler, state) {
-        var Page = require('components/page'),
-            markup = '<!DOCTYPE html>' + React.renderToStaticMarkup(React.createElement(Page, {
-                component: React.createElement(Handler)
-            }));
+        var Controller = getController(state);
 
-        if (state.routes[0].name === 'not-found') {
-            res.status(404);
-        }
+        new Controller(req, res, state)
+            .fetch()
+                .then((data) => {
+                    var Page = require('components/page'),
+                        component = React.createElement(Page, {
+                            component: React.createElement(Handler, { data: data }),
+                            data: data
+                        });
 
-        res.send(markup);
+                    if (state.routes[0].name === 'not-found') {
+                        res.status(404);
+                    }
+
+                    res.send('<!DOCTYPE html>' + React.renderToStaticMarkup(component));
+                })
+                .error((err) => {
+                    next(err);
+                });
     });
 };

@@ -4,14 +4,15 @@ var React         = require('react'),
     RouteHandler  = Router.RouteHandler;
 
 var App = React.createClass({
-    getDefaultProps: function () {
-        return {};
+
+    statics: {
+        Controller: require('app/controllers')
     },
 
     render: function () {
         return (
             <div className="detail">
-                <RouteHandler />
+                <RouteHandler {...this.props} />
             </div>
         );
     }

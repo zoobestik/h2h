@@ -18,7 +18,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 app.use('/', require('./lib/react-middleware'));
 
-app.use(function (err, req, res, next) {
+app.use(function (err, req, res) {
     res.status(500);
 
     if (app.get('env') !== 'production') {
