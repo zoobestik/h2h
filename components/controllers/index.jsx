@@ -1,24 +1,23 @@
 var React = require('react'),
     Link = require('react-router').Link,
+    Promise = require('bluebird'),
     IndexPage;
 
 IndexPage = React.createClass({
     statics: {
-        Controller: require('app/controllers/pages')
+        action: function() {
+            return Promise.resolve();
+        }
     },
 
     getInitialState: function() {
-        var data = this.props.data;
-
-        return {
-            name: data.commonInfo.name
-        };
+        return {};
     },
 
     render: function() {
         return (
             <ul>
-                <li><Link to="app">{ this.state.name }</Link></li>
+                <li><Link to="App">{ this.state.name }</Link></li>
             </ul>
         );
     }

@@ -1,27 +1,27 @@
-var React = require('react'),
-    Page;
+'use strict';
 
-Page = React.createClass({
+const React = require('react');
+
+module.exports = React.createClass({
     render: function() {
-        var strInit = JSON.stringify(this.props.data),
-            rawHtmlContent = React.renderToString(this.props.component);
+        let context = this.props.context,
+            page = context.getStore('page').getState();
 
         return (
-            <html lang="en" id="no-js">
+            <html lang={ page.lang } id="no-js">
                 <head>
                     <meta charSet="utf-8"/>
                     <meta name="viewport" content="width=device-width"/>
                     <meta httpEquiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
                     <link rel="shortcut icon" href="favicon.ico"/>
-                    <title>h2h.zoobestik.io</title>
+                    <title>{ page.title }</title>
                 </head>
                 <body>
-                    <div id="wrapper" data-init={strInit} dangerouslySetInnerHTML={{ __html: rawHtmlContent }} />
+                    <div id="wrapper" data-preload={  JSON.stringify(context.serialize()) }
+                        dangerouslySetInnerHTML={{ __html: React.renderToString(this.props.component) }} />
                     <script src="http://fb.me/react-0.12.2.js"/>
                 </body>
             </html>
         );
     }
 });
-
-module.exports = Page;

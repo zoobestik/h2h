@@ -14,7 +14,7 @@ var React         = require('react'),
     Routes;
 
 Routes = [
-    <Route name="app" path="/" handler={App}>
+    <Route name="App" path="/" handler={App}>
         <DefaultRoute handler={Index} />
     </Route>,
     <NotFoundRoute name="not-found" handler={ NotFound }/>

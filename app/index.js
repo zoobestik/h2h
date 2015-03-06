@@ -5,6 +5,8 @@ var path = require('path'),
     logger = require('morgan'),
     bodyParser = require('body-parser'),
     cookieParser = require('cookie-parser'),
+    config = require('app/configs/current/node'),
+    reactMiddleware = require('./lib/middlewares/react'),
     app = express();
 
 app.disable('x-powered-by');
@@ -12,11 +14,11 @@ app.disable('x-powered-by');
 app.use(logger(app.get('env') === 'production' ? 'combined' : 'dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.use(cookieParser(config.secret));
 
 app.use(express.static(path.join(__dirname, '../public')));
 
-app.use('/', require('./lib/react-middleware'));
+app.use('/', reactMiddleware());
 
 app.use(function (err, req, res) {
     res.status(500);
@@ -26,7 +28,7 @@ app.use(function (err, req, res) {
     }
 });
 
-app.set('port', process.env.port || 3000);
+app.set('port', process.env.port || config.port);
 
 app.listen(app.get('port'));
 
