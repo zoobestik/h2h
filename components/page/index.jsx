@@ -13,13 +13,18 @@ module.exports = React.createClass({
                     <meta charSet="utf-8"/>
                     <meta name="viewport" content="width=device-width"/>
                     <meta httpEquiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-                    <link rel="shortcut icon" href="favicon.ico"/>
                     <title>{ page.title }</title>
+                    <link rel="shortcut icon" href="/r/favicon.ico"/>
+
+                    <link rel="stylesheet" href="/r/normalize.css"/>
+                    <link rel="stylesheet" href="/r/style.css"/>
                 </head>
                 <body>
-                    <div id="wrapper" data-preload={  JSON.stringify(context.serialize()) }
+                    <div id="application"
                         dangerouslySetInnerHTML={{ __html: React.renderToString(this.props.component) }} />
                     <script src="http://fb.me/react-0.12.2.js"/>
+                    <script type="react/store-data"
+                        dangerouslySetInnerHTML={{ __html: JSON.stringify(context.serialize()) }} />
                 </body>
             </html>
         );

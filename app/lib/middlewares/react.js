@@ -13,7 +13,22 @@ require('node-jsx').install({
 
 module.exports = function() {
     return function (req, res, next) {
-        Router.run(require('components/routes'), req.url, function(Handler, state) {
+        let router = Router.create({
+            routes: require('components/routes'),
+            location: req.url,
+            onError: function(error) {
+                next(error)
+            },
+            onAbort: function(abortReason) {
+                if (abortReason.constructor.name === 'Redirect') {
+                    res.redirect(this.makePath(abortReason.to, abortReason.params, abortReason.query));
+                } else {
+                    next(abortReason)
+                }
+            }
+        });
+
+        router.run(function(Handler, state) {
             let context = new Context(state, req, res),
                 contextPromise = Promise.props(
                     state.routes.reduce(function(result, route) {

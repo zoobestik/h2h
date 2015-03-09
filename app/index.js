@@ -11,12 +11,14 @@ var path = require('path'),
 
 app.disable('x-powered-by');
 
+app.use(require('mimic')());
+
 app.use(logger(app.get('env') === 'production' ? 'combined' : 'dev'));
-app.use(bodyParser.json());
+app.use(bodyParser.json({ type: 'application/*+json' }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser(config.secret));
 
-app.use(express.static(path.join(__dirname, '../public')));
+app.use('/r', express.static(path.join(__dirname, '../static')));
 
 app.use('/', reactMiddleware());
 
