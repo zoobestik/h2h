@@ -1,9 +1,8 @@
 'use strict';
-
 var React = require('react'),
-    SocialPane;
+    b = require('bem-cn')('social-pane');
 
-SocialPane = React.createClass({
+module.exports = React.createClass({
 
     getInitialState: function() {
         return {
@@ -31,18 +30,21 @@ SocialPane = React.createClass({
         var providers = this.state.providers;
 
         return Object.keys(providers).map(function(providerId) {
-            var classes = ['social-pane__icon', 'social-pane__icon_' + providerId];
-            return <img className={ classes.join(' ') } key={ providerId } width="36" height="36" src={ providers[providerId] } />
+            var mods = {};
+
+            mods[providerId] = true;
+
+            return <img className={ b('icon', mods) } key={ providerId }
+                width="36" height="36" src={ providers[providerId] }
+            />
         });
     },
 
     render: function() {
         return (
-            <div className="social-pane">
+            <div className={ b.mix(this.props.mix) }>
                 { this.getIconsView() }
             </div>
         );
     }
 });
-
-module.exports = SocialPane;

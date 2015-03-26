@@ -1,9 +1,8 @@
 'use strict';
-
 var React = require('react'),
-    LeagueTable;
+    b = require('bem-cn')('league-table');
 
-LeagueTable = React.createClass({
+module.exports = React.createClass({
 
     getInitialState: function() {
         return {
@@ -14,25 +13,23 @@ LeagueTable = React.createClass({
     getTableView: function() {
         return this.state.table.map(function(item, i) {
             return (
-                <tr className="league-table__line" key={ item.user.id }>
-                    <td className="league-table__cell league-table__pos">{ i+1 }</td>
-                    <td className="league-table__cell league-table__username">{ item.user.name }</td>
-                    <td className="league-table__cell league-table__points">{ item.pts }</td>
+                <tr className={ b('line') } key={ item.user.id }>
+                    <td className={ b('cell').mix(b('pos')) }>{ i + 1 }</td>
+                    <td className={ b('cell').mix(b('username')) }>{ item.user.name }</td>
+                    <td className={ b('cell').mix(b('points')) }>{ item.pts }</td>
                 </tr>
             );
         });
     },
 
     render: function() {
-        var classes = [ 'league-table' ].concat(this.props.mix);
-
         return (
-            <table className={ classes.join(' ') }>
+            <table className={ b.mix(this.props.mix) }>
                 <thead>
                     <tr>
-                        <th className="league-table__head-cell">Pos</th>
-                        <th className="league-table__head-cell">Team</th>
-                        <th className="league-table__head-cell">Pts</th>
+                        <th className={ b('head-cell') }>Pos</th>
+                        <th className={ b('head-cell') }>Team</th>
+                        <th className={ b('head-cell') }>Pts</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -42,5 +39,3 @@ LeagueTable = React.createClass({
         );
     }
 });
-
-module.exports = LeagueTable;

@@ -1,13 +1,13 @@
 'use strict';
-
 var React = require('react'),
+    b = require('bem-cn')('index-page'),
     RouterState = require('react-router').State,
     LeagueTable = require('components/leagueTable'),
     Switcher = require('components/switcher'),
     SocialPane = require('components/socialPane'),
-    IndexPage;
+    leagueId = 0;
 
-IndexPage = React.createClass({
+module.exports = React.createClass({
     mixins: [ RouterState ],
 
     statics: {
@@ -16,11 +16,7 @@ IndexPage = React.createClass({
 
             store.set('title', 'Explore – ' + store.get('title'));
 
-            return store.loadLeagueTable(IndexPage.getLeagueId());
-        },
-
-        getLeagueId: function() {
-            return 0;
+            return store.loadLeagueTable(leagueId);
         }
     },
 
@@ -31,7 +27,7 @@ IndexPage = React.createClass({
         return {
             tabs: this.getTabsData(),
             activeTab: routes[routes.length - 1].name,
-            leagueTable: store.getLeagueTable(IndexPage.getLeagueId())
+            leagueTable: store.getLeagueTable(leagueId)
         };
     },
 
@@ -50,17 +46,15 @@ IndexPage = React.createClass({
 
     render: function() {
         return (
-            <div className="index-page">
-                <div className="index-page__tables">
-                    <LeagueTable mix="index-page__league-table" data={ this.state.leagueTable } />
-                    <Switcher mix="index-page__switcher" tabs={ this.state.tabs } activeTab={ this.state.activeTab }>
+            <div className={ b }>
+                <div className={ b('tables') }>
+                    <LeagueTable mix={ b('league-table') } data={ this.state.leagueTable } />
+                    <Switcher mix={ b('switcher') } tabs={ this.state.tabs } activeTab={ this.state.activeTab }>
 
                     </Switcher>
                 </div>
-                <SocialPane mix="index-page__social" />
+                <SocialPane mix={ b('social') } />
             </div>
         );
     }
 });
-
-module.exports = IndexPage;

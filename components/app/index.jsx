@@ -1,11 +1,9 @@
 'use strict';
-
 var React = require('react'),
     Promise = require('bluebird'),
     RouteHandler = require('react-router').RouteHandler;
 
-var App = React.createClass({
-
+module.exports = React.createClass({
     statics: {
         action: function(context) {
             var store = context.getStore('page');
@@ -20,9 +18,7 @@ var App = React.createClass({
 
     render: function () {
         return (
-            <RouteHandler {...this.props} />
+            <RouteHandler { ...this.props } />
         );
     }
 });
-
-module.exports = App;

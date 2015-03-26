@@ -1,5 +1,4 @@
 'use strict';
-
 let React = require('react'),
     Router = require('react-router'),
     Promise = require('bluebird'),

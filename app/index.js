@@ -1,5 +1,4 @@
 'use strict';
-
 var path = require('path'),
     express = require('express'),
     logger = require('morgan'),

@@ -1,41 +1,36 @@
 'use strict';
-
 var React = require('react'),
-    Link = require('react-router').Link,
-    Switcher;
+    b = require('bem-cn')('switcher'),
+    Link = require('react-router').Link;
 
-Switcher = React.createClass({
+module.exports = React.createClass({
     getTabsView: function() {
         var self = this;
 
         return this.props.tabs.map(function(tab) {
-            var text = tab.caption,
-                classes = ['switcher__tab'];
+            var mods = {},
+                text = tab.caption;
 
             if (tab.to === self.props.activeTab) {
-                classes.push('switcher__tab_active');
+                mods.active = true;
             } else {
-                text = <Link className="switcher__tab-link" to={ tab.to }>{ text }</Link>;
+                text = <Link className={ b('tab-link') } to={ tab.to }>{ text }</Link>;
             }
 
-            return <li key={ tab.to } className={ classes.join(' ') }>{ text }</li>;
+            return <li key={ tab.to } className={ b('tab', mods) }>{ text }</li>;
         });
     },
 
     render: function() {
-        var classes = [ 'switcher' ].concat(this.props.mix);
-
         return (
-            <div className={ classes.join(' ') }>
-                <ul className="switcher__tabs">
+            <div className={ b.mix(this.props.mix) }>
+                <ul className={ b('tabs') }>
                     { this.getTabsView() }
                 </ul>
-                <div className="switcher__content">
+                <div className={ b('content') }>
                     { this.props.children }
                 </div>
             </div>
         );
     }
 });
-
-module.exports = Switcher;

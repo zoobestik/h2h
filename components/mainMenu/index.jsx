@@ -1,11 +1,10 @@
 'use strict';
-
 var React = require('react'),
+    b = require('bem-cn')('main-menu'),
     Link = require('react-router').Link,
-    RouterState = require('react-router').State,
-    MainMenu;
+    RouterState = require('react-router').State;
 
-MainMenu = React.createClass({
+module.exports = React.createClass({
     mixins: [ RouterState ],
 
     getItemsView: function() {
@@ -24,13 +23,11 @@ MainMenu = React.createClass({
 
     render: function () {
         return (
-            <nav className="main-menu">
-                <ul className="main-menu__list">
+            <nav className={ b.mix(this.props.mix) }>
+                <ul className={ b('list') }>
                     { this.getItemsView() }
                 </ul>
             </nav>
         );
     }
 });
-
-module.exports = MainMenu;

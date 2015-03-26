@@ -1,12 +1,10 @@
-var React = require('react'),
-    Page404;
+'use strict';
+var React = require('react');
 
-Page404 = React.createClass({
+module.exports = React.createClass({
     render: function() {
         return (
             <div>404</div>
         );
     }
 });
-
-module.exports = Page404;

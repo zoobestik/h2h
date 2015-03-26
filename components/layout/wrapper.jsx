@@ -1,13 +1,11 @@
 'use strict';
-
 var React = require('react'),
     RouterState = require('react-router').State,
     RouteHandler = require('react-router').RouteHandler,
     Promise = require('bluebird'),
-    Layout = require('components/layout'),
-    IndexPage;
+    Layout = require('components/layout');
 
-IndexPage = React.createClass({
+module.exports = React.createClass({
     mixins: [ RouterState ],
 
     statics: {
@@ -39,10 +37,8 @@ IndexPage = React.createClass({
     render: function() {
         return (
             <Layout menu={ this.state.menuItems } menuActiveItem={ this.state.activeItem } >
-                <RouteHandler {...this.props} />
+                <RouteHandler { ...this.props } />
             </Layout>
         );
     }
 });
-
-module.exports = IndexPage;
