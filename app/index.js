@@ -1,36 +1,47 @@
+/* global process */
+/* global __dirname */
 'use strict';
-var path = require('path'),
-    express = require('express'),
+var http = require('http'),
+    connect = require('connect'),
     logger = require('morgan'),
     bodyParser = require('body-parser'),
     cookieParser = require('cookie-parser'),
+    serveStatic = require('serve-static'),
     config = require('app/configs/current/node'),
     reactMiddleware = require('./lib/middlewares/react'),
-    app = express();
-
-app.disable('x-powered-by');
+    app = connect();
 
 app.use(require('mimic')());
 
-app.use(logger(app.get('env') === 'production' ? 'combined' : 'dev'));
+app.use(logger(config.env === 'production' ? 'combined' : 'dev'));
+
+app.use(serveStatic(__dirname + '/../static'));
 app.use(bodyParser.json({ type: 'application/*+json' }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser(config.secret));
 
-app.use('/r', express.static(path.join(__dirname, '../static')));
+app.use(reactMiddleware());
 
-app.use('/', reactMiddleware());
+app.use(function(err, req, res, next) {
+    if ( err.redirect) {
 
-app.use(function (err, req, res) {
-    res.status(500);
+        res.statusCode = err.statusCode || 302;
+        res.setHeader('Location', err.redirect);
 
-    if (app.get('env') !== 'production') {
-        res.send('<pre>' + err.stack + '</pre>');
+        res.end();
+    } else {
+        next(err);
     }
 });
 
-app.set('port', process.env.port || config.port);
+app.use(function (err, req, res, next) {
+    res.statusCode = 500;
 
-app.listen(app.get('port'));
+    if (config.env !== 'production') {
+        res.end('<pre>' + err.stack + '</pre>');
+    }
+});
+
+http.createServer(app).listen(process.env.port || config.port);
 
 module.exports = app;

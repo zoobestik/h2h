@@ -19,11 +19,13 @@ module.exports = function() {
                 next(error)
             },
             onAbort: function(abortReason) {
+                let err = abortReason;
+
                 if (abortReason.constructor.name === 'Redirect') {
-                    res.redirect(this.makePath(abortReason.to, abortReason.params, abortReason.query));
-                } else {
-                    next(abortReason)
+                    err = { redirect: this.makePath(abortReason.to, abortReason.params, abortReason.query) };
                 }
+
+                next(err);
             }
         });
 
@@ -53,7 +55,7 @@ module.exports = function() {
                             context: context
                         });
 
-                    res.send('<!DOCTYPE html>' + React.renderToStaticMarkup(page));
+                    res.end('<!DOCTYPE html>' + React.renderToStaticMarkup(page));
                 })
                 .error(function(err) {
                     next(err);

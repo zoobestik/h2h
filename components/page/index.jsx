@@ -15,8 +15,8 @@ module.exports = React.createClass({
                     <title>{ page.title }</title>
                     <link rel="shortcut icon" href="/r/favicon.ico"/>
 
-                    <link rel="stylesheet" href="/r/normalize.css"/>
-                    <link rel="stylesheet" href="/r/style.css"/>
+                    <link rel="stylesheet" href="/normalize.css"/>
+                    <link rel="stylesheet" href="/style.css"/>
                 </head>
                 <body>
                     <div id="application"
