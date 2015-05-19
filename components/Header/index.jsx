@@ -1,12 +1,12 @@
 'use strict';
-var React = require('react'),
-    b = require('bem-cn')('header'),
-    Link = require('react-router').Link,
-    MainMenu = require('components/mainMenu'),
-    SignIn = require('components/signIn');
+const React = require('react');
+const b = require('bem-cn')('header');
+const Link = require('react-router').Link;
+const MainMenu = require('components/MainMenu');
+const SignIn = require('components/SignIn');
 
-module.exports = React.createClass({
-    render: function() {
+class Header extends React.Component {
+    render() {
         return (
             <header className={ b.mix(this.props.mix) }>
                 <Link to="app" className={ b('logo') } href="#">H2H Logo</Link>
@@ -15,4 +15,6 @@ module.exports = React.createClass({
             </header>
         );
     }
-});
+}
+
+module.exports = Header;

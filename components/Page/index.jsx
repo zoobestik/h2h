@@ -1,10 +1,10 @@
 'use strict';
 const React = require('react');
 
-module.exports = React.createClass({
-    render: function() {
-        let context = this.props.context,
-            page = context.getStore('page').getState();
+class Page extends React.Component {
+    render() {
+        const context = this.props.context;
+        const page = context.getStore('page').getState();
 
         return (
             <html lang={ page.lang } id="no-js">
@@ -21,11 +21,14 @@ module.exports = React.createClass({
                 <body>
                     <div id="application"
                         dangerouslySetInnerHTML={{ __html: React.renderToString(this.props.component) }} />
-                    <script src="http://fb.me/react-0.12.2.js"/>
-                    <script type="react/store-data"
+                    <script src={ 'http://fb.me/react-' + this.props.reactVersion +'.js' } />
+                    <script id="store" type="react/store-data"
                         dangerouslySetInnerHTML={{ __html: JSON.stringify(context.serialize()) }} />
+                    <script src="/js/script.js"/>
                 </body>
             </html>
         );
     }
-});
+}
+
+module.exports = Page;

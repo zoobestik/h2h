@@ -1,11 +1,11 @@
 'use strict';
-var React = require('react'),
-    b = require('bem-cn')('layout'),
-    Header = require('components/header'),
-    Footer = require('components/footer');
+const React = require('react');
+const b = require('bem-cn')('layout');
+const Header = require('components/Header');
+const Footer = require('components/Footer');
 
-module.exports = React.createClass({
-    render: function() {
+class Layout extends React.Component {
+    render() {
         return (
             <div className={ b.mix(this.props.mix) }>
                 <Header menu={ this.props.menu }/>
@@ -26,4 +26,6 @@ module.exports = React.createClass({
             </div>
         );
     }
-});
+}
+
+module.exports = Layout;

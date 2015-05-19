@@ -1,9 +1,9 @@
 'use strict';
-var React = require('react'),
-    b = require('bem-cn')('footer');
+const React = require('react');
+const b = require('bem-cn')('footer');
 
-module.exports = React.createClass({
-    render: function() {
+class Footer extends React.Component {
+    render() {
         return (
             <footer className={ b.mix(this.props.mix) }>
                 <div className={ b('copyright') }>
@@ -20,4 +20,7 @@ module.exports = React.createClass({
             </footer>
         );
     }
-});
+}
+
+module.exports = Footer;
+

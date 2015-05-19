@@ -1,7 +1,8 @@
 /* global process */
 'use strict';
 var gulp = require('gulp'),
-    symlink = require('gulp-symlink');
+    symlink = require('gulp-symlink'),
+    webpack = require('gulp-webpack');
 
 gulp.task('link:app', function() {
     return gulp.src('./app')
@@ -26,3 +27,24 @@ gulp.task('link:appConfigs', function() {
 });
 
 gulp.task('postinstall', [ 'link:app', 'link:components', 'link:currentConfig', 'link:appConfigs' ]);
+
+gulp.task('js', function() {
+    return gulp.src('./components/Routes/client.jsx')
+        .pipe(webpack({
+            output: {
+                filename: 'script.js'
+            },
+            module: {
+                loaders: [
+                    {test: /\.jsx$/, loader: 'babel-loader'}
+                ]
+            },
+            resolve: {
+                extensions: ['', '.js', '.jsx']
+            },
+            externals: {
+                react: 'React'
+            }
+        }))
+        .pipe(gulp.dest('static/js/'));
+});

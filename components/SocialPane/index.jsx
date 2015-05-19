@@ -1,11 +1,12 @@
 'use strict';
-var React = require('react'),
-    b = require('bem-cn')('social-pane');
+const React = require('react');
+const b = require('bem-cn')('social-pane');
 
-module.exports = React.createClass({
+class SocialPane extends React.Component {
 
-    getInitialState: function() {
-        return {
+    constructor(props) {
+        super(props);
+        this.state = {
             providers: {
                 vk: 'https://cdn2.iconfinder.com/data/icons/social-flat-buttons-3/512/vkontakte-256.png',
                 //vk: 'http://fs172.www.ex.ua/show/75216042/75216042.png',
@@ -24,9 +25,9 @@ module.exports = React.createClass({
                 //main: 'http://www.moondays.in/images/emailus.png'
             }
         };
-    },
+    }
 
-    getIconsView: function() {
+    getIconsView() {
         var providers = this.state.providers;
 
         return Object.keys(providers).map(function(providerId) {
@@ -38,13 +39,15 @@ module.exports = React.createClass({
                 width="36" height="36" src={ providers[providerId] }
             />
         });
-    },
+    }
 
-    render: function() {
+    render() {
         return (
             <div className={ b.mix(this.props.mix) }>
                 { this.getIconsView() }
             </div>
         );
     }
-});
+}
+
+module.exports = SocialPane;

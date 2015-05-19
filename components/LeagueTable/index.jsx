@@ -1,16 +1,15 @@
 'use strict';
-var React = require('react'),
-    b = require('bem-cn')('league-table');
+const React = require('react');
+const b = require('bem-cn')('league-table');
 
-module.exports = React.createClass({
+class LeagueTable extends React.Component {
 
-    getInitialState: function() {
-        return {
-            table: this.props.data || []
-        }
-    },
+    constructor(props) {
+        super(props);
+        this.state = { table: this.props.data || [] };
+    }
 
-    getTableView: function() {
+    getTableView() {
         return this.state.table.map(function(item, i) {
             return (
                 <tr className={ b('line') } key={ item.user.id }>
@@ -20,9 +19,9 @@ module.exports = React.createClass({
                 </tr>
             );
         });
-    },
+    }
 
-    render: function() {
+    render() {
         return (
             <table className={ b.mix(this.props.mix) }>
                 <thead>
@@ -38,4 +37,6 @@ module.exports = React.createClass({
             </table>
         );
     }
-});
+}
+
+module.exports = LeagueTable;

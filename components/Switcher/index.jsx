@@ -1,15 +1,16 @@
 'use strict';
-var React = require('react'),
-    b = require('bem-cn')('switcher'),
-    Link = require('react-router').Link;
+const React = require('react');
+const b = require('bem-cn')('switcher');
+const Link = require('react-router').Link;
 
-module.exports = React.createClass({
-    getTabsView: function() {
-        var self = this;
+class Switcher extends React.Component {
+    getTabsView() {
+        const self = this;
 
         return this.props.tabs.map(function(tab) {
-            var mods = {},
-                text = tab.caption;
+            const mods = {};
+
+            let text = tab.caption;
 
             if (tab.to === self.props.activeTab) {
                 mods.active = true;
@@ -19,9 +20,9 @@ module.exports = React.createClass({
 
             return <li key={ tab.to } className={ b('tab', mods) }>{ text }</li>;
         });
-    },
+    }
 
-    render: function() {
+    render() {
         return (
             <div className={ b.mix(this.props.mix) }>
                 <ul className={ b('tabs') }>
@@ -33,4 +34,6 @@ module.exports = React.createClass({
             </div>
         );
     }
-});
+}
+
+module.exports = Switcher;

@@ -52,7 +52,8 @@ module.exports = function() {
                     let component = React.createElement(Handler, { context: context }),
                         page = React.createElement(require('components/page'), {
                             component: component,
-                            context: context
+                            context: context,
+                            reactVersion: React.version
                         });
 
                     res.end('<!DOCTYPE html>' + React.renderToStaticMarkup(page));

@@ -1,17 +1,17 @@
 'use strict';
-var React = require('react'),
-    Router = require('react-router'),
+const React = require('react');
+const Router = require('react-router');
 
 /* Router components */
-    Route = Router.Route,
-    Redirect = Router.Redirect,
-    NotFoundRoute = Router.NotFoundRoute,
+const Route = Router.Route;
+const Redirect = Router.Redirect;
+const NotFoundRoute = Router.NotFoundRoute;
 
 /* Components */
-    App = require('components/app'),
-    LayoutWrapper = require('components/layout/wrapper'),
-    Index = require('components/controllers/index'),
-    NotFound = require('components/controllers/404');
+const App = require('components/App');
+const LayoutWrapper = require('components/Layout/wrapper');
+const Index = require('components/controllers/Index');
+const NotFound = require('components/controllers/404');
 
 module.exports = [
     <Route name="app" path="/" handler={ App }>

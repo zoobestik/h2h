@@ -1,10 +1,10 @@
 'use strict';
-var React = require('react'),
-    b = require('bem-cn')('sign-in'),
-    Link = require('react-router').Link;
+const React = require('react');
+const b = require('bem-cn')('sign-in');
+const Link = require('react-router').Link;
 
-module.exports = React.createClass({
-    render: function() {
+class SignIn extends React.Component {
+    render() {
         return (
             <div className={ b.mix(this.props.mix) }>
                 <Link to="app">Sign&nbsp;In</Link>
@@ -14,4 +14,6 @@ module.exports = React.createClass({
             </div>
         );
     }
-});
+}
+
+module.exports = SignIn;

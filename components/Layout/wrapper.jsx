@@ -1,9 +1,9 @@
 'use strict';
-var React = require('react'),
-    RouterState = require('react-router').State,
-    RouteHandler = require('react-router').RouteHandler,
-    Promise = require('bluebird'),
-    Layout = require('components/layout');
+const React = require('react');
+const RouterState = require('react-router').State;
+const RouteHandler = require('react-router').RouteHandler;
+const Promise = require('bluebird');
+const Layout = require('components/layout');
 
 module.exports = React.createClass({
     mixins: [ RouterState ],
