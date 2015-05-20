@@ -6,7 +6,7 @@ class Context {
         let store =  this.stores.get(id);
 
         if ( ! store) {
-            let Store = require('app/stores/' + id);
+            const Store = require('app/stores/' + id);
 
             store = new Store(this);
 
@@ -21,7 +21,7 @@ class Context {
     }
 
     serialize() {
-        let result = {};
+        const result = {};
 
         this.stores.forEach(function(store, id) {
             result[id] = store.getState();

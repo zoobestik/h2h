@@ -14,14 +14,12 @@ class Page extends React.Component {
                     <meta httpEquiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
                     <title>{ page.title }</title>
                     <link rel="shortcut icon" href="/r/favicon.ico"/>
-
-                    <link rel="stylesheet" href="/normalize.css"/>
-                    <link rel="stylesheet" href="/style.css"/>
+                    <link rel="stylesheet" href="/css/style.css"/>
                 </head>
                 <body>
                     <div id="application"
                         dangerouslySetInnerHTML={{ __html: React.renderToString(this.props.component) }} />
-                    <script src={ 'http://fb.me/react-' + this.props.reactVersion +'.js' } />
+                    <script src={ '//fb.me/react-' + this.props.reactVersion +'.js' } />
                     <script id="store" type="react/store-data"
                         dangerouslySetInnerHTML={{ __html: JSON.stringify(context.serialize()) }} />
                     <script src="/js/script.js"/>

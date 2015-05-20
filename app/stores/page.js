@@ -7,7 +7,7 @@ class PageStore { //extends Map.prototype { -- not working :'((
     }
 
     getState() {
-        let data = this._data;
+        const data = this._data;
 
         return Object.keys(data).reduce(function(result, key) {
             result[key] = data[key];
@@ -31,13 +31,13 @@ class PageStore { //extends Map.prototype { -- not working :'((
     }
 
     loadLeagueTable(id) {
-        let store = this,
-            request = this._leagueRequest[id];
+        const store = this;
+        let request = this._leagueRequest[id];
 
         if ( ! request) {
-            request = this._leagueRequest[id] = new Promise(function (resolve) {
-                setTimeout(function () {
-                    let data = [
+            request = this._leagueRequest[id] = new Promise(function(resolve) {
+                setTimeout(function() {
+                    const data = [
                         {
                             user: {
                                 id: 'id0',
@@ -75,7 +75,7 @@ class PageStore { //extends Map.prototype { -- not working :'((
                     store._data['league-table-' + id] = data;
                     store._leagueRequest[id] = null;
 
-                    return Promise.resolve(store, data);
+                    return Promise.resolve(data);
                 });
         }
 

@@ -10,7 +10,8 @@ const NotFoundRoute = Router.NotFoundRoute;
 /* Components */
 const App = require('components/App');
 const LayoutWrapper = require('components/Layout/wrapper');
-const Index = require('components/controllers/Index');
+const Index = require('components/controllers');
+const Auth = require('components/controllers/Auth');
 const NotFound = require('components/controllers/404');
 
 module.exports = [
@@ -19,6 +20,7 @@ module.exports = [
             <Route name="explore" path="explore/" handler={ Index }>
                 <Route name="explore-scores" path="scores/" />
             </Route>
+            <Route name="sign-in" path="auth/" handler={ Auth } />
             <Redirect to="explore" />
         </Route>
     </Route>,

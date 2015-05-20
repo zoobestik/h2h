@@ -1,21 +1,59 @@
 /* global process */
-/* global __dirname */
 'use strict';
-var http = require('http'),
-    connect = require('connect'),
-    logger = require('morgan'),
-    bodyParser = require('body-parser'),
-    cookieParser = require('cookie-parser'),
-    serveStatic = require('serve-static'),
-    config = require('app/configs/current/node'),
-    reactMiddleware = require('./lib/middlewares/react'),
-    app = connect();
+const http = require('http');
+const connect = require('connect');
+const logger = require('morgan');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const config = require('app/configs/current/node');
+const reactMiddleware = require('./lib/middlewares/react');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const app = connect();
 
 app.use(require('mimic')());
 
 app.use(logger(config.env === 'production' ? 'combined' : 'dev'));
 
-app.use(serveStatic(__dirname + '/../static'));
+app.use(require("webpack-dev-middleware")(
+    require('webpack')({
+        entry: {
+            '/js/script.js': './components/Routes/client.jsx',
+            '/css/style.css': './components/Page/css/style.css'
+        },
+        output: {
+            /* global __dirname */
+            path: require('path').join(__dirname, '../static'),
+            filename: '[name]'
+        },
+        module: {
+            loaders: [
+                {
+                    test: /\.jsx$/,
+                    loader: 'babel-loader'
+                },
+                {
+                    test: /\.css$/,
+                    loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader')
+                }
+            ]
+        },
+        postcss: [
+            require('autoprefixer'),
+            require('postcss-import'),
+            require('postcss-nested')
+        ],
+        resolve: {
+            extensions: ['', '.js', '.jsx' ]
+        },
+        externals: {
+            react: 'React'
+        },
+        plugins: [
+            new ExtractTextPlugin("[name]")
+        ]
+    })
+));
+
 app.use(bodyParser.json({ type: 'application/*+json' }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser(config.secret));

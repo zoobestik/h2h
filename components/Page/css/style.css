@@ -1,0 +1,261 @@
+@import "normalize";
+
+html, body, #application {
+    height: 100%;
+}
+
+body {
+    /* background: #fdfdfd; */
+    font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    color: rgba(0, 0, 0, 0.8);
+    line-height: 1.4;
+}
+
+a {
+    /*color: #005695;*/
+    color: #14619a;
+    transition: color 0.5s ease;
+
+    &:visited {
+        color: #6496be;
+    }
+
+    &:hover {
+        color: #8e96aa;
+        /*color: #ed4700;*/
+    }
+}
+
+.line {
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    margin: 10px 0;
+}
+
+.application {
+    position: relative;
+}
+
+.layout {
+    flex-direction: column;
+    display: flex;
+    min-height: 100vh;
+    padding: 0 35px;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    &__main {
+        flex-grow: 1;
+        padding: 21px 0 10px;
+        margin-top: 6px;
+        margin-bottom: 1px;
+    }
+
+    &__line.line {
+        left: 0;
+        right: 0;
+        position: absolute;
+        margin: 0;
+        /* margin: 0 -40px; */
+    }
+
+    &__line_top {
+        height: 1px;
+        border-top: 5px solid #f26115;
+    }
+}
+
+.header {
+    padding: 16px 0 14px;
+    display: flex;
+    align-items: center;
+
+    &__logo {
+        font: bold 33px 'Lato', Calibri, Arial, sans-serif;
+        text-decoration: none;
+        margin-right: 1em;
+        text-transform: uppercase;
+    }
+
+    &__logo, &__logo:visited {
+        color: #333;
+    }
+
+    &__sign-in {
+        flex-grow: 1;
+        text-align: right;
+    }
+}
+
+.sign-in {
+    &__help {
+        margin-left: 10px;
+    }
+
+    &__help-icon {
+        vertical-align: middle;
+    }
+}
+
+.main-menu {
+    &__list {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+
+    &__item {
+        display: inline-block;
+    }
+
+    &__item:not(:last-child):after {
+        content: "\2022";
+        color: gainsboro;
+        margin: 0 5px;
+    }
+}
+
+.index-page {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    &__tables {
+        display: flex;
+        flex-grow: 1;
+        flex-wrap: wrap-reverse;
+    }
+
+    &__league-table {
+        margin-right: 25px;
+    }
+
+    &__switcher {
+        flex-grow: 1;
+        max-width: 760px;
+        min-width: 280px;
+        margin: 0 auto 10px;
+    }
+
+    &__social {
+        display: flex;
+        flex-direction: column;
+        padding-left: 25px;
+    }
+}
+
+.league-table {
+    margin-left: 0;
+    border: 2px solid #333;
+
+    &__head-cell, &__cell {
+        border-right: 1px solid #000;
+        min-width: 40px;
+        padding: 0 7px;
+        border-color: #333;
+    }
+
+    &__head-cell {
+        background: #333;
+        color: white;
+    }
+
+    &__cell {
+        padding-top: 3px;
+        padding-bottom: 3px;
+    }
+
+    &__line:nth-child(odd) {
+        background: #eee;
+    }
+
+    &__line:nth-child(1) {
+        background: #95bded;
+    }
+
+    &__pos, &__points {
+        text-align: center;
+    }
+
+    &__username {
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+}
+
+.switcher {
+    display: flex;
+
+    &__tabs {
+        list-style: none;
+        margin: 0;
+        padding: 10px 0 0;
+    }
+
+    &__tab {
+        padding: 5px 10px;
+        border: 2px solid #000;
+        border-top: none;
+        border-right: none;
+        background: #eee;
+    }
+
+    &__tab_active {
+        position: relative;
+        background: #fff;
+    }
+
+    &__content {
+        border: 2px solid #000;
+        margin-left: -2px;
+        background: #fff;
+        flex-grow: 1;
+    }
+
+    &__tab:first-child {
+        border-top: 2px solid #000;
+    }
+}
+
+.social-pane {
+    display: flex;
+    flex-direction: column;
+
+    &__icon:first-child {
+        margin-top: 0;
+    }
+
+    &__icon {
+        margin-top: 5px;
+    }
+
+    &__icon_mail {
+        margin-top: 2px;
+    }
+}
+
+.footer {
+    display: flex;
+    padding: 10px 0;
+
+    &__copyright {
+        white-space: nowrap;
+    }
+
+    &__contacts {
+        text-align: right;
+        flex-grow: 1;
+    }
+
+    &__fork-me {
+        margin-right: 14px;
+    }
+
+    &__fork-me, &__author {
+        display: inline-block;
+    }
+}

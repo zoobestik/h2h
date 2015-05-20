@@ -1,18 +1,17 @@
 'use strict';
-let React = require('react'),
-    Router = require('react-router'),
-    Promise = require('bluebird'),
-    Context = require('app/lib/context');
+const React = require('react');
+const Router = require('react-router');
+const Promise = require('bluebird');
+const Context = require('app/lib/context');
 
 require('node-jsx').install({
     harmony: false,
-    extension: '.jsx',
-    stripTypes: false
+    extension: '.jsx'
 });
 
 module.exports = function() {
-    return function (req, res, next) {
-        let router = Router.create({
+    return function(req, res, next) {
+        const router = Router.create({
             routes: require('components/routes'),
             location: req.url,
             onError: function(error) {
@@ -30,31 +29,29 @@ module.exports = function() {
         });
 
         router.run(function(Handler, state) {
-            let context = new Context(state, req, res),
-                contextPromise = Promise.props(
-                    state.routes.reduce(function(result, route) {
-                        let handler = route.handler;
+            const context = new Context(state, req, res);
+            const contextPromise = Promise.props(
+                state.routes.reduce(function(result, route) {
+                    const handler = route.handler;
 
-                        if (route.name && handler.action) {
-                            console.log('exec:', route.name);
-                            result[route.name] = handler.action(context);
-                        }
+                    if (route.name && handler.action) {
+                        console.log('exec:', route.name);
+                        result[route.name] = handler.action(context);
+                    }
 
-                        return result;
-                    }, {})
-                );
+                    return result;
+                }, {})
+            );
 
 
             contextPromise
                 .then(function() {
-                    console.log('context:', context);
-
-                    let component = React.createElement(Handler, { context: context }),
-                        page = React.createElement(require('components/page'), {
-                            component: component,
-                            context: context,
-                            reactVersion: React.version
-                        });
+                    const component = React.createElement(Handler, { context: context });
+                    const page = React.createElement(require('components/page'), {
+                        component: component,
+                        context: context,
+                        reactVersion: React.version
+                    });
 
                     res.end('<!DOCTYPE html>' + React.renderToStaticMarkup(page));
                 })
