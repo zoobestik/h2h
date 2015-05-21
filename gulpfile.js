@@ -29,3 +29,9 @@ gulp.task('link:appConfigs', function() {
 });
 
 gulp.task('postinstall', [ 'link:app', 'link:components', 'link:currentConfig', 'link:appConfigs' ]);
+
+gulp.task('clean:artifacts', function(cb) {
+    del([ 'node_modules', 'logs' ], cb);
+});
+
+gulp.task('clean', [ 'clean:artifacts' ]);
