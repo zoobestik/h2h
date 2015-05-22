@@ -1,7 +1,7 @@
 {
   "name": "h2h",
   "version": "0.1.0",
-  "description": "",
+  "description": "Example for page with table and React",
   "main": "app/index.js",
   "private": true,
   "scripts": {

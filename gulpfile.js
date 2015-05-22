@@ -1,5 +1,5 @@
-/* global process */
 'use strict';
+/* global process */
 const gulp = require('gulp');
 const symlink = require('gulp-symlink');
 const webpack = require('gulp-webpack');

@@ -1,7 +1,7 @@
 const React = require('react');
 const Router = require('react-router');
 const routes = require('components/Routes');
-const data = JSON.parse(document.getElementById('store').innerText);
+const data = JSON.parse(document.getElementById('store').innerHTML);
 
 const context = {
     getStore: function() {
