@@ -5,9 +5,10 @@
   "main": "app/index.js",
   "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "node --harmony node_modules/gulp/bin/gulp.js clean",
+    "postinstall": "node --harmony node_modules/gulp/bin/gulp.js postinstall",
     "start": "node --harmony ./node_modules/.bin/luster ./configs/current/luster.js",
-    "postinstall": "./node_modules/.bin/gulp postinstall"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -43,13 +44,13 @@
     "extract-text-webpack-plugin": "^0.8.0",
     "gulp": "^3.8.11",
     "gulp-symlink": "^2.1.0",
-    "gulp-webpack": "^1.4.0",
     "luster-guard": "git://github.com/zoobestik/luster-guard.git#globwatcher",
     "postcss-import": "^5.2.2",
     "postcss-loader": "^0.4.3",
     "postcss-nested": "^0.3.1",
     "style-loader": "^0.12.2",
     "webpack": "^1.9.7",
-    "webpack-dev-middleware": "^1.0.11"
+    "webpack-dev-middleware": "^1.0.11",
+    "webpack-stream": "^2.0.0"
   }
 }
