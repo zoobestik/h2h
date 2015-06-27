@@ -4,9 +4,9 @@
 
 const gulp = require('gulp');
 const symlink = require('gulp-symlink');
-const webpack = require('webpack-stream');
 const del = require('del');
 const jscs = require('gulp-jscs');
+const eslint = require('gulp-eslint');
 
 gulp.task('link:app', function() {
     return gulp.src('./app')
@@ -34,7 +34,7 @@ gulp.task('link:git-hooks', function() {
     return gulp.src([ '.git-hooks/pre-commit', '.git-hooks/post-merge' ])
         .pipe(symlink([ '.git/hooks/pre-commit', '.git/hooks/post-merge' ], {
             relative: true,
-            force: true
+            force: true,
         }));
 });
 
@@ -52,11 +52,14 @@ gulp.task('clean:artifacts', function(cb) {
 
 gulp.task('clean', [ 'clean:artifacts' ]);
 
-gulp.task('lint:jscs', function() {
+gulp.task('lint:js', function() {
     return gulp.src([ '**/*.js', '**/*.jsx' ])
+        .pipe(eslint())
+        .pipe(eslint.format())
+        .pipe(eslint.failAfterError())
         .pipe(jscs());
 });
 
-gulp.task('lint', [ 'lint:jscs' ]);
+gulp.task('lint', [ 'lint:js' ]);
 
 gulp.task('test', [ 'lint' ]);
