@@ -25,13 +25,13 @@ class Layout extends React.Component {
                 </main>
                 <hr className={ b('line').mix('line') } />
                 <Footer
-                    copyright="© 2014–2015"
+                    copyright='© 2014–2015'
 
-                    forkMe="github.com"
-                    forkMeUrl="https://github.com/zoobestik/h2h"
+                    forkMe='github.com'
+                    forkMeUrl='https://github.com/zoobestik/h2h'
 
-                    author="zoobestik"
-                    authorUrl="https://www.linkedin.com/in/kbchernenko"
+                    author='zoobestik'
+                    authorUrl='https://www.linkedin.com/in/kbchernenko'
                 />
             </div>
         );

@@ -47,7 +47,7 @@ class SocialPane extends React.Component {
             return (
                 <img className={ b('icon', mods) }
                      key={ providerId } src={ providers[providerId] }
-                     width="36" height="36"
+                     width='36' height='36'
                 />
             );
         });

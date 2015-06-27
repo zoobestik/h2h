@@ -23,7 +23,7 @@ module.exports = React.createClass({
                 text = <Link to={ 'app' || item.to }>{ text }</Link>;
             }
 
-            return <li key={ item.to } className="main-menu__item">{ text }</li>;
+            return <li key={ item.to } className='main-menu__item'>{ text }</li>;
         });
     },
 

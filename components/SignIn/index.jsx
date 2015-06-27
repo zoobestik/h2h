@@ -14,9 +14,9 @@ class SignIn extends React.Component {
     render() {
         return (
             <div className={ b.mix(this.props.mix) }>
-                <Link to="app">Sign&nbsp;In</Link>
-                <Link className={ b('help') } to="app">
-                    <img className={ b('help-icon') } width="16" height="16" />
+                <Link to='app'>Sign&nbsp;In</Link>
+                <Link className={ b('help') } to='app'>
+                    <img className={ b('help-icon') } width='16' height='16' />
                 </Link>
             </div>
         );

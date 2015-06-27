@@ -24,10 +24,10 @@ class Footer extends React.Component {
                 </div>
                 <div className={ b('contacts') }>
                     <div className={ b('fork-me') }>
-                        Fork me on <a target="_blank" href={ this.props.forkMeUrl }>{ this.props.forkMe }</a>
+                        Fork me on <a target='_blank' href={ this.props.forkMeUrl }>{ this.props.forkMe }</a>
                     </div>
                     <div className={ b('author') }>
-                        Author: <a target="_blank" href={ this.props.authorUrl }>{ this.props.author }</a>
+                        Author: <a target='_blank' href={ this.props.authorUrl }>{ this.props.author }</a>
                     </div>
                 </div>
             </footer>

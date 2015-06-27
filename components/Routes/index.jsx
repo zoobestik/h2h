@@ -16,14 +16,14 @@ const Auth = require('components/controllers/Auth');
 const NotFound = require('components/controllers/404');
 
 module.exports = [
-    <Route name="app" path="/" handler={ App }>
+    <Route name='app' path='/' handler={ App }>
         <Route handler={ LayoutWrapper }>
-            <Route name="explore" path="explore/" handler={ Index }>
-                <Route name="explore-scores" path="scores/" />
+            <Route name='explore' path='explore/' handler={ Index }>
+                <Route name='explore-scores' path='scores/' />
             </Route>
-            <Route name="sign-in" path="auth/" handler={ Auth } />
-            <Redirect to="explore" />
+            <Route name='sign-in' path='auth/' handler={ Auth } />
+            <Redirect to='explore' />
         </Route>
     </Route>,
-    <NotFoundRoute name="not-found" handler={ NotFound }/>,
+    <NotFoundRoute name='not-found' handler={ NotFound }/>,
 ];
