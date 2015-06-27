@@ -1,6 +1,6 @@
 {
     "esnext": true,
-    "esprima": "esprima-fb",
+    "esprima": "esprima-fb", // TODO: ./node_modules/babel-jscs maybe?
     "excludeFiles": [ "node_modules/**", "logs/**" ],
 
     "disallowEmptyBlocks": true,

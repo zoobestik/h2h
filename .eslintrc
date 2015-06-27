@@ -66,7 +66,7 @@
         "no-var": 2,
         "prefer-const": 2,
 
-        // Bug with acceptTranspilerName?
+        // TODO: Bug with acceptTranspilerName?
         // "react/display-name": [ 2, { "acceptTranspilerName": true } ],
 
         "react/jsx-boolean-value": [ 2, "never" ],

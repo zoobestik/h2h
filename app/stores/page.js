@@ -1,6 +1,6 @@
 'use strict';
 
-class PageStore { // extends Map.prototype { -- not working :'((
+class PageStore { // TODO: extends Map.prototype { -- not working :'((
 
     get _data() {
         return this.__data || (this.__data = {});
