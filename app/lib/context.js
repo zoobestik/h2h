@@ -3,7 +3,7 @@
 class Context {
 
     getStore(id) {
-        let store =  this.stores.get(id);
+        let store = this.stores.get(id);
 
         if ( ! store) {
             const Store = require('app/stores/' + id);

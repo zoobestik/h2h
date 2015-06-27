@@ -1,4 +1,5 @@
 'use strict';
+
 const React = require('react');
 const b = require('bem-cn')('index-page');
 const RouterState = require('react-router').State;
@@ -38,6 +39,7 @@ module.exports = React.createClass({
 
     getActiveTab: function() {
         const routes = this.getRoutes();
+
         return routes[routes.length - 1].name;
     },
 

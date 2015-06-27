@@ -1,6 +1,6 @@
 'use strict';
 
-class PageStore { //extends Map.prototype { -- not working :'((
+class PageStore { // extends Map.prototype { -- not working :'((
 
     get _data() {
         return this.__data || (this.__data = {});
@@ -11,6 +11,7 @@ class PageStore { //extends Map.prototype { -- not working :'((
 
         return Object.keys(data).reduce(function(result, key) {
             result[key] = data[key];
+
             return result;
         }, {});
     }
@@ -21,9 +22,9 @@ class PageStore { //extends Map.prototype { -- not working :'((
 
     set(key, val) {
         this._data[key] = val;
+
         return this;
     }
-
 
     /* fixme */
     get _leagueRequest() {

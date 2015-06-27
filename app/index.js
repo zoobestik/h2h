@@ -1,5 +1,7 @@
-/* global process */
 'use strict';
+
+/* global process */
+
 const http = require('http');
 const connect = require('connect');
 const logger = require('morgan');
@@ -7,14 +9,14 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const config = require('app/configs/current/node');
 const reactMiddleware = require('./lib/middlewares/react');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const app = connect();
 
 app.use(require('mimic')());
 
 app.use(logger(config.env === 'production' ? 'combined' : 'dev'));
 
-app.use(require("webpack-dev-middleware")(
+app.use(require('webpack-dev-middleware')(
     require('webpack')({
         entry: {
             '/js/script.js': './components/Routes/client.jsx',
@@ -43,13 +45,13 @@ app.use(require("webpack-dev-middleware")(
             require('postcss-nested')
         ],
         resolve: {
-            extensions: ['', '.js', '.jsx' ]
+            extensions: [ '', '.js', '.jsx' ]
         },
         externals: {
             react: 'React'
         },
         plugins: [
-            new ExtractTextPlugin("[name]")
+            new ExtractTextPlugin('[name]')
         ]
     })
 ));
@@ -67,12 +69,13 @@ app.use(function(err, req, res, next) {
         res.setHeader('Location', err.redirect);
 
         res.end();
-    } else {
+    }
+    else {
         next(err);
     }
 });
 
-app.use(function (err, req, res, next) {
+app.use(function(err, req, res, next) {
     res.statusCode = 500;
 
     if (config.env !== 'production') {

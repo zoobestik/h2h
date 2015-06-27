@@ -1,8 +1,9 @@
 'use strict';
-var React = require('react'),
-    b = require('bem-cn')('main-menu'),
-    Link = require('react-router').Link,
-    RouterState = require('react-router').State;
+
+const React = require('react');
+const b = require('bem-cn')('main-menu');
+const Link = require('react-router').Link;
+const RouterState = require('react-router').State;
 
 module.exports = React.createClass({
     mixins: [ RouterState ],
@@ -21,7 +22,7 @@ module.exports = React.createClass({
         });
     },
 
-    render: function () {
+    render: function() {
         return (
             <nav className={ b.mix(this.props.mix) }>
                 <ul className={ b('list') }>

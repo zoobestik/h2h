@@ -9,10 +9,10 @@ const context = {
             getLeagueTable: function(id) {
                 return data.page['league-table-' + id];
             }
-        }
+        };
     }
 };
 
-Router.run(routes, Router.HistoryLocation, function (Handler) {
+Router.run(routes, Router.HistoryLocation, function(Handler) {
     React.render(<Handler context={ context }/>, document.getElementById('application'));
 });

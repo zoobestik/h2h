@@ -1,4 +1,5 @@
 'use strict';
+
 const React = require('react');
 const b = require('bem-cn')('header');
 const Link = require('react-router').Link;
@@ -10,7 +11,7 @@ class Header extends React.Component {
         return (
             <header className={ b.mix(this.props.mix) }>
                 <Link to="app" className={ b('logo') } href="#">H2H Logo</Link>
-                <MainMenu menu={ this.props.menu }  menuActiveItem={ this.props.activeItem } />
+                <MainMenu menu={ this.props.menu } menuActiveItem={ this.props.activeItem } />
                 <SignIn mix={ b('sign-in') }/>
             </header>
         );

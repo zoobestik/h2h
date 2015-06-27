@@ -1,4 +1,5 @@
 'use strict';
+
 const React = require('react');
 const b = require('bem-cn')('layout');
 const Header = require('components/Header');

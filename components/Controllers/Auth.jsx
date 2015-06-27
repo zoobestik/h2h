@@ -1,4 +1,5 @@
 'use strict';
+
 const React = require('react');
 
 class Auth extends React.Component {

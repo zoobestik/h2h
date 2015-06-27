@@ -1,4 +1,5 @@
 'use strict';
+
 const React = require('react');
 const Promise = require('bluebird');
 const RouteHandler = require('react-router').RouteHandler;

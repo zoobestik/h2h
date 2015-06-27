@@ -1,4 +1,5 @@
 'use strict';
+
 const React = require('react');
 const b = require('bem-cn')('sign-in');
 const Link = require('react-router').Link;

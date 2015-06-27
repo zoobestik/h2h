@@ -1,4 +1,5 @@
 'use strict';
+
 const React = require('react');
 const RouterState = require('react-router').State;
 const RouteHandler = require('react-router').RouteHandler;
@@ -18,7 +19,7 @@ module.exports = React.createClass({
         return {
             menuItems: this.getMenuData(),
             activeItem: this.getActiveMenuItem()
-        }
+        };
     },
 
     getActiveMenuItem: function() {

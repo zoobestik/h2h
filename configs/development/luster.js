@@ -1,5 +1,5 @@
-var path = require('path'),
-    logs = path.resolve.bind(path, process.env.LOGS_DIR || './logs');
+const path = require('path');
+const logs = path.resolve.bind(path, process.env.LOGS_DIR || './logs');
 
 module.exports = {
     app: require.resolve('app'),

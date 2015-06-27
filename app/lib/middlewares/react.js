@@ -1,4 +1,5 @@
 'use strict';
+
 const React = require('react');
 const Router = require('react-router');
 const Promise = require('bluebird');
@@ -15,7 +16,7 @@ module.exports = function() {
             routes: require('components/routes'),
             location: req.url,
             onError: function(error) {
-                next(error)
+                next(error);
             },
             onAbort: function(abortReason) {
                 let err = abortReason;
@@ -42,7 +43,6 @@ module.exports = function() {
                     return result;
                 }, {})
             );
-
 
             contextPromise
                 .then(function() {

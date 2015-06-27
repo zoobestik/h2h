@@ -1,4 +1,5 @@
 'use strict';
+
 const React = require('react');
 
 class Page extends React.Component {
@@ -19,7 +20,7 @@ class Page extends React.Component {
                 <body>
                     <div id="application"
                         dangerouslySetInnerHTML={{ __html: React.renderToString(this.props.component) }} />
-                    <script src={ '//fb.me/react-' + this.props.reactVersion +'.js' } />
+                    <script src={ '//fb.me/react-' + this.props.reactVersion + '.js' } />
                     <script id="store" type="react/store-data"
                         dangerouslySetInnerHTML={{ __html: JSON.stringify(context.serialize()) }} />
                     <script src="/js/script.js"/>

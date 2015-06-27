@@ -1,4 +1,5 @@
 'use strict';
+
 const React = require('react');
 const b = require('bem-cn')('switcher');
 const Link = require('react-router').Link;
@@ -14,7 +15,8 @@ class Switcher extends React.Component {
 
             if (tab.to === self.props.activeTab) {
                 mods.active = true;
-            } else {
+            }
+            else {
                 text = <Link className={ b('tab-link') } to={ tab.to }>{ text }</Link>;
             }
 
