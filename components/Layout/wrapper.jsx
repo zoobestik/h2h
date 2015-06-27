@@ -12,13 +12,13 @@ module.exports = React.createClass({
     statics: {
         action: function() {
             return Promise.resolve();
-        }
+        },
     },
 
     getInitialState: function() {
         return {
             menuItems: this.getMenuData(),
-            activeItem: this.getActiveMenuItem()
+            activeItem: this.getActiveMenuItem(),
         };
     },
 
@@ -31,7 +31,7 @@ module.exports = React.createClass({
             { to: 'explore', text: 'Explore' },
             { to: 'leagueTable', text: 'League Table' },
             { to: 'calendar', text: 'Calendar' },
-            { to: 'news', text: 'News' }
+            { to: 'news', text: 'News' },
         ];
     },
 
@@ -41,5 +41,5 @@ module.exports = React.createClass({
                 <RouteHandler { ...this.props } />
             </Layout>
         );
-    }
+    },
 });

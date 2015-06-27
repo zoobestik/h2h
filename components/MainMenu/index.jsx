@@ -9,10 +9,10 @@ module.exports = React.createClass({
     mixins: [ RouterState ],
 
     getItemsView: function() {
-        var self = this;
+        const self = this;
 
         return this.props.menu.map(function(item) {
-            var text = item.text;
+            let text = item.text;
 
             if ( ! self.isActive(item.to)) {
                 text = <Link to={ 'app' || item.to }>{ text }</Link>;
@@ -30,5 +30,5 @@ module.exports = React.createClass({
                 </ul>
             </nav>
         );
-    }
+    },
 });

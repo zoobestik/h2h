@@ -25,5 +25,5 @@ module.exports = [
             <Redirect to="explore" />
         </Route>
     </Route>,
-    <NotFoundRoute name="not-found" handler={ NotFound }/>
+    <NotFoundRoute name="not-found" handler={ NotFound }/>,
 ];

@@ -42,31 +42,31 @@ class PageStore { // extends Map.prototype { -- not working :'((
                         {
                             user: {
                                 id: 'id0',
-                                name: 'super-user'
+                                name: 'super-user',
                             },
-                            pts: 20
+                            pts: 20,
                         },
                         {
                             user: {
                                 id: 'id1',
-                                name: 'login123'
+                                name: 'login123',
                             },
-                            pts: 15
+                            pts: 15,
                         },
                         {
                             user: {
                                 id: 'id2',
-                                name: 'login123'
+                                name: 'login123',
                             },
-                            pts: 13
+                            pts: 13,
                         },
                         {
                             user: {
                                 id: 'id3',
-                                name: 'login123'
+                                name: 'login123',
                             },
-                            pts: 10
-                        }
+                            pts: 10,
+                        },
                     ];
 
                     resolve(data);

@@ -24,23 +24,24 @@ class SocialPane extends React.Component {
                 /* facebook:
                     'http://static9.depositphotos.com/1144386/1086/v/950/depositphotos_10866787-Old-facebook-icon.jpg'*/
                 facebook: 'http://cli.im/mh/images/preset/logo/facebook-2-small.png',
-                mail: 'http://www.education.go.ke/images/mail.png'
-                // main: 'http://www.moondays.in/images/emailus.png'
-            }
+                mail: 'http://www.education.go.ke/images/mail.png',
+                // main: 'http://www.moondays.in/images/emailus.png',
+            },
         };
     }
 
     getIconsView() {
-        var providers = this.state.providers;
+        const providers = this.state.providers;
 
         return Object.keys(providers).map(function(providerId) {
-            var mods = {};
+            const mods = {};
 
             mods[providerId] = true;
 
             return (
-                <img className={ b('icon', mods) } key={ providerId }
-                    width="36" height="36" src={ providers[providerId] }
+                <img className={ b('icon', mods) }
+                     key={ providerId } src={ providers[providerId] }
+                     width="36" height="36"
                 />
             );
         });

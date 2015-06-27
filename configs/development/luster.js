@@ -1,3 +1,5 @@
+'use strict';
+
 const path = require('path');
 const logs = path.resolve.bind(path, process.env.LOGS_DIR || './logs');
 
@@ -10,22 +12,22 @@ module.exports = {
         forkTimeout: 3000,
         stopTimeout: 10000,
         exitThreshold: 5000,
-        allowedSequentialDeaths: 10
+        allowedSequentialDeaths: 10,
     },
 
     server: {
-        port: process.env.NODE_PORT || 3000
+        port: process.env.NODE_PORT || 3000,
     },
 
     debug: {
-        port: process.env.NODE_DEBUG_PORT || 5010
+        port: process.env.NODE_DEBUG_PORT || 5010,
     },
 
     extensions: {
         'luster-log-file': {
             extendConsole: true,
             stdout: logs('debug.log'),
-            stderr: logs('error.log')
+            stderr: logs('error.log'),
         },
         'luster-guard': {
             path: '../..',
@@ -36,8 +38,8 @@ module.exports = {
                 'app/**/*.js',
                 'components/**/*.jsx',
                 'configs/*.js',
-                'configs/current/*.js'
-            ]
-        }
-    }
+                'configs/current/*.js',
+            ],
+        },
+    },
 };

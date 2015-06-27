@@ -20,7 +20,9 @@ class Switcher extends React.Component {
                 text = <Link className={ b('tab-link') } to={ tab.to }>{ text }</Link>;
             }
 
-            return <li key={ tab.to } className={ b('tab', mods) }>{ text }</li>;
+            return (
+                <li className={ b('tab', mods) } key={ tab.to }>{ text }</li>
+            );
         });
     }
 

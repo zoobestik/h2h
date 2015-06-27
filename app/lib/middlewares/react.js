@@ -7,7 +7,7 @@ const Context = require('app/lib/context');
 
 require('node-jsx').install({
     harmony: false,
-    extension: '.jsx'
+    extension: '.jsx',
 });
 
 module.exports = function() {
@@ -26,7 +26,7 @@ module.exports = function() {
                 }
 
                 next(err);
-            }
+            },
         });
 
         router.run(function(Handler, state) {
@@ -50,7 +50,7 @@ module.exports = function() {
                     const page = React.createElement(require('components/page'), {
                         component: component,
                         context: context,
-                        reactVersion: React.version
+                        reactVersion: React.version,
                     });
 
                     res.end('<!DOCTYPE html>' + React.renderToStaticMarkup(page));

@@ -5,6 +5,7 @@ const Promise = require('bluebird');
 const RouteHandler = require('react-router').RouteHandler;
 
 class App extends React.Component {
+
     static action(context) {
         const store = context.getStore('page');
 

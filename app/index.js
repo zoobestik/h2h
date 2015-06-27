@@ -20,39 +20,39 @@ app.use(require('webpack-dev-middleware')(
     require('webpack')({
         entry: {
             '/js/script.js': './components/Routes/client.jsx',
-            '/css/style.css': './components/Page/css/style.css'
+            '/css/style.css': './components/Page/css/style.css',
         },
         output: {
             /* global __dirname */
             path: require('path').join(__dirname, '../static'),
-            filename: '[name]'
+            filename: '[name]',
         },
         module: {
             loaders: [
                 {
                     test: /\.jsx$/,
-                    loader: 'babel-loader'
+                    loader: 'babel-loader',
                 },
                 {
                     test: /\.css$/,
-                    loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader')
-                }
-            ]
+                    loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader'),
+                },
+            ],
         },
         postcss: [
             require('autoprefixer'),
             require('postcss-import'),
-            require('postcss-nested')
+            require('postcss-nested'),
         ],
         resolve: {
-            extensions: [ '', '.js', '.jsx' ]
+            extensions: [ '', '.js', '.jsx' ],
         },
         externals: {
-            react: 'React'
+            react: 'React',
         },
         plugins: [
-            new ExtractTextPlugin('[name]')
-        ]
+            new ExtractTextPlugin('[name]'),
+        ],
     })
 ));
 
@@ -75,7 +75,7 @@ app.use(function(err, req, res, next) {
     }
 });
 
-app.use(function(err, req, res, next) {
+app.use(function(err, req, res, next) { // eslint-disable-line no-unused-vars
     res.statusCode = 500;
 
     if (config.env !== 'production') {

@@ -9,6 +9,7 @@ const SocialPane = require('components/SocialPane');
 const leagueId = 0;
 
 module.exports = React.createClass({
+
     mixins: [ RouterState ],
 
     statics: {
@@ -18,7 +19,7 @@ module.exports = React.createClass({
             store.set('title', 'Explore – ' + store.get('title'));
 
             return store.loadLeagueTable(leagueId);
-        }
+        },
     },
 
     getInitialState: function() {
@@ -27,13 +28,13 @@ module.exports = React.createClass({
         return {
             tabs: this.getTabsData(),
             activeTab: this.getActiveTab(),
-            leagueTable: store.getLeagueTable(leagueId)
+            leagueTable: store.getLeagueTable(leagueId),
         };
     },
 
     componentWillReceiveProps: function() {
         this.setState({
-            activeTab: this.getActiveTab()
+            activeTab: this.getActiveTab(),
         });
     },
 
@@ -47,12 +48,12 @@ module.exports = React.createClass({
         return [
             {
                 to: 'explore',
-                caption: 'Match Day'
+                caption: 'Match Day',
             },
             {
                 to: 'explore-scores',
-                caption: 'Scores'
-            }
+                caption: 'Scores',
+            },
         ];
     },
 
@@ -60,13 +61,13 @@ module.exports = React.createClass({
         return (
             <div className={ b }>
                 <div className={ b('tables') }>
-                    <LeagueTable mix={ b('league-table') } data={ this.state.leagueTable } />
-                    <Switcher mix={ b('switcher') } tabs={ this.state.tabs } activeTab={ this.state.activeTab }>
+                    <LeagueTable data={ this.state.leagueTable } mix={ b('league-table') } />
+                    <Switcher activeTab={ this.state.activeTab } mix={ b('switcher') } tabs={ this.state.tabs }>
 
                     </Switcher>
                 </div>
                 <SocialPane mix={ b('social') } />
             </div>
         );
-    }
+    },
 });
