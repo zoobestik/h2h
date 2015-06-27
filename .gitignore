@@ -1,6 +1,8 @@
 # system files
 .DS_Store
 .idea
+Thumbs.db
+*.swp
 
 # packages and libs
 node_modules
@@ -9,3 +11,5 @@ npm-debug.log
 # app folders/files
 configs/current
 logs
+
+.coveralls.yml
