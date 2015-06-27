@@ -5,6 +5,14 @@ const b = require('bem-cn')('switcher');
 const Link = require('react-router').Link;
 
 class Switcher extends React.Component {
+    static get propTypes() {
+        return {
+            children: React.PropTypes.any.isRequired,
+            mix: React.PropTypes.any, // TODO: Array or Object
+            tabs: React.PropTypes.array.isRequired,
+        };
+    }
+
     getTabsView() {
         const self = this;
 

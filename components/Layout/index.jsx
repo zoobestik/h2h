@@ -6,6 +6,15 @@ const Header = require('components/Header');
 const Footer = require('components/Footer');
 
 class Layout extends React.Component {
+
+    static get propTypes() {
+        return {
+            children: React.PropTypes.any,
+            menu: React.PropTypes.any,
+            mix: React.PropTypes.any, // TODO: Array or Object
+        };
+    }
+
     render() {
         return (
             <div className={ b.mix(this.props.mix) }>

@@ -12,6 +12,10 @@ module.exports = React.createClass({
 
     mixins: [ RouterState ],
 
+    propTypes: {
+        context: React.PropTypes.object.isRequired,
+    },
+
     statics: {
         action: function(context) {
             const store = context.getStore('page');
@@ -62,9 +66,7 @@ module.exports = React.createClass({
             <div className={ b }>
                 <div className={ b('tables') }>
                     <LeagueTable data={ this.state.leagueTable } mix={ b('league-table') } />
-                    <Switcher activeTab={ this.state.activeTab } mix={ b('switcher') } tabs={ this.state.tabs }>
-
-                    </Switcher>
+                    <Switcher activeTab={ this.state.activeTab } mix={ b('switcher') } tabs={ this.state.tabs } />
                 </div>
                 <SocialPane mix={ b('social') } />
             </div>

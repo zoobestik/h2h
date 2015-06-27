@@ -7,6 +7,15 @@ const MainMenu = require('components/MainMenu');
 const SignIn = require('components/SignIn');
 
 class Header extends React.Component {
+
+    static get propTypes() {
+        return {
+            activeItem: React.PropTypes.any,
+            menu: React.PropTypes.any,
+            mix: React.PropTypes.any, // TODO: Array or Object
+        };
+    }
+
     render() {
         return (
             <header className={ b.mix(this.props.mix) }>

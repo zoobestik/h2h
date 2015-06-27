@@ -3,6 +3,15 @@
 const React = require('react');
 
 class Page extends React.Component {
+
+    static get propTypes() {
+        return {
+            component: React.PropTypes.element.isRequired,
+            context: React.PropTypes.any.isRequired,
+            reactVersion: React.PropTypes.string.isRequired,
+        };
+    }
+
     render() {
         const context = this.props.context;
         const page = context.getStore('page').getState();

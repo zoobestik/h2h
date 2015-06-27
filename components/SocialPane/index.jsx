@@ -4,9 +4,15 @@ const React = require('react');
 const b = require('bem-cn')('social-pane');
 
 class SocialPane extends React.Component {
+    static get propTypes() {
+        return {
+            mix: React.PropTypes.any, // TODO: Array or Object
+        };
+    }
 
     constructor(props) {
         super(props);
+
         this.state = {
             providers: {
                 vk: 'https://cdn2.iconfinder.com/data/icons/social-flat-buttons-3/512/vkontakte-256.png',

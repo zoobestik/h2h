@@ -8,6 +8,11 @@ const RouterState = require('react-router').State;
 module.exports = React.createClass({
     mixins: [ RouterState ],
 
+    propTypes: {
+        menu: React.PropTypes.array.isRequired,
+        mix: React.PropTypes.any, // TODO: Array or Object
+    },
+
     getItemsView: function() {
         const self = this;
 

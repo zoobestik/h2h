@@ -5,6 +5,12 @@ const b = require('bem-cn')('sign-in');
 const Link = require('react-router').Link;
 
 class SignIn extends React.Component {
+    static get propTypes() {
+        return {
+            mix: React.PropTypes.any, // TODO: Array or Object
+        };
+    }
+
     render() {
         return (
             <div className={ b.mix(this.props.mix) }>

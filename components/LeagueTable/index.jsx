@@ -5,6 +5,13 @@ const b = require('bem-cn')('league-table');
 
 class LeagueTable extends React.Component {
 
+    static get propTypes() {
+        return {
+            data: React.PropTypes.array.isRequired,
+            mix: React.PropTypes.any, // TODO: Array or Object
+        };
+    }
+
     constructor(props) {
         super(props);
         this.state = { table: this.props.data || [] };

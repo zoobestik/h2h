@@ -4,6 +4,18 @@ const React = require('react');
 const b = require('bem-cn')('footer');
 
 class Footer extends React.Component {
+
+    static get propTypes() {
+        return {
+            author: React.PropTypes.any.isRequired,
+            authorUrl: React.PropTypes.string.isRequired,
+            copyright: React.PropTypes.any.isRequired,
+            forkMe: React.PropTypes.any.isRequired,
+            forkMeUrl: React.PropTypes.string.isRequired,
+            mix: React.PropTypes.any, // TODO: Array or Object
+        };
+    }
+
     render() {
         return (
             <footer className={ b.mix(this.props.mix) }>
