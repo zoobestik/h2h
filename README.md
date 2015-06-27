@@ -1,4 +1,4 @@
-h2h
+h2h [![Build Status](https://travis-ci.org/zoobestik/h2h.svg?branch=dev)](https://travis-ci.org/zoobestik/h2h) [![Dependency Status](https://david-dm.org/zoobestik/h2h.svg)](https://david-dm.org/zoobestik/h2h) [![devDependency Status](https://david-dm.org/zoobestik/h2h/dev-status.svg)](https://david-dm.org/zoobestik/h2h#info=devDependencies) [![Coverage Status](https://coveralls.io/repos/zoobestik/h2h/badge.svg)](https://coveralls.io/r/zoobestik/h2h)
 ===========
 
 Example for page with table and [React](https://facebook.github.io/react/)
@@ -12,7 +12,10 @@ Example for page with table and [React](https://facebook.github.io/react/)
 npm install
 ```
 
-Then just type on your shell for development:
+## Start server
 ```
 npm run start
 ```
+
+## Acknowledgements
+[![Develop By](https://img.shields.io/badge/develop%20by-zoobestik-blue.svg?style=flat)](https://ru.linkedin.com/in/kbchernenko) [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
