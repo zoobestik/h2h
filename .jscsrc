@@ -1,6 +1,6 @@
 {
     "esnext": true,
-    "esprima": "./node_modules/babel-jscs",
+    "esprima": "babel-jscs",
 
     "disallowEmptyBlocks": true,
     "disallowImplicitTypeConversion": [ "numeric", "binary", "string" ],
