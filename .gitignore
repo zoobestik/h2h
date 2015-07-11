@@ -13,3 +13,4 @@ configs/current
 logs
 
 .coveralls.yml
+.tmp
