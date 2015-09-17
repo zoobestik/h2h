@@ -1,0 +1,152 @@
+{
+    "esnext": true,
+
+    "disallowEmptyBlocks": true,
+    "disallowImplicitTypeConversion": [
+        "numeric",
+        "boolean",
+        "binary",
+        "string"
+    ],
+    "disallowKeywords": [ "with" ],
+    "disallowMixedSpacesAndTabs": true,
+    "disallowMultipleLineBreaks": true, // ???
+    "disallowMultipleLineStrings": true,
+    "disallowMultipleSpaces": { "allowEOLComments": true },
+    "disallowNewlineBeforeBlockStatements": true,
+    "disallowNodeTypes": [ "LabeledStatement" ],
+    "disallowOperatorBeforeLineBreak": true,
+    "disallowParenthesesAroundArrowParam": true,
+    "disallowQuotedKeysInObjects": { "allExcept": [ "reserved" ] },
+    "disallowSpaceAfterObjectKeys": true,
+    "disallowSpaceAfterPrefixUnaryOperators": [ "++", "--" ],
+    "disallowSpaceBeforeComma": true,
+    "disallowSpaceBeforePostfixUnaryOperators": [ "++", "--" ],
+    "disallowSpaceBeforeSemicolon": true,
+    "disallowSpacesInCallExpression": true,
+    "disallowSpacesInFunction": {
+        "beforeOpeningRoundBrace": true
+    },
+    "disallowTrailingWhitespace": true,
+    "jsDoc": {
+        "checkAnnotations": true,
+        "checkParamNames": true,
+        "requireParamTypes": true,
+        "checkRedundantParams": true,
+        "checkRedundantReturns": true,
+        "requireReturnTypes": true,
+        "checkTypes": true,
+        "leadingUnderscoreAccess": "private",
+        "enforceExistence": true,
+        "requireNewlineAfterDescription": true,
+        "requireParamDescription": true
+    },
+    "maximumLineLength": 120,
+    "requireBlocksOnNewline": true,
+    "requireCamelCaseOrUpperCaseIdentifiers": true,
+    "requireCapitalizedConstructors": true,
+    "requireCommaBeforeLineBreak": true,
+    "requireCurlyBraces": [
+        "if",
+        "else",
+        "for",
+        "while",
+        "do",
+        "try",
+        "catch"
+    ],
+    "requireDotNotation": true,
+    "requireKeywordsOnNewLine": [ "else" ],
+    "requireLineBreakAfterVariableAssignment": true,
+    "requireLineFeedAtFileEnd": true,
+    "disallowMultipleVarDecl": true,
+    "requireOperatorBeforeLineBreak": [
+        "?",
+        "=",
+        "+",
+        "-",
+        "/",
+        "*",
+        "==",
+        "===",
+        "!=",
+        "!==",
+        ">",
+        ">=",
+        "<",
+        "<="
+    ],
+    "requirePaddingNewLineAfterVariableDeclaration": true,
+    "requirePaddingNewlinesBeforeKeywords": [
+        "do",
+        "for",
+        "if",
+        "switch",
+        "try",
+        "void",
+        "while",
+        "return"
+    ],
+    "requirePaddingNewLinesBeforeLineComments": { "allExcept": "firstAfterCurly" },
+    "requireParenthesesAroundIIFE": true,
+    "requireSemicolons": true,
+    "requireShorthandArrowFunctions": true,
+    "requireSpaceAfterBinaryOperators": [
+        "=",
+        ",",
+        "+",
+        "-",
+        "/",
+        "*",
+        "==",
+        "===",
+        "!=",
+        "!=="
+    ],
+    "requireSpaceAfterKeywords": [
+        "do",
+        "for",
+        "if",
+        "else",
+        "case",
+        "try"
+    ],
+    "requireSpaceAfterLineComment": { "allExcept": [ "#", "=" ] },
+    "requireSpaceAfterPrefixUnaryOperators": [ "!" ],
+    "requireSpaceBeforeBinaryOperators": [
+        "=",
+        "+",
+        "-",
+        "/",
+        "*",
+        "==",
+        "===",
+        "!=",
+        "!=="
+    ],
+    "requireSpaceBeforeBlockStatements": 1,
+    "requireSpaceBeforeKeywords": [
+        "else",
+        "while",
+        "catch"
+    ],
+    "requireSpaceBeforeObjectValues": true,
+    "requireSpaceBetweenArguments": true,
+    "requireSpacesInConditionalExpression": true,
+    "requireSpacesInForStatement": true,
+    "requireSpacesInFunction": {
+        "beforeOpeningCurlyBrace": true
+    },
+    "requireSpacesInsideArrayBrackets": "allButNested",
+    "requireSpacesInsideObjectBrackets": "allButNested",
+    "requireSpread": true,
+    "requireTrailingComma": { "ignoreSingleLine": true },
+    "requireVarDeclFirst": true,
+    "validateIndentation": 4,
+    "validateLineBreaks": "LF",
+    "validateParameterSeparator": ", ",
+    "validateQuoteMarks": {
+        "mark": "'",
+        "escape": true
+    }
+}
