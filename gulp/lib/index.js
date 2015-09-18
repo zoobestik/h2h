@@ -1,3 +1,5 @@
+'use strict';
+
 const through = require('through2');
 const eslintUtil = require('gulp-eslint/util.js');
 const Promise = require('bluebird');

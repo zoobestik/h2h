@@ -1,4 +1,3 @@
-/* eslint strict: 0 */
 'use strict';
 
 const PluginError = require('gulp-util').PluginError;

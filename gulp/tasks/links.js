@@ -1,3 +1,5 @@
+'use strict';
+
 const symlink = require('gulp-symlink');
 const del = require('del');
 
