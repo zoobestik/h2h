@@ -8,7 +8,8 @@
     "clean": "node --harmony node_modules/gulp/bin/gulp.js clean",
     "postinstall": "node --harmony node_modules/gulp/bin/gulp.js postinstall",
     "test": "node --harmony node_modules/gulp/bin/gulp.js test",
-    "lint": "node --harmony node_modules/gulp/bin/gulp.js lint"
+    "lint": "node --harmony node_modules/gulp/bin/gulp.js lint",
+    "start": "node --harmony ./node_modules/.bin/luster ./configs/current/luster.js"
   },
   "repository": {
     "type": "git",
@@ -26,9 +27,21 @@
     "gulp": "^3.9.0",
     "gulp-eslint": "^1.0.0",
     "gulp-jscs": "^2.0.0",
-    "gulp-symlink": "^2.1.2"
+    "gulp-symlink": "^2.1.2",
+    "luster-guard": "git://github.com/zoobestik/luster-guard.git#globwatcher"
   },
   "dependencies": {
-    "bluebird": "^2.10.0"
+    "babel-core": "^5.8.24",
+    "bluebird": "^2.10.0",
+    "body-parser": "^1.14.0",
+    "connect": "^3.4.0",
+    "history": "^1.9.1",
+    "luster": "^0.5.8",
+    "luster-log-file": "^0.2.1",
+    "react": "^0.14.0-rc1",
+    "react-dom": "^0.14.0-rc1",
+    "react-redux": "^2.1.2",
+    "react-router": "^1.0.0-rc1",
+    "redux": "^3.0.0"
   }
 }

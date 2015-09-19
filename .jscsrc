@@ -1,5 +1,5 @@
 {
-    "esnext": true,
+    "esprima": "babel-jscs",
 
     "disallowEmptyBlocks": true,
     "disallowImplicitTypeConversion": [
@@ -15,7 +15,7 @@
     "disallowMultipleSpaces": { "allowEOLComments": true },
     "disallowNewlineBeforeBlockStatements": true,
     "disallowNodeTypes": [ "LabeledStatement" ],
-    "disallowOperatorBeforeLineBreak": true,
+    "disallowOperatorBeforeLineBreak": false, // jsx!?!
     "disallowParenthesesAroundArrowParam": true,
     "disallowQuotedKeysInObjects": { "allExcept": [ "reserved" ] },
     "disallowSpaceAfterObjectKeys": true,
@@ -141,7 +141,6 @@
     "requireSpacesInsideObjectBrackets": "allButNested",
     "requireSpread": true,
     "requireTrailingComma": { "ignoreSingleLine": true },
-    "requireVarDeclFirst": true,
     "validateIndentation": 4,
     "validateLineBreaks": "LF",
     "validateParameterSeparator": ", ",
