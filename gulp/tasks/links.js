@@ -4,6 +4,9 @@ const path = require('path');
 const symlink = require('gulp-symlink');
 const del = require('del');
 
+/**
+ * List targets for links
+ */
 const targets = {
     app: './node_modules/app',
     components: './node_modules/components',

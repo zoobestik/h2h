@@ -21,7 +21,7 @@ export function renderReactPage(component, initialState) {
     <script>
       window.__INITIAL_STATE__ = ${JSON.stringify(initialState)};
     </script>
-    <script src="/bundle.js"></script>
+    <script src="/js/script.js"></script>
   </body>
 </html>`;
 }

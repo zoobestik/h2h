@@ -3,10 +3,12 @@ require('babel-core/register')({
     compact: false,
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.port || 3000;
 const app = require('./webserver');
 
-require('http').createServer(app).listen(PORT, function(error) {
+const server = require('http').createServer(app);
+
+server.listen(PORT, function(error) {
     if (error) {
         console.error(error);
     }

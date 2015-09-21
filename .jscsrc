@@ -1,5 +1,5 @@
 {
-    "esprima": "babel-jscs",
+    "esnext": true,
 
     "disallowEmptyBlocks": true,
     "disallowImplicitTypeConversion": [

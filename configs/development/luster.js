@@ -28,15 +28,13 @@ module.exports = {
             stderr: logs('error.log'),
         },
         'luster-guard': {
-            path: '../..',
             debounce: 2000,
             interval: 300,
-            silent: true,
             patterns: [
                 'app/**/*.js',
-                'components/**/*.jsx',
-                'configs/*.js',
-                'configs/current/*.js',
+                'components/**/*.js{,x}',
+                'configs/*.js{,x}',
+                'configs/current/*.js{,x}',
             ],
         },
     },

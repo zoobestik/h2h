@@ -1,7 +1,7 @@
 import React from 'react';
 import { RoutingContext, match } from 'react-router';
 import createLocation from 'history/lib/createLocation';
-import routes from 'app/routes';
+import routes from 'components/routes';
 import { renderReactPage } from './react';
 
 export default {
@@ -15,7 +15,6 @@ export default {
             const location = createLocation(req.url);
 
             match({ routes, location }, (err, redirectLocation, renderProps) => {
-                console.log(arguments);
 
                 if (err) {
                     return next(err);
@@ -29,7 +28,7 @@ export default {
                     return next(new Error('Not found'));
                 }
 
-                res.end(renderReactPage(<RoutingContext {...renderProps} />));
+                res.end(renderReactPage(<RoutingContext {...renderProps} />, {}));
             });
         };
     },
