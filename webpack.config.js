@@ -36,6 +36,11 @@ module.exports = {
             },
         ],
     },
+    /**
+     * Configure postcss plugins
+     *
+     * @returns {PostCSSPlugin[]}
+     */
     postcss: function() {
         return [
             require('autoprefixer'),

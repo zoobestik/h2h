@@ -4,4 +4,4 @@ import dispatcher from './dispatcher';
 
 export default connect()
     .use(bodyParser.urlencoded({ extended: false }))
-    .use(dispatcher.init());
+    .use(dispatcher.react());

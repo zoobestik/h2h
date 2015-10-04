@@ -1,8 +1,4 @@
-import React from 'react';
-import { RoutingContext, match } from 'react-router';
-import createLocation from 'history/lib/createLocation';
-import routes from 'components/routes';
-import { renderReactPage } from './react';
+import reactMiddleware from './react';
 
 export default {
     /**
@@ -10,26 +6,7 @@ export default {
      *
      * @returns {Function} react-router-middleware for connect
      */
-    init: function() {
-        return (req, res, next) => {
-            const location = createLocation(req.url);
-
-            match({ routes, location }, (err, redirectLocation, renderProps) => {
-
-                if (err) {
-                    return next(err);
-                }
-
-                if (redirectLocation) {
-                    return next(new Error('Location: ' + redirectLocation));
-                }
-
-                if (renderProps === null) {
-                    return next(new Error('Not found'));
-                }
-
-                res.end(renderReactPage(<RoutingContext {...renderProps} />, {}));
-            });
-        };
+    react: function() {
+        return reactMiddleware;
     },
 };

@@ -34,6 +34,8 @@
     "gulp-eslint": "^1.0.0",
     "gulp-jscs": "^2.0.0",
     "gulp-symlink": "^2.1.2",
+    "jscs": "github:jscs-dev/node-jscs#master",
+    "jscs-jsdoc": "github:jscs-dev/jscs-jsdoc#master",
     "luster-guard": "git://github.com/zoobestik/luster-guard.git#globwatcher",
     "postcss-loader": "^0.6.0",
     "postcss-nested": "^1.0.0",
