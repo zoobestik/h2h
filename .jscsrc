@@ -37,7 +37,7 @@
         "requireReturnTypes": true,
         "checkTypes": true,
         "leadingUnderscoreAccess": "private",
-        "enforceExistence": true,
+        "enforceExistence": false,
         "requireNewlineAfterDescription": true,
         "requireParamDescription": true
     },

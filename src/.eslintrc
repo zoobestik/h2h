@@ -1,0 +1,7 @@
+{
+    "rules": {
+        "no-console": 2,
+        "react/prop-types": 0
+    },
+    "extends": [  "plugin:react/recommended" ]
+}

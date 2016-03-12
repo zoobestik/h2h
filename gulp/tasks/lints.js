@@ -1,49 +1,39 @@
-'use strict';
+import { join } from 'path';
+import jscs from 'gulp-jscs';
+import eslint from 'gulp-eslint';
+import { filters, FilesCache, FailStore } from '../lib';
 
-const path = require('path');
-const jscs = require('gulp-jscs');
-const eslint = require('gulp-eslint');
-const util = require('gulp-util');
-const lib = require('../lib');
-const FilesCache = lib.FilesCache;
-const FailStore = lib.FailStore;
 const excludeFiles = [ '!node_modules/**', '!logs/**', '!.tmp/**' ];
 
 /**
  * Declaration sources linting tasks
  */
-module.exports = function(gulp) {
-
+export default gulp => {
     /**
      * Javascript files checker
      */
-    gulp.task('lint:js', function() {
-        const cache = new FilesCache(path.join(process.cwd(), '.tmp', 'js_files.json'));
-        const status = new FailStore();
+    gulp.task('lint:js', () => {
+        const store = new FailStore();
+        const cache = new FilesCache(join(process.cwd(), '.tmp', 'js_files.json'));
 
-        return gulp.src([ '**/*.js', '**/*.jsx' ].concat(excludeFiles))
-            .pipe(cache.validate())
+        return gulp.src([ '**/*.js' ].concat(excludeFiles))
+            .pipe(cache.filter())
             .pipe(eslint({
                 ignore: true,
-                ignorePath: path.join(process.cwd(), '.eslintignore'),
+                ignorePath: join(process.cwd(), '.eslintignore'),
             }))
             .pipe(eslint.format())
             .pipe(eslint.failAfterError())
-            .on('error', function(e) {
-                status.reject(e);
+            .on('error', e => {
+                store.reject(e);
             })
             .pipe(jscs())
-            .on('error', function(e) {
-                util.log(e.message);
-                status.reject(e);
-            })
-            .pipe(lib.filters.eslintFails())
-            .pipe(lib.filters.jscsFails())
+            .pipe(jscs.reporter())
+            .pipe(filters.eslintFails())
+            .pipe(filters.jscsFails(store))
             .pipe(cache.persist())
-            .pipe(status.failAfterReject());
+            .pipe(store.failAfterReject());
     });
 
-    gulp.task('lint', [ 'lint:js' ]);
-
-    return this;
+    gulp.task('lint', gulp.series('lint:js'));
 };

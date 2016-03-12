@@ -1,28 +1,24 @@
-'use strict';
-
-const PluginError = require('gulp-util').PluginError;
-const through = require('through2');
-const chalk = require('chalk');
+import through from 'through2';
+import { PluginError } from 'gulp-util';
+import chalk from 'chalk';
 
 class FailsStore {
-    constructor() {
-        this._errors = [];
-    }
+    _errors = []; // TODO: must be const!
 
     reject(e) {
-        this._rejected = true;
         this._errors.push(e);
 
         return this;
     }
 
     failAfterReject() {
-        const store = this;
+        const errors = this._errors;
 
         return through.obj(
-            function(file, encoding, cb) {
-                return cb(null, file);
-            },
+
+            (file, encoding, cb) =>
+                cb(null, file),
+
             /**
              * Check fails in store and terminate process if need
              *
@@ -30,13 +26,20 @@ class FailsStore {
              * @param {function} cb callback if no fails
              */
             function(cb) {
-                if (store._rejected) {
-                    this.emit('error', new PluginError('gulp-fails-store', {
-                        name: 'FailStoreError',
-                        message: 'build was failed in ' + store._errors.map(function(e) {
-                            return chalk.cyan(e.plugin);
-                        }).join(', ') + '.',
-                    }));
+                if (errors.length) {
+                    this.emit('error',
+                        new PluginError('gulp-fails-store', {
+                            name: 'FailStoreError',
+                            message: 'build was failed in ' +
+                                errors
+                                    .map(e => chalk.cyan(e.plugin))
+                                    .filter((err, i, list) =>
+                                        list.indexOf(err, i + 1) < 0
+                                    )
+                                    .join(', ') +
+                                '.',
+                        })
+                    );
                 }
 
                 cb();
@@ -46,4 +49,4 @@ class FailsStore {
 
 }
 
-module.exports = FailsStore;
+export default FailsStore;

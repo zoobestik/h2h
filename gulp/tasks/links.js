@@ -1,40 +1,32 @@
-'use strict';
-
-const path = require('path');
-const symlink = require('gulp-symlink');
-const del = require('del');
+import { relative } from 'path';
+import symlink from 'gulp-sym';
+import del from 'del';
 
 /**
  * List targets for links
  */
 const targets = {
     app: './node_modules/app',
-    components: './node_modules/components',
+
+    // 'src/components': './node_modules/components',
+
     'configs/development': './configs/current',
     configs: './app/configs',
-    'gulp/tmpl/pre-commit': '.git/hooks/pre-commit',
-    '.git/hooks/post-merge': '.git/hooks/post-merge',
+    'gulp/tmpl/pre-commit.sh': '.git/hooks/pre-commit',
 };
 
 /**
  * Declaration create symlinks tasks
  */
-module.exports = function(gulp) {
-    gulp.task('links', function() {
-        return gulp.src(Object.keys(targets), { read: false })
+export default gulp => {
+    gulp.task('links', () =>
+        gulp.src(Object.keys(targets), { read: false })
             .pipe(symlink(function(file) {
-                return targets[path.relative(file.cwd, file.path)];
-            }, {
-                relative: true,
-                force: true,
-            }));
-    });
+                return targets[relative(file.cwd, file.path)];
+            }, { force: true, relative: true }))
+    );
 
-    gulp.task('clean:links', function(cb) {
-        del(Object.keys(targets).map(function(src) {
-            return targets[src];
-        }), cb);
-    });
-
-    return this;
+    gulp.task('clean:links', gulp.parallel(
+        () => del(Object.keys(targets).map(src => targets[src]))
+    ));
 };

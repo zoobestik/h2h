@@ -1,6 +1,7 @@
-'use strict';
+import links from './links';
+import lints from './lints';
 
-module.exports = {
-    links: require('./links'),
-    lints: require('./lints'),
+export {
+    links,
+    lints,
 };

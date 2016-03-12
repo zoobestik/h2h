@@ -1,10 +1,12 @@
-'use strict';
+import _fs from 'fs';
+import { dirname } from 'path';
+import through from 'through2';
+import Promise from 'bluebird';
+import _mkdirp from 'mkdirp';
+import { filters } from '.';
 
-const through = require('through2');
-const Promise = require('bluebird');
-const path = require('path');
-const fs = Promise.promisifyAll(require('fs'));
-const mkdirp = Promise.promisify(require('mkdirp'));
+const fs = Promise.promisifyAll(_fs);
+const mkdirp = Promise.promisify(_mkdirp);
 
 class FilesCache {
     constructor(path) {
@@ -17,11 +19,11 @@ class FilesCache {
         }
     }
 
-    listFullCache() {
-        return this._cache;
+    add(path, data) {
+        this._cache[path] = data;
     }
 
-    _isChanged(file) {
+    reValidateFile(file) {
         const previousDate = this._cache[file.path];
         const isChanged = ! (previousDate && file.stat.mtime <= new Date(previousDate));
 
@@ -32,41 +34,31 @@ class FilesCache {
         return isChanged;
     }
 
-    add(path, data) {
-        this._cache[path] = data;
-    }
-
     persist() {
-        const cache = this;
-
         return through.obj(
-            function(file, encoding, cb) {
-                cache.add(file.path, file.stat.mtime);
+            (file, encoding, cb) => {
+                this.add(file.path, file.stat.mtime);
 
                 return cb(null, file);
             },
-            function(cb) {
-                mkdirp(path.dirname(cache._filePath))
-                    .then(function() {
-                        return fs.writeFileAsync(cache._filePath, JSON.stringify(cache.listFullCache()));
-                    })
-                    .catch(function(e) {
+
+            cb => {
+                mkdirp(dirname(this._filePath))
+                    .then(() =>
+                        fs.writeFileAsync(this._filePath, JSON.stringify(this._cache))
+                    )
+                    .catch(e => {
                         console.warn(e.message);
                     })
-                    .finally(function() {
-                        return cb();
-                    });
+                    .finally(() => cb());
             }
         );
     }
 
-    validate() {
-        const self = this;
-
-        return require('./index').filters.filter(function(file) {
-            return self._isChanged(file);
-        });
+    filter() {
+        return filters
+            .filter(file => this.reValidateFile(file));
     }
 }
 
-module.exports = FilesCache;
+export default FilesCache;
