@@ -3,7 +3,7 @@ import jscs from 'gulp-jscs';
 import eslint from 'gulp-eslint';
 import { filters, FilesCache, FailStore } from '../lib';
 
-const excludeFiles = [ '!node_modules/**', '!logs/**', '!.tmp/**' ];
+const excludeFiles = [ '!dist/**', '!node_modules/**', '!logs/**', '!.tmp/**' ];
 
 /**
  * Declaration sources linting tasks

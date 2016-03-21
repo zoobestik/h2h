@@ -5,8 +5,8 @@ export default class UserState extends React.Component {
         const user = this.props.user;
 
         const content = user.uid ?
-            <a href='#'>Sing In</a> :
-            'Not login';
+            <a href='#'>Logout</a> :
+            'Sing In';
 
         return (
             <div>{ content }</div>

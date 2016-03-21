@@ -1,23 +1,28 @@
 import path from 'path';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import webpack from 'webpack';
+import autoprefixer from 'autoprefixer';
+import postcssNested from 'postcss-nested';
 
 const styleExtractor = new ExtractTextPlugin('[name]');
 
-module.exports = {
+export default {
+    bail: true,
+    cache: true,
+
     entry: {
         '/js/script.js': [
             'webpack-dev-server/client?http://localhost:8080',
             'webpack/hot/dev-server',
-            './components/client/index.js',
+            './www/client/main/index.js',
         ],
         '/css/style.css': [
             'webpack/hot/dev-server',
-            './components/client/style.css',
+            './www/client/main/style.css',
         ],
     },
     output: {
-        path: path.join(process.cwd(), 'build'),
+        path: path.join(process.cwd(), 'dist'),
         publicPath: '/',
         filename: '[name]',
     },
@@ -30,7 +35,7 @@ module.exports = {
             {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
-                loaders: [ 'react-hot', 'babel' ],
+                loaders: [ 'react-hot', 'babel?cacheDirectory' ],
             },
             {
                 test: /\.css$/,
@@ -44,17 +49,15 @@ module.exports = {
      * @returns {PostCSSPlugin[]}
      */
     postcss: function() {
-        return [
-            require('autoprefixer'),
-            require('postcss-nested'),
-        ];
+        return {
+            defaults: [ autoprefixer, postcssNested ],
+        };
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin(),
-        new ExtractTextPlugin('[name]'),
+        styleExtractor,
     ],
-    historyApiFallback: true,
     devtool: 'cheap-module-eval-source-map',
     devServer: {
         hot: true,

@@ -7,11 +7,9 @@ import del from 'del';
  */
 const targets = {
     app: './node_modules/app',
-
-    // 'src/components': './node_modules/components',
-
+    'www/components': './node_modules/components',
     'configs/development': './configs/current',
-    configs: './app/configs',
+    'configs/current': './app/config',
     'gulp/tmpl/pre-commit.sh': '.git/hooks/pre-commit',
 };
 

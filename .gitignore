@@ -10,6 +10,8 @@ npm-debug.log
 
 # app folders/files
 configs/current
+app/config
 logs
 
 .tmp
+dist
