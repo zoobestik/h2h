@@ -1,15 +1,26 @@
-import React from 'react';
+import { Component } from 'react';
+import { connect } from 'react-redux';
 
-export default class UserState extends React.Component {
-    render() {
+class UserState extends Component {
+    getLink() {
         const user = this.props.user;
 
-        const content = user.uid ?
-            <a href='#'>Logout</a> :
-            'Sing In';
+        if (user.get('uid')) {
+            return (
+                <a href='#'>Logout</a>
+            );
+        }
 
+        return 'Sign In';
+    }
+
+    render() {
         return (
-            <div>{ content }</div>
+            <div>
+                { this.getLink() }
+            </div>
         );
     }
 }
+
+export default connect(state => ({ user: state.get('user') }))(UserState);

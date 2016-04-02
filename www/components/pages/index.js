@@ -1,26 +1,35 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import UserState from 'components/userState';
 
-class IndexPage extends React.Component {
-    getTextsList() {
+import styles from './index.css';
+
+export default class IndexPage extends React.Component {
+    static defaultProps = {
+        texts: [],
+    };
+
+    getList() {
         const { texts } = this.props;
 
-        return texts.map((text, i) => (
-            <li key={ i }>{ text }</li>
-        ));
+        if ( ! (texts && texts.length)) {
+            return;
+        }
+
+        return (
+            <ul className={ styles.list }>{
+                texts.map((text, i) => (
+                    <li key={ i }>{ text }</li>
+                ))
+            }</ul>
+        );
     }
 
     render() {
         return (
             <div>
-                <UserState user={ this.props.user } />
-                <ul id='list'>
-                    { this.getTextsList() }
-                </ul>
+                <UserState />
+                { this.getList() }
             </div>
         );
     }
 }
-
-export default connect(state => state)(IndexPage);

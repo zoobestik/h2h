@@ -1,10 +1,10 @@
+import { Provider } from 'react-redux';
 import { renderToString } from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
+import { createStore } from 'app/store';
 import routes from 'components/routes';
-
-import { createStore } from 'redux';
-import { Provider } from 'react-redux';
 import reducer from 'app/reducers';
+import { NotFoundError, RedirectError } from '../errors';
 
 /**
  * Wrap html for react component
@@ -17,6 +17,7 @@ export const renderReactPage = (component, initialState) => (
 <html>
   <head>
     <title>Redux Universal Example</title>
+    <link rel="stylesheet" href="/rs/bundle.css">
   </head>
   <body>
     <div id="app">${renderToString(component)}</div>
@@ -27,7 +28,7 @@ export const renderReactPage = (component, initialState) => (
             .replace(/>/g, '\\u003e')
       };
     </script>
-    <script src="/js/script.js"></script>
+    <script src="/rs/bundle.js" async></script>
   </body>
 </html>`
 );
@@ -41,11 +42,11 @@ export default (req, res, next) => {
         }
 
         if (redirectLocation) {
-            return next(new Error('Location: ' + redirectLocation));
+            return next(new RedirectError(redirectLocation));
         }
 
         if ( ! renderProps) {
-            return next(new Error('Not found'));
+            return next(new NotFoundError());
         }
 
         const component = (
