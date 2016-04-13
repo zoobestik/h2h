@@ -8,8 +8,11 @@ export default {
     plugins: [
         new optimize.UglifyJsPlugin({
             compressor: {
-                warnings: false,
+                pure_getters: true, // jscs:ignore requireCamelCaseOrUpperCaseIdentifiers
                 unsafe: true,
+                unsafe_comps: true, // jscs:ignore requireCamelCaseOrUpperCaseIdentifiers
+                screw_ie8: true, // jscs:ignore requireCamelCaseOrUpperCaseIdentifiers
+                warnings: false,
             },
             comments: false,
             sourceMap: false,
