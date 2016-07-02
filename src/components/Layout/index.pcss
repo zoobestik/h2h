@@ -1,0 +1,92 @@
+@import url('~normalize.css');
+
+.layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 0 35px;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    &__line {
+        left: 0;
+        right: 0;
+        position: absolute;
+        margin: 0;
+    }
+
+    &__line_top {
+        height: 5px;
+        background: #f26115;
+        border: 0 none transparent;
+    }
+
+    &__main {
+        flex-grow: 1;
+        padding: 21px 0 10px;
+        margin-top: 6px;
+        margin-bottom: 1px;
+
+        &_center {
+            text-align: center;
+        }
+
+        &_middle {
+            vertical-align: middle;
+        }
+    }
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 0 14px;
+
+    &__logo {
+        font: bold 33px 'Lato', Calibri, Arial, sans-serif;
+        text-decoration: none;
+        margin-right: 1em;
+        text-transform: uppercase;
+    }
+
+    &__logo,
+    &__logo:visited {
+        color: #333;
+    }
+
+    &__sign-in {
+        flex-grow: 1;
+        text-align: right;
+    }
+}
+
+.navigation {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+    &__item {
+        display: inline-block;
+    }
+
+    &__item:not(:last-child)::after {
+        content: "\2022";
+        color: gainsboro;
+        margin: 0 5px;
+    }
+}
+
+.footer {
+    display: flex;
+    padding: 10px 0;
+
+    &__years {
+        white-space: nowrap;
+        flex-grow: 1;
+    }
+
+    &__source {
+        margin-right: 14px;
+    }
+}

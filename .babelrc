@@ -1,0 +1,13 @@
+{
+    "presets": [
+        "react",
+        "stage-3",
+        "es2015-loose"
+    ],
+    "plugins": [
+        "transform-runtime",
+        "react-require",
+        "transform-object-rest-spread",
+        "transform-export-extensions"
+    ]
+}
