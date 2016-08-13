@@ -1,0 +1,15 @@
+.navigation {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+    &__item {
+        display: inline-block;
+    }
+
+    &__item:not(:last-child)::after {
+        content: "\2022";
+        color: gainsboro;
+        margin: 0 0.5rem;
+    }
+}

@@ -1,12 +1,12 @@
 /* eslint-env browser */
 import { render } from 'react-dom';
-import { browserHistory } from 'react-router';
-import createStore from './store';
-import App from './components/App';
-
-const store = global.store = createStore(global.INITIAL_STATE);
+import browserHistory from 'react-router/lib/browserHistory';
+import App from './app';
 
 render(
-    <App history={ browserHistory } store={ store }/>,
+    <App
+        history={ browserHistory }
+        initialState={ global.INITIAL_STATE }
+    />,
     document.getElementById('app')
 );

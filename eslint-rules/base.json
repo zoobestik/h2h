@@ -21,9 +21,16 @@
 
         "no-console": "error",
 
+        "no-plusplus": 0,
+
         "no-unused-vars": [
             "error",
             { "argsIgnorePattern": "^_" }
+        ],
+
+        "arrow-parens": [
+            "error",
+            "as-needed"
         ],
 
         "react/jsx-curly-spacing": [
@@ -46,9 +53,17 @@
             "never"
         ],
 
+        "react/prefer-stateless-function": [
+            "error",
+            { "ignorePureComponents": true }
+        ],
+
         "react/react-in-jsx-scope": 0,
 
+        "react/forbid-prop-types": 0,
+
         "import/no-extraneous-dependencies": 1,
+
         "jsx-a11y/label-has-for": 1
     }
 }

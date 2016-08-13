@@ -8,6 +8,8 @@
         "transform-runtime",
         "react-require",
         "transform-object-rest-spread",
-        "transform-export-extensions"
+        "transform-export-extensions",
+        "transform-decorators-legacy",
+        "transform-class-properties"
     ]
 }

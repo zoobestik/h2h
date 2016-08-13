@@ -1,0 +1,45 @@
+:root {
+    --standings-border-color: #333;
+}
+
+.standings {
+    border: 0.2rem solid var(--standings-border-color);
+    border-collapse: collapse;
+
+    &__row {
+        &:nth-child(odd) {
+            background: #eee;
+        }
+
+        &:nth-child(1) {
+            background: #95bded;
+        }
+    }
+
+    &__cell {
+        border-right: 1px solid;
+        border-color: var(--standings-border-color);
+        padding: 0.2rem 0.5rem;
+
+        &_head {
+            background: var(--standings-border-color);
+            color: white;
+        }
+
+        &_type {
+            &_num,
+            &_points {
+                text-align: center;
+            }
+        }
+    }
+
+    &_preset_short &__cell {
+        text-align: center;
+    }
+
+    &_preset_short &__cell_type_num,
+    &_preset_short &__cell_type_points {
+        width: 1px;
+    }
+}

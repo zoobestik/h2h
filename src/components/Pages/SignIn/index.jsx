@@ -1,11 +1,6 @@
-import userInfo from 'api/userinfo';
-import Redirect from 'react-router/lib/Redirect';
-import LoginForm from '../../LoginForm';
+import { inject, observer } from 'mobx-react';
+import SignIn from './component';
 
-const SignIn = () => (
-    userInfo.isAuth ?
-        <Redirect to="/"/> :
-        <LoginForm/>
-);
-
-export default SignIn;
+export default inject('userInfo')(observer(
+    ({ userInfo }) => <SignIn isAuth={ userInfo.isAuth }/>
+));

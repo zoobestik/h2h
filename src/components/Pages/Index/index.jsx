@@ -1,5 +1,3 @@
-import Layout from '../../Layout';
+import Standings from '../../Standings';
 
-export default () => (
-    <Layout/>
-);
+export default () => <Standings leagueId={ 0 }/>;

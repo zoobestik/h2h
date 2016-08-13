@@ -8,7 +8,7 @@ import del from 'del';
  */
 const targets = {
     src: './node_modules/app',
-    'src/api': './node_modules/api',
+    'src/components': './node_modules/components',
 };
 
 /**

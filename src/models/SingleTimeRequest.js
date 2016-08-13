@@ -1,0 +1,58 @@
+import { action, computed, observable } from 'mobx';
+import { generateId } from '../lib';
+
+export default class SingleTimeRequest {
+    id;
+    @observable defer;
+
+    constructor() {
+        this.reset();
+    }
+
+    @action reset() {
+        this.id = null;
+        this.defer = null;
+    }
+
+    @computed get isProgress() {
+        return Boolean(this.defer);
+    }
+
+    @action createRequest() {
+        if (!this.id) {
+            const defer = this.defer = {};
+
+            defer.promise = new Promise((resolve, reject) => {
+                defer.resolve = resolve;
+                defer.reject = reject;
+            });
+        }
+
+        return (this.id = generateId());
+    }
+
+    processRequest(requestId, actionName) {
+        return response => {
+            if (requestId === this.id) {
+                this.defer[actionName](response);
+                this.reset();
+            }
+        };
+    }
+
+    createExecutor(fn) {
+        return (...args) => this.send(fn(...args));
+    }
+
+    send(promise) {
+        const id = this.createRequest();
+
+        promise
+            .then(this.processRequest(id, 'resolve'))
+            .catch(this.processRequest(id, 'reject'));
+
+        return this.defer.promise;
+    }
+}
+
+export const createExecutor = fn => new SingleTimeRequest().createExecutor(fn);

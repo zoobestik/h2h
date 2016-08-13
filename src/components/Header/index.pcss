@@ -1,0 +1,50 @@
+.header {
+    margin-bottom: 0.25rem; /* height of bottom line */
+
+    &__wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: stretch;
+        padding: 0.25rem 0;
+    }
+
+    &__logo {
+        font-family: system, 'Roboto', Calibri, Arial, sans-serif;
+        font-size: 2rem;
+        font-weight: bold;
+        margin: 0.25rem 0;
+        padding: 0;
+        text-transform: uppercase;
+    }
+
+    &__logo,
+    &__logo:visited {
+        color: #333;
+    }
+
+    &__navigation {
+        flex-grow: 1;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        padding-left: 3.5%;
+    }
+
+    &__user-info {
+        text-align: right;
+    }
+
+    &__line {
+        left: 0;
+        right: 0;
+        position: absolute;
+        margin: 0;
+
+        &_top {
+            height: 0.25rem;
+            background: #f26115;
+            border: 0 none transparent;
+        }
+    }
+}

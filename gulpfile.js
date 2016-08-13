@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 require('babel-register');
 
 if (!process.env.NODE_ENV) {

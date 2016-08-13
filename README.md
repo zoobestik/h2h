@@ -1,20 +1,21 @@
-h2h [![Build Status](https://travis-ci.org/zoobestik/h2h.svg?branch=dev)](https://travis-ci.org/zoobestik/h2h) [![Dependency Status](https://david-dm.org/zoobestik/h2h.svg)](https://david-dm.org/zoobestik/h2h) [![devDependency Status](https://david-dm.org/zoobestik/h2h/dev-status.svg)](https://david-dm.org/zoobestik/h2h#info=devDependencies) [![Coverage Status](https://coveralls.io/repos/zoobestik/h2h/badge.svg)](https://coveralls.io/r/zoobestik/h2h)
+h2h [![Build Status](https://travis-ci.org/zoobestik/h2h.svg?branch=v3)](https://travis-ci.org/zoobestik/h2h) [![Dependency Status](https://david-dm.org/zoobestik/h2h.svg)](https://david-dm.org/zoobestik/h2h) [![devDependency Status](https://david-dm.org/zoobestik/h2h/dev-status.svg)](https://david-dm.org/zoobestik/h2h#info=devDependencies) [![Coverage Status](https://coveralls.io/repos/zoobestik/h2h/badge.svg)](https://coveralls.io/r/zoobestik/h2h)
 ===========
 
 Small pet-project service with [React](https://facebook.github.io/react/)
 
 ## Installation
 
-- Install [Node](http://nodejs.org/download/)
+- Install [node](http://nodejs.org/download/) or [n](https://github.com/tj/n), or [nvm](https://github.com/creationix/nvm)
 - Install the dependencies
 
-```
+```bash
 npm install
+npm run dist
 ```
 
-## Start server
+## Development
 ```
-npm run start
+npm run watch
 ```
 
 ## Acknowledgements

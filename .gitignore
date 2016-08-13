@@ -1,6 +1,7 @@
 # system files
 .DS_Store
 .idea
+*.iml
 Thumbs.db
 *.swp
 

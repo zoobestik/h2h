@@ -14,7 +14,7 @@ const configDefaultPath = path.join(process.cwd(), 'scripts', 'webpack');
  * @returns {webpack}
  */
 const createWebPack = (configPath, args) => webpack({
-    // eslint-disable-next-line global-require
+    // eslint-disable-next-line global-require, import/no-dynamic-require
     ...require(configPath)[env],
     ...(args || {}),
 });

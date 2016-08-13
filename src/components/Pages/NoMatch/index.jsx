@@ -1,9 +1,7 @@
-import { Link, IndexLink } from 'react-router';
+import IndexLink from 'react-router/lib/IndexLink';
 
 export default () => (
     <div>
-        <IndexLink to="/">Index</IndexLink>
-        <Link to="/login">Login</Link>
+        No any pages. Go to <IndexLink to="/">explore</IndexLink>.
     </div>
 );
-
