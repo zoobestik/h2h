@@ -1,25 +1,16 @@
 import { optimize } from 'webpack';
 import csso from 'postcss-csso';
+import BabiliPlugin from 'babili-webpack-plugin';
 import base from './common';
 
-const { DedupePlugin, OccurenceOrderPlugin, UglifyJsPlugin } = optimize;
+const { DedupePlugin, OccurenceOrderPlugin } = optimize;
 
 export default {
     ...base,
 
     plugins: [].concat(
         [
-            new UglifyJsPlugin({
-                compressor: {
-                    pure_getters: true,
-                    unsafe: true,
-                    unsafe_comps: true,
-                    screw_ie8: true,
-                    warnings: false,
-                },
-                comments: false,
-                sourceMap: false,
-            }),
+            new BabiliPlugin(),
             new DedupePlugin(),
             new OccurenceOrderPlugin(),
         ],
