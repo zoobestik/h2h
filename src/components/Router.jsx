@@ -4,15 +4,15 @@ import IndexRoute from 'react-router/lib/IndexRoute';
 
 import App from './App';
 import Layout from './Layout';
-import Index from './Pages/Index';
-import SignIn from './Pages/SignIn';
 import NoMatch from './Pages/NoMatch';
+
+const loader = cb => component => cb(null, component.default);
 
 export const Routes = (
     <Route component={ App }>
         <Route path="/" component={ Layout }>
-            <IndexRoute component={ Index }/>
-            <Route path="login/" components={ SignIn }/>
+            <IndexRoute getComponent={ (location, cb) => System.import('./Pages/Index').then(loader(cb)) }/>
+            <Route path="login/" getComponent={ (location, cb) => System.import('./Pages/SignIn').then(loader(cb)) }/>
             <Route path="*" component={ NoMatch }/>
         </Route>
     </Route>

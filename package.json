@@ -70,7 +70,7 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^2.2.3",
     "eslint-plugin-react": "^6.8.0",
-    "extract-text-webpack-plugin": "^1.0.1",
+    "extract-text-webpack-plugin": "^2.0.0-beta.4",
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-filter": "^4.0.0",
     "gulp-mocha": "^3.0.1",
@@ -79,6 +79,7 @@
     "mocha": "^3.2.0",
     "normalize.css": "^5.0.0",
     "postcss-csso": "^1.1.2",
+    "postcss-import": "^9.0.0",
     "postcss-loader": "^1.2.0",
     "postcss-nested": "^1.0.0",
     "pre-commit": "^1.2.0",
@@ -88,7 +89,6 @@
     "style-loader": "^0.13.1",
     "stylelint": "^7.6.0",
     "stylelint-config-standard": "^15.0.0",
-    "webpack": "^1.14.0",
-    "webpack-core": "^0.6.9"
+    "webpack": "^2.2.0-rc.0"
   }
 }

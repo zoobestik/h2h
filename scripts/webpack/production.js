@@ -1,9 +1,12 @@
 import { optimize } from 'webpack';
 import csso from 'postcss-csso';
 import BabiliPlugin from 'babili-webpack-plugin';
-import base from './common';
+import base, { pluginOptions } from './common';
 
-const { DedupePlugin, OccurenceOrderPlugin } = optimize;
+const { OccurrenceOrderPlugin } = optimize;
+const { postcss } = pluginOptions;
+
+pluginOptions.postcss = (...args) => [].concat(postcss(...args), csso);
 
 export default {
     ...base,
@@ -11,11 +14,8 @@ export default {
     plugins: [].concat(
         [
             new BabiliPlugin(),
-            new DedupePlugin(),
-            new OccurenceOrderPlugin(),
+            new OccurrenceOrderPlugin(),
         ],
-        base.plugins
+        base.plugins,
     ),
-
-    postcss: (...args) => [].concat(base.postcss(...args), csso),
 };

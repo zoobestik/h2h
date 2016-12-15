@@ -1,9 +1,18 @@
 import path from 'path';
-import webpack from 'webpack';
+import { optimize, DefinePlugin, LoaderOptionsPlugin } from 'webpack';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import { postcssProcessors } from '../lib/css';
 
-const styleExtract = new ExtractTextPlugin('[name].css');
+const babelrc = require('../../.babelrc.json');
+
+const styleExtractPlugin = new ExtractTextPlugin({
+    filename: '[name].css',
+    allChunks: false,
+});
+
+export const pluginOptions = {
+    postcss: () => postcssProcessors,
+};
 
 export default {
     entry: {
@@ -13,16 +22,11 @@ export default {
     },
     output: {
         path: path.join(process.cwd(), 'dist'),
-        publicPath: '/bundles/',
+        publicPath: '/my/dist/',
         filename: '[name].js',
     },
-    alias: {
-        // app: path.join(process.cwd(), 'src'),
-    },
     resolve: {
-        root: path.resolve('./'),
         extensions: [
-            '',
             '.js',
             '.jsx',
             '.json',
@@ -33,28 +37,38 @@ export default {
             {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
-                loaders: [
-                    'babel?cacheDirectory',
-                ],
+                loader: 'babel-loader',
+                options: {
+                    ...babelrc,
+                },
             },
             {
                 test: /\.p?css$/,
                 exclude: /node_modules/,
-                loader: styleExtract.extract(
-                    'style-loader',
-                    [
+                loader: ExtractTextPlugin.extract({
+                    fallbackLoader: 'style-loader',
+                    loader: [
                         'css-loader',
                         'postcss-loader',
-                    ].join('!')
-                ),
+                    ],
+                }),
             },
         ],
     },
     plugins: [
-        new webpack.DefinePlugin({
+        new DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
         }),
-        styleExtract,
+
+        styleExtractPlugin,
+
+        new optimize.CommonsChunkPlugin({
+            name: 'common',
+            minChunks: Infinity,
+        }),
+
+        new LoaderOptionsPlugin({
+            options: pluginOptions,
+        }),
     ],
-    postcss: () => postcssProcessors,
 };
