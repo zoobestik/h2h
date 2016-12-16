@@ -5,10 +5,16 @@ import Link from 'react-router/lib/Link';
 export const b = block('button');
 
 const Button = ({ className, href, type, ...props }) => {
-    const isLink = Boolean(href);
-    const Tag = isLink ? Link : 'button';
-    const buttonType = !isLink && typeof type !== 'string' ? 'button' : null;
-    const to = isLink ? href : null;
+    let to;
+    let buttonType;
+    let Tag = 'button';
+
+    if (href) {
+        Tag = Link;
+        to = href;
+    } else {
+        buttonType = type === undefined ? 'button' : type;
+    }
 
     return <Tag { ...props } className={ b.mix(className) } type={ buttonType } to={ to }/>;
 };
