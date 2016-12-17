@@ -1,6 +1,7 @@
 import chai from 'chai';
 import sinonChai from 'sinon-chai';
 import { jsdom } from 'jsdom';
+import * as lib from './lib';
 
 chai.use(sinonChai);
 
@@ -12,6 +13,11 @@ const exposedProperties = [
     'navigator',
     'document',
 ];
+
+Object.keys(lib).forEach(item => {
+    exposedProperties.push(item);
+    global[item] = lib[item];
+});
 
 const document = global.document = jsdom('');
 

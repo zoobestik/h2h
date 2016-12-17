@@ -1,11 +1,10 @@
 /* eslint-env mocha */
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
+import Link from 'react-router/lib/Link';
 import Button from '../';
 
 describe('Button', () => {
-    const externalUrl = 'http://example.com';
-
     it('default', () => {
         const button = shallow(<Button>Click Me</Button>);
         expect(button.html()).to.equal('<button class="button" type="button">Click Me</button>');
@@ -21,13 +20,18 @@ describe('Button', () => {
         expect(button.is('button[type="submit"]')).to.equal(true);
     });
 
-    it.skip('with @href', () => {
-        const button = shallow(<Button href={ externalUrl }>Click Me</Button>);
-        expect(button.is(`a[href="${externalUrl}"]`)).to.equal(true);
-    });
+    describe('as a link', () => {
+        const externalUrl = 'http://example.com';
 
-    it.skip('with @href and @type=submit', () => {
-        const button = shallow(<Button href={ externalUrl } type="submit">Click Me</Button>);
-        expect(button.is(`a[href="${externalUrl}"]`)).to.equal(true);
+        it('with @href', () => {
+            const button = shallow(<Button href={ externalUrl }>Click Me</Button>);
+            expect(button.matchesElement(<Link>Click Me</Link>)).to.equal(true);
+            expect(button.html()).to.equal('<a href="http://example.com" class="button">Click Me</a>');
+        });
+
+        it('with @href and @type=submit', () => {
+            const button = shallow(<Button href={ externalUrl } type="submit">Click Me</Button>);
+            expect(button.html()).to.equal('<a href="http://example.com" class="button">Click Me</a>');
+        });
     });
 });

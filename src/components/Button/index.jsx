@@ -4,19 +4,17 @@ import Link from 'react-router/lib/Link';
 
 export const b = block('button');
 
-const Button = ({ className, href, type, ...props }) => {
-    let to;
+const Button = ({ className, type, ...props }) => {
     let buttonType;
     let Tag = 'button';
 
-    if (href) {
+    if (props.href || props.to) {
         Tag = Link;
-        to = href;
     } else {
         buttonType = type === undefined ? 'button' : type;
     }
 
-    return <Tag { ...props } className={ b.mix(className) } type={ buttonType } to={ to }/>;
+    return <Tag { ...props } className={ b.mix(className) } type={ buttonType }/>;
 };
 
 Button.propTypes = {
@@ -24,6 +22,12 @@ Button.propTypes = {
         PropTypes.string,
         PropTypes.func,
     ]),
+
+    to: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.func,
+    ]),
+
     href: PropTypes.string,
     type: PropTypes.string,
 };

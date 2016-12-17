@@ -13,12 +13,12 @@ const HeaderAuthInfo = ({ className, login, avatarUrl }) => (
 );
 
 HeaderAuthInfo.propTypes = {
+    avatarUrl: PropTypes.string,
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.func,
     ]),
-    login: PropTypes.string,
-    avatarUrl: PropTypes.string,
+    login: PropTypes.string.isRequired,
 };
 
 export default HeaderAuthInfo;
