@@ -6,16 +6,19 @@ import App from './App';
 import Layout from './Layout';
 import NoMatch from './Pages/NoMatch';
 
-const loader = cb => component => cb(null, component.default);
+import IndexPage from './Pages/Index';
+import SignIn from './Pages/SignIn';
+
+const loader = module => cb => cb(null, module);
 
 export const Routes = (
     <Route component={ App }>
         <Route path="/" component={ Layout }>
             <IndexRedirect to="explore/"/>
-            <Route path="explore/" getComponent={ (location, cb) => System.import('./Pages/Index').then(loader(cb)) }>
+            <Route path="explore/" getComponent={ (location, cb) => loader(IndexPage)(cb) }>
                 <Route path="scores/" component={ () => <div>!!!</div> }/>
             </Route>
-            <Route path="login/" getComponent={ (location, cb) => System.import('./Pages/SignIn').then(loader(cb)) }/>
+            <Route path="login/" getComponent={ (location, cb) => loader(SignIn)(cb) }/>
             <Route path="*" component={ NoMatch }/>
         </Route>
     </Route>

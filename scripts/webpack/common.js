@@ -24,6 +24,7 @@ export default {
         path: path.join(process.cwd(), 'dist'),
         publicPath: '/my/dist/',
         filename: '[name].js',
+        chunkFilename: '[name].js',
     },
     resolve: {
         extensions: [
@@ -64,7 +65,7 @@ export default {
 
         new optimize.CommonsChunkPlugin({
             name: 'common',
-            minChunks: Infinity,
+            // minChunks: Infinity,
         }),
 
         new LoaderOptionsPlugin({
