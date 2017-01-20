@@ -2,8 +2,8 @@ import block from 'bem-cn';
 import { PropTypes, PureComponent } from 'react';
 import withRouter from 'react-router/lib/withRouter';
 import { routerShape } from 'react-router/lib/PropTypes';
-
 import Link from 'react-router/lib/Link';
+import { getPublicPath } from 'app/lib/paths';
 
 import './index.pcss';
 
@@ -12,9 +12,9 @@ export const itemClass = b('item');
 export const itemLinkClass = b('link');
 
 export const items = [
-    { to: '/explore/', children: 'Explore' },
-    { to: '/standings/', children: 'League Table' },
-    { to: '/calendar/', children: 'Calendar' },
+    { to: getPublicPath('/explore/'), children: 'Explore' },
+    { to: getPublicPath('/standings/'), children: 'League Table' },
+    { to: getPublicPath('/calendar/'), children: 'Calendar' },
     // { to: '/news/', children: 'News' },
 ];
 

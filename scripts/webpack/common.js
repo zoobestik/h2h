@@ -14,6 +14,8 @@ export const pluginOptions = {
     postcss: () => postcssProcessors,
 };
 
+const publicPath = process.env.URL_PUBLIC_PATH || '/h2h';
+
 export default {
     entry: {
         index: [
@@ -22,7 +24,7 @@ export default {
     },
     output: {
         path: path.join(process.cwd(), 'dist'),
-        publicPath: '/h2h/dist/',
+        publicPath: `${publicPath}/dist`,
         filename: '[name].js',
         chunkFilename: '[name].js',
     },
@@ -59,6 +61,7 @@ export default {
     plugins: [
         new DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+            'process.env.URL_PUBLIC_PATH': JSON.stringify(publicPath),
         }),
 
         styleExtractPlugin,

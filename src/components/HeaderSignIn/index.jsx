@@ -1,7 +1,8 @@
 import block from 'bem-cn';
 import { PropTypes } from 'react';
-import { purify } from 'app/lib/decorators';
 import Link from 'react-router/lib/Link';
+import { purify } from 'app/lib/decorators';
+import { getPublicPath } from 'app/lib/paths';
 
 import './index.pcss';
 
@@ -26,8 +27,8 @@ export const classHelpIcon = b('help-icon');
 
 const HeaderSignIn = ({ className }) => (
     <div className={ b.mix(className) }>
-        <Link to="/login/">Sign In</Link>
-        <Link className={ classHelp } to="/help/">
+        <Link to={ getPublicPath('/login/') }>Sign In</Link>
+        <Link className={ classHelp } to={ getPublicPath('/help/') }>
             <img className={ classHelpIcon } alt="sign in icon" src={ helpIcon } height="30" width="30"/>
         </Link>
     </div>

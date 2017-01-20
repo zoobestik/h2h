@@ -1,5 +1,6 @@
 import { PropTypes, PureComponent } from 'react';
 import block from 'bem-cn';
+import { getPublicPath } from 'app/lib/paths';
 import Standings from 'components/Standings';
 import Tabs from 'components/Tabs';
 import SocialPane from 'components/SocialPane';
@@ -14,11 +15,11 @@ const classSocial = b('social');
 
 const tabs = [
     {
-        to: '/explore/',
+        to: getPublicPath('/explore/'),
         caption: 'Match Day',
     },
     {
-        to: '/explore/scores/',
+        to: getPublicPath('/explore/scores/'),
         caption: 'Scores',
     },
 ];

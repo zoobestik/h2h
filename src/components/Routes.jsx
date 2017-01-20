@@ -2,6 +2,7 @@ import Router from 'react-router/lib/Router';
 import Route from 'react-router/lib/Route';
 import IndexRoute from 'react-router/lib/IndexRoute';
 import IndexRedirect from 'react-router/lib/IndexRedirect';
+import { getPublicPath } from 'app/lib/paths';
 
 import App from './App';
 import Layout from './Layout';
@@ -13,8 +14,8 @@ import SignIn from './Pages/SignIn';
 const loader = module => cb => cb(null, module);
 
 export const Routes = (
-    <Route component={ App }>
-        <Route path="/" component={ Layout }>
+    <Route path={ getPublicPath() } component={ App }>
+        <Route component={ Layout }>
             <IndexRedirect to="explore/"/>
             <Route path="explore/" getComponent={ (location, cb) => loader(IndexPage)(cb) }>
                 <IndexRoute getComponent={ (location, cb) => loader(IndexDayTab)(cb) }/>

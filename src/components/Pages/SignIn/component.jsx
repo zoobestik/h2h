@@ -1,6 +1,9 @@
 import { Component, PropTypes } from 'react';
 import withRouter from 'react-router/lib/withRouter';
+import { getPublicPath } from 'app/lib/paths';
 import LoginForm from 'components/LoginForm';
+
+const rootPath = getPublicPath('/');
 
 class SignIn extends Component {
     componentWillMount() {
@@ -15,7 +18,7 @@ class SignIn extends Component {
         const { router, isAuth } = props || this.props;
 
         if (isAuth) {
-            router.replace('/');
+            router.replace(rootPath);
         }
     }
 
