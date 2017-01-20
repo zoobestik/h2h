@@ -5,7 +5,7 @@ import { shallow } from 'enzyme';
 const Button = props => <span { ...props }/>;
 
 const HeaderSignIn = global.componentWithMocks(`${__dirname}/..`, {
-    '../Button': Button,
+    'components/Button': Button,
 });
 
 describe('HeaderSignIn', () => {

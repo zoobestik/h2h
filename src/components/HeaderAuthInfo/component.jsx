@@ -1,24 +1,29 @@
+import { PureComponent, PropTypes } from 'react';
 import block from 'bem-cn';
-import { PropTypes } from 'react';
 
 export const b = block('header-auth-info');
 
-const defaultUrl = '/';
+export default class HeaderAuthInfo extends PureComponent {
+    static propTypes = {
+        avatarUrl: PropTypes.string,
+        className: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.func,
+        ]),
+        login: PropTypes.string.isRequired,
+    };
 
-const HeaderAuthInfo = ({ className, login, avatarUrl }) => (
-    <div className={ b.mix(className) }>
-        { login }
-        <img alt={ `${login} avatar` } src={ avatarUrl || defaultUrl }/>
-    </div>
-);
+    static defaultProps = {
+        avatarUrl: '/',
+    };
 
-HeaderAuthInfo.propTypes = {
-    avatarUrl: PropTypes.string,
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.func,
-    ]),
-    login: PropTypes.string.isRequired,
-};
-
-export default HeaderAuthInfo;
+    render() {
+        const { className, login, avatarUrl } = this.props;
+        return (
+            <div className={ b.mix(className) }>
+                { login }
+                <img alt={ `${login} avatar` } src={ avatarUrl }/>
+            </div>
+        );
+    }
+}

@@ -1,5 +1,5 @@
 import { PropTypes, PureComponent } from 'react';
-import { serialize } from '../../lib/form';
+import { serialize } from 'app/lib/form';
 
 export default class Form extends PureComponent {
     static propTypes = {

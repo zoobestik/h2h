@@ -7,9 +7,9 @@ const HeaderAuthInfo = props => <div data-component="HeaderAuthInfo" { ...props 
 const Navigation = props => <div { ...props }/>;
 
 const Header = global.componentWithMocks(`${__dirname}/../component`, {
-    '../HeaderSignIn': HeaderSignIn,
-    '../HeaderAuthInfo': HeaderAuthInfo,
-    '../Navigation': Navigation,
+    'components/HeaderSignIn': HeaderSignIn,
+    'components/HeaderAuthInfo': HeaderAuthInfo,
+    'components/Navigation': Navigation,
 });
 
 describe('Header', () => {

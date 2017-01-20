@@ -1,9 +1,9 @@
 import block from 'bem-cn';
 import { PropTypes, PureComponent } from 'react';
 
-import HeaderSignIn from '../HeaderSignIn';
-import HeaderAuthInfo from '../HeaderAuthInfo';
-import MainMenu from '../Navigation';
+import HeaderSignIn from 'components/HeaderSignIn';
+import HeaderAuthInfo from 'components/HeaderAuthInfo';
+import MainMenu from 'components/Navigation';
 
 import './index.pcss';
 

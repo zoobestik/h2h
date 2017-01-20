@@ -1,7 +1,7 @@
 import { PropTypes, Component } from 'react';
 import { action, observable } from 'mobx';
 import { observer } from 'mobx-react';
-import { getStandings } from '../../api/league';
+import { getStandings } from 'app/api/league';
 import Standings from './component';
 
 export default observer(class StandingsSmart extends Component {

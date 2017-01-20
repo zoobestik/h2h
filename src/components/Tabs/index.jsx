@@ -1,6 +1,6 @@
 import React, { PropTypes, PureComponent } from 'react';
 import block from 'bem-cn';
-import { Link } from 'react-router';
+import Link from 'react-router/lib/Link';
 
 import './index.pcss';
 

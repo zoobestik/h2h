@@ -1,7 +1,7 @@
 import { PropTypes } from 'react';
 import bem from 'bem-cn';
-import { purify } from '../../lib/decorators';
-import Form from '../../components/Form';
+import { purify } from 'app/lib/decorators';
+import Form from 'components/Form';
 
 const block = bem('login-form');
 

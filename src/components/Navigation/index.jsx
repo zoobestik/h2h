@@ -1,6 +1,8 @@
 import block from 'bem-cn';
 import { PropTypes, PureComponent } from 'react';
-import { withRouter, routerShape } from 'react-router';
+import withRouter from 'react-router/lib/withRouter';
+import { routerShape } from 'react-router/lib/PropTypes';
+
 import Link from 'react-router/lib/Link';
 
 import './index.pcss';

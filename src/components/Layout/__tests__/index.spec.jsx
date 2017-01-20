@@ -6,8 +6,8 @@ const Header = props => <div { ...props }/>;
 const Footer = props => <div { ...props }/>;
 
 const Layout = global.componentWithMocks(`${__dirname}/..`, {
-    '../Header': Header,
-    '../Footer': Footer,
+    'components/Header': Header,
+    'components/Footer': Footer,
 });
 
 describe('Layout', () => {

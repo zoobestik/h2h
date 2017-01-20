@@ -1,7 +1,7 @@
 import block from 'bem-cn';
 import { PropTypes } from 'react';
-import { purify } from '../../lib/decorators';
-import Button from '../Button';
+import { purify } from 'app/lib/decorators';
+import Button from 'components/Button';
 
 export const b = block('header-sign-in');
 

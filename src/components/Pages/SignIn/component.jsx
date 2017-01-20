@@ -1,6 +1,6 @@
 import { Component, PropTypes } from 'react';
 import withRouter from 'react-router/lib/withRouter';
-import LoginForm from '../../../components/LoginForm';
+import LoginForm from 'components/LoginForm';
 
 class SignIn extends Component {
     componentWillMount() {

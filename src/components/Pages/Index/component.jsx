@@ -1,8 +1,8 @@
 import { PropTypes, PureComponent } from 'react';
 import block from 'bem-cn';
-import Standings from '../../Standings';
-import Tabs from '../../Tabs';
-import SocialPane from '../../SocialPane';
+import Standings from 'components/Standings';
+import Tabs from 'components/Tabs';
+import SocialPane from 'components/SocialPane';
 
 import './index.pcss';
 
