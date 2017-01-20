@@ -1,0 +1,43 @@
+{
+    "name": "H2H League",
+    "short_name": "h2h.works",
+    "description": "League Championship Prediction Challenge",
+    "lang": "en",
+    "start_url": "/index.html",
+    "display": "standalone",
+    "orientation": "portrait",
+    "theme_color": "#f26115",
+    "icons": [
+        {
+            "src": "launcher-icon-192.png",
+            "sizes": "192x192",
+            "density": 0.75
+        },
+        {
+            "src": "launcher-icon-144.png",
+            "sizes": "144x144",
+            "density": 1.0
+        },
+        {
+            "src": "launcher-icon-96.png",
+            "sizes": "96x96",
+            "density": 1.5
+        },
+        {
+            "src": "launcher-icon-72.png",
+            "sizes": "72x72",
+            "density": 2.0
+        },
+        {
+            "src": "launcher-icon-48.png",
+            "sizes": "48x48",
+            "density": 3.0
+        },
+        {
+            "src": "launcher-icon-36.png",
+            "sizes": "36x36",
+            "density": 4.0
+        }
+    ],
+    "background_color": "#fff"
+}
