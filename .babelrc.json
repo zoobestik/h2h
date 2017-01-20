@@ -22,5 +22,12 @@
         "transform-export-extensions",
         "transform-decorators-legacy",
         "transform-class-properties"
-    ]
+    ],
+    "env": {
+        "production": {
+            "plugins": [
+                "transform-react-remove-prop-types"
+            ]
+        }
+    }
 }

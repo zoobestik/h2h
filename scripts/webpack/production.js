@@ -1,10 +1,9 @@
 import { optimize } from 'webpack';
 import csso from 'postcss-csso';
-import BabiliPlugin from 'babili-webpack-plugin';
 import CompressionPlugin from 'compression-webpack-plugin';
 import base, { pluginOptions } from './common';
 
-const { OccurrenceOrderPlugin } = optimize;
+const { OccurrenceOrderPlugin, UglifyJsPlugin } = optimize;
 const { postcss } = pluginOptions;
 
 pluginOptions.postcss = (...args) => [].concat(postcss(...args), csso);
@@ -12,8 +11,27 @@ pluginOptions.postcss = (...args) => [].concat(postcss(...args), csso);
 export default {
     ...base,
 
+    resolve: {
+        ...base.resolve,
+        alias: {
+            react: 'preact-compat',
+            'react-dom': 'preact-compat',
+        },
+    },
+
     plugins: [].concat(
-        new BabiliPlugin(),
+        new UglifyJsPlugin({
+            compressor: {
+                pure_getters: true,
+                unsafe: true,
+                unsafe_comps: true,
+                screw_ie8: true,
+                warnings: false,
+            },
+            comments: false,
+            sourceMap: false,
+        }),
+
         new OccurrenceOrderPlugin(),
 
         new CompressionPlugin({
