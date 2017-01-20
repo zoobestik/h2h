@@ -1,9 +1,9 @@
 /* eslint-env mocha */
 import { expect } from 'chai';
 import sinon from 'sinon';
-import * as auth from '../../api/auth';
+import * as auth from 'app/api/auth';
+import SingleTimeRequest from 'app/stores/SingleTimeRequest';
 import UserInfo from '../UserInfo';
-import SingleTimeRequest from '../../stores/SingleTimeRequest';
 
 describe('UserInfo', () => {
     const getAuthData = () => ({
@@ -101,5 +101,7 @@ describe('UserInfo', () => {
 
         await store.authorize(query);
         expect(store.user).to.deep.equal(getAuthData());
+
+        return true;
     });
 });
