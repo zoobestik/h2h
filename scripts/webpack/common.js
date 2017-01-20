@@ -22,7 +22,7 @@ export default {
     },
     output: {
         path: path.join(process.cwd(), 'dist'),
-        publicPath: '/my/dist/',
+        publicPath: '/h2h/dist/',
         filename: '[name].js',
         chunkFilename: '[name].js',
     },

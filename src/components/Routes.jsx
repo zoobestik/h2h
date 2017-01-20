@@ -7,7 +7,7 @@ import App from './App';
 import Layout from './Layout';
 import NoMatch from './Pages/NoMatch';
 
-import IndexPage from './Pages/Index';
+import IndexPage, { IndexDayTab, IndexScoresTab } from './Pages/Index';
 import SignIn from './Pages/SignIn';
 
 const loader = module => cb => cb(null, module);
@@ -17,8 +17,8 @@ export const Routes = (
         <Route path="/" component={ Layout }>
             <IndexRedirect to="explore/"/>
             <Route path="explore/" getComponent={ (location, cb) => loader(IndexPage)(cb) }>
-                <IndexRoute component={ () => <div>!!!1</div> }/>
-                <Route path="scores/" component={ () => <div>!!!2</div> }/>
+                <IndexRoute getComponent={ (location, cb) => loader(IndexDayTab)(cb) }/>
+                <Route path="scores/" getComponent={ (location, cb) => loader(IndexScoresTab)(cb) }/>
             </Route>
             <Route path="login/" getComponent={ (location, cb) => loader(SignIn)(cb) }/>
             <Route path="*" component={ NoMatch }/>
