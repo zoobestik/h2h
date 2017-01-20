@@ -1,9 +1,9 @@
 /* eslint-env mocha */
 import { expect } from 'chai';
 import { isObservable, isAction } from 'mobx';
-import Page from '../page';
+import Page from '../Page';
 
-describe('page', () => {
+describe('Page', () => {
     const ok = 'ok';
 
     describe('should correct init data', () => {

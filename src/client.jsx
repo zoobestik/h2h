@@ -1,7 +1,7 @@
 /* eslint-env browser */
 import { render } from 'react-dom';
 import browserHistory from 'react-router/lib/browserHistory';
-import App from './app';
+import App from 'components/App';
 
 render(
     <App

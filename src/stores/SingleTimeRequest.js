@@ -1,8 +1,8 @@
 import { action, computed, observable } from 'mobx';
-import { generateId } from '../lib';
+import { generateId } from 'app/lib';
 
 export default class SingleTimeRequest {
-    id;
+    @observable id;
     @observable defer;
 
     constructor() {
@@ -20,12 +20,14 @@ export default class SingleTimeRequest {
 
     @action createRequest() {
         if (!this.id) {
-            const defer = this.defer = {};
+            const defer = {};
 
             defer.promise = new Promise((resolve, reject) => {
                 defer.resolve = resolve;
                 defer.reject = reject;
             });
+
+            this.defer = defer;
         }
 
         return (this.id = generateId());

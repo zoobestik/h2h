@@ -1,4 +1,4 @@
-import { NoErrorsPlugin } from 'webpack';
+import { NoEmitOnErrorsPlugin } from 'webpack';
 import base from './common';
 
 export default {
@@ -7,7 +7,7 @@ export default {
     devtool: 'eval-source-map',
 
     plugins: [].concat(
-        new NoErrorsPlugin(),
+        new NoEmitOnErrorsPlugin(),
         base.plugins
     ),
 };

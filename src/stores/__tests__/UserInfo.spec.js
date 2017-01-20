@@ -2,10 +2,10 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
 import * as auth from '../../api/auth';
-import UserInfo from '../userInfo';
-import SingleTimeRequest from '../../models/SingleTimeRequest';
+import UserInfo from '../UserInfo';
+import SingleTimeRequest from '../../stores/SingleTimeRequest';
 
-describe('userInfo', () => {
+describe('UserInfo', () => {
     const getAuthData = () => ({
         uid: 0,
         props: { xxx: 1 },

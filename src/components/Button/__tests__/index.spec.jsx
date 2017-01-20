@@ -26,12 +26,12 @@ describe('Button', () => {
         it('with @href', () => {
             const button = shallow(<Button href={ externalUrl }>Click Me</Button>);
             expect(button.matchesElement(<Link>Click Me</Link>)).to.equal(true);
-            expect(button.html()).to.equal('<a href="http://example.com" class="button">Click Me</a>');
+            expect(button.html()).to.equal('<a class="button" href="http://example.com">Click Me</a>');
         });
 
         it('with @href and @type=submit', () => {
             const button = shallow(<Button href={ externalUrl } type="submit">Click Me</Button>);
-            expect(button.html()).to.equal('<a href="http://example.com" class="button">Click Me</a>');
+            expect(button.html()).to.equal('<a class="button" href="http://example.com">Click Me</a>');
         });
     });
 });

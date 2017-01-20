@@ -17,12 +17,12 @@ export const pluginOptions = {
 export default {
     entry: {
         index: [
-            './src/index',
+            './src/client',
         ],
     },
     output: {
         path: path.join(process.cwd(), 'dist'),
-        publicPath: '/h2h/dist/',
+        publicPath: '/my/dist/',
         filename: '[name].js',
     },
     resolve: {

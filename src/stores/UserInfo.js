@@ -1,6 +1,6 @@
-import { transaction, computed, observable, toJS } from 'mobx';
-import SingleTimeRequest from '../models/SingleTimeRequest';
-import { login } from '../api/auth';
+import { runInAction, computed, observable, toJS } from 'mobx';
+import SingleTimeRequest from 'app/stores/SingleTimeRequest';
+import { login } from 'app/api/auth';
 
 export default class UserInfoStore {
     @observable userInfo;
@@ -25,7 +25,7 @@ export default class UserInfoStore {
     }
 
     set user(data) {
-        transaction(() => {
+        runInAction(() => {
             const result = { ...(data || {}) };
 
             if (!result.login && result.uid) {
