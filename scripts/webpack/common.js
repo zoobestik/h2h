@@ -51,7 +51,7 @@ export default {
                 loader: ExtractTextPlugin.extract({
                     fallbackLoader: 'style-loader',
                     loader: [
-                        'css-loader',
+                        'raw-loader',
                         'postcss-loader',
                     ],
                 }),

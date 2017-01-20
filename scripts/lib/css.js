@@ -4,7 +4,14 @@ import imports from 'postcss-import';
 
 export const postcssProcessors = [
     imports,
-    autoprefixer,
+    autoprefixer({
+        browsers: [ // @ToDo: move to package.json
+            'last 2 versions',
+            'not ios < 10',
+            'not safari < 10',
+            'not ie <= 11',
+        ],
+    }),
     nested,
 ];
 
