@@ -7,7 +7,7 @@ export const b = block('header-sign-in');
 
 const HeaderSignIn = ({ className }) => (
     <div className={ b.mix(className) }>
-        <Button href="/login/">
+        <Button to="/login/">
             Sign In <img alt="sign in icon" src="/img/sign-in.svg" height="32" width="32"/>
         </Button>
     </div>

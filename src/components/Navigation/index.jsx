@@ -9,9 +9,10 @@ export const b = block('navigation');
 export const itemClass = b('item');
 
 export const items = [
-    { to: '/', children: 'Explore' },
-    { to: '/standings/', children: 'Standings' },
+    { to: '/explore/', children: 'Explore' },
+    { to: '/standings/', children: 'League Table' },
     { to: '/rules/', children: 'Rules' },
+    // { to: '/news/', children: 'News' },
 ];
 
 export class Navigation extends PureComponent {

@@ -1,0 +1,33 @@
+.tabs {
+    display: flex;
+
+    &__tabs {
+        list-style: none;
+        margin: 0;
+        padding: 0.65rem 0 0;
+    }
+
+    &__tab {
+        padding: 0.3rem 0.65rem;
+        border: 0.15rem solid #000;
+        border-top: none;
+        border-right: none;
+        background: #eee;
+    }
+
+    &__tab_active {
+        position: relative;
+        background: #fff;
+    }
+
+    &__content {
+        border: 0.15rem solid #000;
+        margin-left: -2px;
+        background: #fff;
+        flex-grow: 1;
+    }
+
+    &__tab:first-child {
+        border-top: 2px solid #000;
+    }
+}

@@ -1,3 +1,6 @@
-import Standings from '../../Standings';
+import withRouter from 'react-router/lib/withRouter';
+import Index from './component';
 
-export default () => <Standings leagueId={ 0 }/>;
+export default withRouter(({ router, ...props }) => (
+    <Index isActive={ router.isActive } { ...props }/>
+));

@@ -9,8 +9,17 @@ export const cellClass = b('cell');
 export const cellHeadClass = cellClass.mix(cellClass({ head: true }));
 export const cellItemClass = cellClass.mix(cellClass({ item: true }));
 
+const normalize = items => items.map(item => ({
+    title: item.value,
+    ...item,
+}));
+
 export const Presets = {
-    short: ['num', 'name', 'points'],
+    short: normalize([
+        { value: 'pos' },
+        { value: 'name' },
+        { value: 'points' },
+    ]),
 };
 
 export default class Standings extends PureComponent {
@@ -33,16 +42,16 @@ export default class Standings extends PureComponent {
         return (
             <table { ...props } className={ b({ preset: currentPreset }).mix(className) }>
                 <thead>
-                    <tr className={ rowClass }>
-                        { fields.map(field => <th key={ field } className={ cellHeadClass }>{ field }</th>) }
-                    </tr>
+                    <tr className={ rowClass }>{
+                        fields.map(({ title, value }) => <th key={ value } className={ cellHeadClass }>{ title }</th>)
+                    }</tr>
                 </thead>
                 <tbody>
                     { (Array.isArray(teams) ? teams : []).map((team, num) => (
                         <tr key={ team.id } className={ rowClass }>{
-                            fields.map(type => (
-                                <td key={ type } className={ cellItemClass({ type }).toString() }>
-                                    { type === 'num' ? num + 1 : team[type] }
+                            fields.map(({ value }) => (
+                                <td key={ value } className={ cellItemClass({ value }).toString() }>
+                                    { value === 'pos' ? num + 1 : team[value] }
                                 </td>
                             ))
                         }</tr>

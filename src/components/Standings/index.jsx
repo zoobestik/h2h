@@ -1,6 +1,7 @@
 import { PropTypes, Component } from 'react';
 import { action, observable } from 'mobx';
 import { observer } from 'mobx-react';
+import { getStandings } from '../../api/league';
 import Standings from './component';
 
 export default observer(class StandingsSmart extends Component {
@@ -11,20 +12,15 @@ export default observer(class StandingsSmart extends Component {
     @observable league = [];
 
     componentWillMount() {
-        setTimeout(() => {
-            this.requestLeagueData(this.props.leagueId);
-        }, 0);
+        this.updateLeague(this.props.leagueId);
     }
 
-    @action requestLeagueData(leagueId) {
-        this.league = [].concat(...new Array(5)).map((_, i) => ({
-            id: `league${leagueId}t${i}`,
-            name: `Team ${i}`,
-            points: i * 100,
-        }));
+    @action async updateLeague(leagueId) {
+        this.league = await getStandings(leagueId);
     }
 
     render() {
-        return <Standings teams={ this.league.toJS() }/>;
+        const props = this.props;
+        return <Standings { ...props } teams={ this.league.toJS() }/>;
     }
 });
