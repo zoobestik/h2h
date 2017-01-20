@@ -1,10 +1,13 @@
 import { PureComponent, PropTypes } from 'react';
+import { useStrict } from 'mobx';
 import { Provider } from 'mobx-react';
 import PageStore from 'app/stores/Page';
 import UserInfoStore from 'app/stores/UserInfo';
-import Router from 'components/Router';
+import Routes from 'components/Routes';
 
 import './index.pcss';
+
+useStrict(true);
 
 const props2state = ({ initialState: state }) => ({
     page: new PageStore(state.page),
@@ -48,7 +51,7 @@ export default class App extends PureComponent {
 
         return (
             <Provider { ...providers } { ...this.state }>
-                <Router { ...props }/>
+                <Routes { ...props }/>
             </Provider>
         );
     }

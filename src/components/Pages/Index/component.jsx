@@ -14,22 +14,23 @@ const classSocial = b('social');
 
 const tabs = [
     {
-        to: '',
+        to: '/explore/',
         caption: 'Match Day',
     },
     {
-        to: 'scores/',
+        to: '/explore/scores/',
         caption: 'Scores',
     },
 ];
 
 export default class Index extends PureComponent {
     static propTypes = {
-        isActive: PropTypes.func,
+        children: PropTypes.node,
+        url: PropTypes.string,
     };
 
     render() {
-        const { isActive } = this.props;
+        const { children, url } = this.props;
         return (
             <div className={ b }>
                 <div className={ classTables }>
@@ -38,9 +39,11 @@ export default class Index extends PureComponent {
                         className={ classInformation }
                         tabs={ tabs.map(tab => ({
                             ...tab,
-                            active: isActive(tab.to),
+                            isActive: tab.to === url,
                         })) }
-                    />
+                    >
+                        { children }
+                    </Tabs>
                 </div>
                 <SocialPane className={ classSocial }/>
             </div>

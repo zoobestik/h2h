@@ -1,5 +1,5 @@
 import { PropTypes, Component } from 'react';
-import { action, observable } from 'mobx';
+import { runInAction, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import { getStandings } from 'app/api/league';
 import Standings from './component';
@@ -15,8 +15,9 @@ export default observer(class StandingsSmart extends Component {
         this.updateLeague(this.props.leagueId);
     }
 
-    @action async updateLeague(leagueId) {
-        this.league = await getStandings(leagueId);
+    async updateLeague(leagueId) {
+        const league = await getStandings(leagueId);
+        runInAction(() => (this.league = league));
     }
 
     render() {

@@ -9,11 +9,12 @@ import './index.pcss';
 
 export const b = block('navigation');
 export const itemClass = b('item');
+export const itemLinkClass = b('link');
 
 export const items = [
     { to: '/explore/', children: 'Explore' },
     { to: '/standings/', children: 'League Table' },
-    { to: '/rules/', children: 'Rules' },
+    { to: '/calendar/', children: 'Calendar' },
     // { to: '/news/', children: 'News' },
 ];
 
@@ -32,7 +33,13 @@ export class Navigation extends PureComponent {
             <ul className={ b.mix(className) }>
                 { items.map(({ children, to, ...props }) => (
                     <li key={ to } className={ itemClass }>
-                        <Link { ...props } to={ router.isActive(to, true) ? null : to }>{ children }</Link>
+                        <Link
+                            { ...props }
+                            className={ itemLinkClass({ active: router.isActive(to) }) }
+                            to={ router.isActive(to, true) ? null : to }
+                        >
+                            { children }
+                        </Link>
                     </li>
                 )) }
             </ul>

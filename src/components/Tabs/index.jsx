@@ -6,6 +6,7 @@ import './index.pcss';
 
 const b = block('tabs');
 const classTabs = b('tabs');
+const classTab = b('tab');
 const classContent = b('content');
 
 export default class Tabs extends PureComponent {
@@ -24,9 +25,12 @@ export default class Tabs extends PureComponent {
     getTabsView() {
         const { tabs } = this.props;
 
-        return tabs.map(({ to, caption, active }) => (
-            <li className={ b('tab', { active }) } key={ to }>{
-                active ?
+        return tabs.map(({ to, caption, isActive }) => (
+            <li
+                key={ to }
+                className={ classTab({ active: Boolean(isActive) }) }
+            >{
+                isActive ?
                     caption :
                     <Link className={ b('tab-link') } to={ to }>{ caption }</Link>
             }</li>
