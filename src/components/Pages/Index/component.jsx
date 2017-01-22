@@ -1,5 +1,5 @@
-import { PropTypes, PureComponent } from 'react';
 import block from 'bem-cn';
+import { PropTypes, PureComponent } from 'react';
 import { getPublicPath } from 'app/lib/paths';
 import Standings from 'components/Standings';
 import Tabs from 'components/Tabs';
@@ -33,11 +33,11 @@ export default class Index extends PureComponent {
     render() {
         const { children, url } = this.props;
         return (
-            <div className={ b }>
-                <div className={ classTables }>
-                    <Standings className={ classStandings } leagueId={ 0 }/>
+            <div className={ b() }>
+                <div className={ classTables() }>
+                    <Standings className={ classStandings() } leagueId={ 0 }/>
                     <Tabs
-                        className={ classInformation }
+                        className={ classInformation() }
                         tabs={ tabs.map(tab => ({
                             ...tab,
                             isActive: tab.to === url,
@@ -46,7 +46,7 @@ export default class Index extends PureComponent {
                         { children }
                     </Tabs>
                 </div>
-                <SocialPane className={ classSocial }/>
+                <SocialPane className={ classSocial() }/>
             </div>
         );
     }

@@ -1,4 +1,4 @@
-import { PureComponent, PropTypes } from 'react';
+import { Component, PropTypes } from 'react';
 import { useStrict } from 'mobx';
 import { Provider } from 'mobx-react';
 import PageStore from 'app/stores/Page';
@@ -14,7 +14,7 @@ const props2state = ({ initialState: state }) => ({
     userInfo: new UserInfoStore(state.userInfo),
 });
 
-export default class App extends PureComponent {
+export default class App extends Component {
     static defaultProps = {
         initialState: {},
         providers: {},
@@ -35,10 +35,8 @@ export default class App extends PureComponent {
     }
 
     getChildContext() {
-        const { initialState } = this.props;
-
         return {
-            initialState,
+            initialState: this.props.initialState,
         };
     }
 

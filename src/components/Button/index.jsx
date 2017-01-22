@@ -1,16 +1,12 @@
-import { PureComponent, PropTypes } from 'react';
 import block from 'bem-cn';
+import { PureComponent, PropTypes } from 'react';
 import Link from 'react-router/lib/Link';
 
 export const b = block('button');
 
 export default class Button extends PureComponent {
     static propTypes = {
-        className: PropTypes.oneOfType([
-            PropTypes.string,
-            PropTypes.func,
-
-        ]),
+        className: PropTypes.string,
 
         to: PropTypes.oneOfType([
             PropTypes.string,
@@ -19,7 +15,7 @@ export default class Button extends PureComponent {
 
         href: PropTypes.string,
         type: PropTypes.string,
-    }
+    };
 
     render() {
         let buttonType;
@@ -32,6 +28,6 @@ export default class Button extends PureComponent {
             buttonType = type === undefined ? 'button' : type;
         }
 
-        return <Tag { ...props } className={ b.mix(className) } type={ buttonType } href={ href } to={ to }/>;
+        return <Tag { ...props } className={ b.mix(className)() } type={ buttonType } href={ href } to={ to }/>;
     }
 }

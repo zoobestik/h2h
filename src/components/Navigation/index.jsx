@@ -1,9 +1,7 @@
 import block from 'bem-cn';
 import { PropTypes, PureComponent } from 'react';
-import withRouter from 'react-router/lib/withRouter';
-import { routerShape } from 'react-router/lib/PropTypes';
-import Link from 'react-router/lib/Link';
 import { getPublicPath } from 'app/lib/paths';
+import NavigationLink from 'components/Navigation/Link';
 
 import './index.pcss';
 
@@ -18,33 +16,21 @@ export const items = [
     // { to: '/news/', children: 'News' },
 ];
 
-export class Navigation extends PureComponent {
+export default class Navigation extends PureComponent {
     static propTypes = {
-        className: PropTypes.oneOfType([
-            PropTypes.string,
-            PropTypes.func,
-        ]),
-        router: routerShape,
+        className: PropTypes.string,
     };
 
     render() {
-        const { className, router } = this.props;
+        const { className } = this.props;
         return (
-            <ul className={ b.mix(className) }>
-                { items.map(({ children, to, ...props }) => (
-                    <li key={ to } className={ itemClass }>
-                        <Link
-                            { ...props }
-                            className={ itemLinkClass({ active: router.isActive(to) }) }
-                            to={ router.isActive(to, true) ? null : to }
-                        >
-                            { children }
-                        </Link>
+            <ul className={ b.mix(className)() }>
+                { items.map(props => (
+                    <li key={ props.to } className={ itemClass() }>
+                        <NavigationLink { ...props }/>
                     </li>
                 )) }
             </ul>
         );
     }
 }
-
-export default withRouter(Navigation);

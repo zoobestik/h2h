@@ -1,7 +1,6 @@
 import block from 'bem-cn';
-import { PropTypes } from 'react';
+import { PureComponent, PropTypes } from 'react';
 import Link from 'react-router/lib/Link';
-import { purify } from 'app/lib/decorators';
 import { getPublicPath } from 'app/lib/paths';
 
 import './index.pcss';
@@ -25,20 +24,20 @@ export const b = block('header-sign-in');
 export const classHelp = b('help');
 export const classHelpIcon = b('help-icon');
 
-const HeaderSignIn = ({ className }) => (
-    <div className={ b.mix(className) }>
-        <Link to={ getPublicPath('/login/') }>Sign In</Link>
-        <Link className={ classHelp } to={ getPublicPath('/help/') }>
-            <img className={ classHelpIcon } alt="sign in icon" src={ helpIcon } height="30" width="30"/>
-        </Link>
-    </div>
-);
+export default class HeaderSignIn extends PureComponent {
+    static propTypes = {
+        className: PropTypes.string,
+    };
 
-HeaderSignIn.propTypes = {
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.func,
-    ]),
-};
-
-export default purify(HeaderSignIn);
+    render() {
+        const { className } = this.props;
+        return (
+            <div className={ b.mix(className)() }>
+                <Link to={ getPublicPath('/login/') }>Sign In</Link>
+                <Link className={ classHelp() } to={ getPublicPath('/help/') }>
+                    <img className={ classHelpIcon() } alt="sign in icon" src={ helpIcon } height="30" width="30"/>
+                </Link>
+            </div>
+        );
+    }
+}

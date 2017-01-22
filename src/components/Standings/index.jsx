@@ -1,27 +1,41 @@
 import { PropTypes, Component } from 'react';
-import { runInAction, observable } from 'mobx';
+import { computed, runInAction, observable } from 'mobx';
 import { observer } from 'mobx-react';
+import SingleTimeRequest from 'app/stores/SingleTimeRequest';
 import { getStandings } from 'app/api/league';
 import Standings from './component';
 
 export default observer(class StandingsSmart extends Component {
     static propTypes = {
-        leagueId: PropTypes.number,
+        leagueId: PropTypes.number.isRequired,
     };
 
-    @observable league = [];
+    leagueRequest = new SingleTimeRequest();
 
-    componentWillMount() {
-        this.updateLeague(this.props.leagueId);
+    @observable standingData = [];
+
+    @computed get standing() {
+        return this.standingData.toJS();
     }
 
-    async updateLeague(leagueId) {
-        const league = await getStandings(leagueId);
-        runInAction(() => (this.league = league));
+    set standing(data) {
+        runInAction(() => (this.standingData = data));
+    }
+
+    componentWillMount() {
+        this.requestLeague(this.props.leagueId);
+    }
+
+    requestLeague(leagueId) {
+        this.leagueRequest
+            .send(getStandings(leagueId))
+            .then(data => {
+                this.standing = data;
+            });
     }
 
     render() {
-        const props = this.props;
-        return <Standings { ...props } teams={ this.league.toJS() }/>;
+        const { leagueId: _leagueId, ...props } = this.props;
+        return <Standings { ...props } teams={ this.standing }/>;
     }
 });

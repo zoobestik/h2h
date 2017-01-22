@@ -17,10 +17,10 @@ describe('SingleTimeRequest', () => {
             expect(request.isProgress).to.equal(true);
         });
 
-        it('should be false after complete', () => {
+        it('should be true after complete', () => {
             const request = new SingleTimeRequest();
             return request.send(new Promise(r => r()))
-                .then(() => expect(request.isProgress).to.equal(false));
+                .then(() => expect(request.isProgress).to.equal(true));
         });
     });
 

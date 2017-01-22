@@ -1,9 +1,18 @@
+import { PropTypes } from 'react';
 import withRouter from 'react-router/lib/withRouter';
+import { routerShape } from 'react-router/lib/PropTypes';
 import Index from './component';
 
 export IndexDayTab from './components/DayTab';
 export IndexScoresTab from './components/ScoresTab';
 
-export default withRouter(({ router, ...props }) => (
-    <Index url={ router.location.pathname } { ...props }/>
-));
+const IndexSmart = ({ router, children }) => (
+    <Index url={ router.location.pathname }>{children}</Index>
+);
+
+IndexSmart.propTypes = {
+    router: routerShape,
+    children: PropTypes.node,
+};
+
+export default withRouter(IndexSmart);

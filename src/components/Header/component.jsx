@@ -17,10 +17,7 @@ export const bottomLineClass = b('line');
 
 export default class Header extends PureComponent {
     static propTypes = {
-        className: PropTypes.oneOfType([
-            PropTypes.string,
-            PropTypes.func,
-        ]),
+        className: PropTypes.string,
         isAuth: PropTypes.bool,
     };
 
@@ -29,15 +26,15 @@ export default class Header extends PureComponent {
         const LoginInfo = isAuth ? HeaderAuthInfo : HeaderSignIn;
 
         return (
-            <header className={ b.mix(className) }>
-                <div className={ wrapperClass }>
-                    <p className={ logoClass }>H2H Logo</p>
-                    <nav className={ navigationClass }>
-                        <MainMenu className={ mainMenuClass }/>
-                        <LoginInfo className={ userInfoClass }/>
+            <header className={ b.mix(className)() }>
+                <div className={ wrapperClass() }>
+                    <p className={ logoClass() }>H2H Logo</p>
+                    <nav className={ navigationClass() }>
+                        <MainMenu className={ mainMenuClass() }/>
+                        <LoginInfo className={ userInfoClass() }/>
                     </nav>
                 </div>
-                <hr className={ bottomLineClass({ top: true }) }/>
+                <hr className={ bottomLineClass({ top: true })() }/>
             </header>
         );
     }

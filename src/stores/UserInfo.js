@@ -1,26 +1,34 @@
-import { runInAction, computed, observable, toJS } from 'mobx';
+import { action, runInAction, computed, observable, toJS } from 'mobx';
 import SingleTimeRequest from 'app/stores/SingleTimeRequest';
 import { login } from 'app/api/auth';
 
 export default class UserInfoStore {
     @observable userInfo;
-    singleAuthRequest = new SingleTimeRequest();
+    authRequest = new SingleTimeRequest();
 
     constructor(data) {
         this.user = data;
+
+        this.resolveRequiest = this.resolveRequiest.bind(this);
     }
 
     authorize(...args) {
-        return this.singleAuthRequest
+        return this.authRequest
             .send(login(...args))
-                .then(data => (this.user = data));
+                .then(this.resolveRequiest)
+                .catch(() => this.authRequest.reset());
     }
 
-    get authRequest() {
-        return this.singleAuthRequest;
+    @action resolveRequiest(data) {
+        this.user = data;
+        this.authRequest.reset();
     }
 
-    get user() {
+    @computed get isProgress() {
+        return this.authRequest.isProgress;
+    }
+
+    @computed get user() {
         return toJS(this.userInfo || {});
     }
 

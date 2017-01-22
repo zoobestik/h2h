@@ -1,10 +1,8 @@
-import { inject, observer, PropTypes } from 'mobx-react';
+import { inject, observer } from 'mobx-react';
 import Header from './component';
 
-const HeaderSmart = ({ userInfo, ...props }) => <Header isAuth={ userInfo.isAuth } { ...props }/>;
+const stores2props = ({ userInfo }) => ({
+    isAuth: userInfo.isAuth,
+});
 
-HeaderSmart.propTypes = {
-    userInfo: PropTypes.objectOrObservableObject,
-};
-
-export default inject('userInfo')(observer(HeaderSmart));
+export default inject(stores2props)(observer(Header));

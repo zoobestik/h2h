@@ -1,35 +1,33 @@
-import { PropTypes } from 'react';
-import bem from 'bem-cn';
-import { purify } from 'app/lib/decorators';
+import block from 'bem-cn';
+import { PropTypes, PureComponent } from 'react';
 import Form from 'components/Form';
 
-const block = bem('login-form');
+const b = block('login-form');
 
-const LoginForm = ({ className, id, isLoading, password, onId, onPassword, ...props }) => (
-    <Form method="post" { ...props } className={ block.mix(className) }>
-        <label>
-            Login
-            <input name="id" type="text" onChange={ onId } value={ id }/>
-        </label>
-        <label>
-            Password
-            <input name="password" type="password" onChange={ onPassword } value={ password }/>
-        </label>
-        <button type="submit" disabled={ isLoading }>login</button>
-    </Form>
-);
+export default class LoginForm extends PureComponent {
+    static propTypes = {
+        className: PropTypes.string,
+        id: PropTypes.string,
+        isLoading: PropTypes.bool,
+        password: PropTypes.string,
+        onId: PropTypes.func,
+        onPassword: PropTypes.func,
+    };
 
-
-LoginForm.propTypes = {
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.func,
-    ]),
-    id: PropTypes.string,
-    isLoading: PropTypes.bool,
-    password: PropTypes.string,
-    onId: PropTypes.func,
-    onPassword: PropTypes.func,
-};
-
-export default purify(LoginForm);
+    render() {
+        const { className, id, isLoading, password, onId, onPassword, ...props } = this.props;
+        return (
+            <Form method="post" { ...props } className={ b.mix(className)() }>
+                <label>
+                    Login
+                    <input name="id" type="text" onChange={ onId } value={ id }/>
+                </label>
+                <label>
+                    Password
+                    <input name="password" type="password" onChange={ onPassword } value={ password }/>
+                </label>
+                <button type="submit" disabled={ isLoading }>login</button>
+            </Form>
+        );
+    }
+}

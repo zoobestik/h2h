@@ -13,10 +13,7 @@ export const footerClass = b('footer');
 
 export default class Layout extends PureComponent {
     static propTypes = {
-        className: PropTypes.oneOfType([
-            PropTypes.string,
-            PropTypes.func,
-        ]),
+        className: PropTypes.string,
         children: PropTypes.node,
     };
 
@@ -24,10 +21,10 @@ export default class Layout extends PureComponent {
         const { className, children } = this.props;
 
         return (
-            <div className={ b.mix(className) }>
-                <Header className={ headerClass }/>
-                <main className={ mainClass }>{ children }</main>
-                <Footer className={ footerClass }/>
+            <div className={ b.mix(className)() }>
+                <Header className={ headerClass() }/>
+                <main className={ mainClass() }>{ children }</main>
+                <Footer className={ footerClass() }/>
             </div>
         );
     }

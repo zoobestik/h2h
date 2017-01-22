@@ -1,5 +1,5 @@
-import { PureComponent, PropTypes } from 'react';
 import block from 'bem-cn';
+import { PureComponent, PropTypes } from 'react';
 
 import './index.pcss';
 
@@ -16,10 +16,7 @@ export const classAvatar = b('avatar');
 export default class HeaderAuthInfo extends PureComponent {
     static propTypes = {
         avatarUrl: PropTypes.string,
-        className: PropTypes.oneOfType([
-            PropTypes.string,
-            PropTypes.func,
-        ]),
+        className: PropTypes.string,
         login: PropTypes.string.isRequired,
     };
 
@@ -30,9 +27,9 @@ export default class HeaderAuthInfo extends PureComponent {
     render() {
         const { className, login, avatarUrl } = this.props;
         return (
-            <div className={ b.mix(className) }>
+            <div className={ b.mix(className)() }>
                 { login }
-                <img className={ classAvatar } alt={ `${login} avatar` } src={ avatarUrl } height="30" width="30"/>
+                <img className={ classAvatar() } alt={ `${login} avatar` } src={ avatarUrl } height="30" width="30"/>
             </div>
         );
     }

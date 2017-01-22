@@ -1,38 +1,42 @@
-import { Component } from 'react';
-import { inject, observer, PropTypes } from 'mobx-react';
+import { PureComponent, PropTypes } from 'react';
+import { inject, observer } from 'mobx-react';
+import { getPublicPath } from 'app/lib/paths';
 import LoginForm from './component';
 
-class LoginFormSmart extends Component {
-    constructor(props) {
-        super(props);
+const stores2props = ({ userInfo }) => ({
+    isAuth: userInfo.isAuth,
+    isLoading: userInfo.isProgress,
+    onSubmit: userInfo.authorize.bind(userInfo),
+});
 
-        this.onSubmit = this.onSubmit.bind(this);
+class LoginFormSmart extends PureComponent {
+    static propTypes = {
+        onNextReady: PropTypes.func,
+        isAuth: PropTypes.bool,
+    };
+
+    componentWillMount() {
+        this.checkUrl();
     }
 
-    onSubmit(data) {
-        this.userInfo.authorize(data);
+    componentWillReceiveProps(props) {
+        this.checkUrl(props);
     }
 
-    isLoading() {
-        return this.userInfo.authRequest.isProgress;
-    }
+    checkUrl(props) {
+        const { isAuth, onNextReady } = props || this.props;
 
-    get userInfo() {
-        return this.props.userInfo;
+        if (isAuth) {
+            onNextReady(getPublicPath('/'));
+        }
     }
 
     render() {
+        const { onNextReady: _onNextReady, isAuth, ...props } = this.props;
         return (
-            <LoginForm
-                onSubmit={ this.onSubmit }
-                isLoading={ this.isLoading() }
-            />
+            <LoginForm locked={ isAuth } { ...props }/>
         );
     }
 }
 
-LoginFormSmart.propTypes = {
-    userInfo: PropTypes.objectOrObservableObject,
-};
-
-export default inject('userInfo')(observer(LoginFormSmart));
+export default inject(stores2props)(observer(LoginFormSmart));

@@ -37,7 +37,6 @@ export default class SingleTimeRequest {
         return response => {
             if (requestId === this.id) {
                 this.defer[actionName](response);
-                this.reset();
             }
         };
     }

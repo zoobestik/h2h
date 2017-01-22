@@ -17,7 +17,7 @@ const loader = module => cb => cb(null, module);
 export const Routes = (
     <Route>
         <Route path={ getPublicPath() } component={ App }>
-            <Route component={ Layout }>
+            <Route component={ ({ children }) => <Layout>{ children }</Layout> }>
                 <IndexRedirect to="explore/"/>
                 <Route path="explore/" getComponent={ (location, cb) => loader(IndexPage)(cb) }>
                     <IndexRoute getComponent={ (location, cb) => loader(IndexDayTab)(cb) }/>

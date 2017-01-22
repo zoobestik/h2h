@@ -24,10 +24,7 @@ export const Presets = {
 
 export default class Standings extends PureComponent {
     static propTypes = {
-        className: PropTypes.oneOfType([
-            PropTypes.string,
-            PropTypes.func,
-        ]),
+        className: PropTypes.string,
         preset: PropTypes.string,
         teams: PropTypes.arrayOf(
             PropTypes.object,
@@ -40,17 +37,17 @@ export default class Standings extends PureComponent {
         const fields = Presets[currentPreset];
 
         return (
-            <table { ...props } className={ b({ preset: currentPreset }).mix(className) }>
+            <table { ...props } className={ b({ preset: currentPreset }).mix(className)() }>
                 <thead>
-                    <tr className={ rowClass }>{
-                        fields.map(({ title, value }) => <th key={ value } className={ cellHeadClass }>{ title }</th>)
+                    <tr className={ rowClass() }>{
+                        fields.map(({ title, value }) => <th key={ value } className={ cellHeadClass() }>{ title }</th>)
                     }</tr>
                 </thead>
                 <tbody>
                     { (Array.isArray(teams) ? teams : []).map((team, num) => (
-                        <tr key={ team.id } className={ rowClass }>{
+                        <tr key={ team.id } className={ rowClass() }>{
                             fields.map(({ value }) => (
-                                <td key={ value } className={ cellItemClass({ value }).toString() }>
+                                <td key={ value } className={ cellItemClass({ value })() }>
                                     { value === 'pos' ? num + 1 : team[value] }
                                 </td>
                             ))
