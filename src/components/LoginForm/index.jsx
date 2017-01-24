@@ -26,7 +26,7 @@ class LoginFormSmart extends PureComponent {
     checkUrl(props) {
         const { isAuth, onNextReady } = props || this.props;
 
-        if (isAuth) {
+        if (isAuth && onNextReady) {
             onNextReady(getPublicPath('/'));
         }
     }

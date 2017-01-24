@@ -13,7 +13,11 @@ export default class NavigationLink extends PureComponent {
     render() {
         const { to, isActive, isCurrent, children, ...props } = this.props;
         return (
-            <Link { ...props } className={ itemLinkClass({ active: isActive })() } to={ isCurrent ? null : to }>
+            <Link
+                { ...props }
+                className={ itemLinkClass({ active: Boolean(isActive) })() }
+                to={ isCurrent ? null : to }
+            >
                 { children }
             </Link>
         );

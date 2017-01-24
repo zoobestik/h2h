@@ -5,7 +5,7 @@ import LoginForm from 'components/LoginForm';
 
 class SignIn extends Component {
     static propTypes = {
-        router: routerShape,
+        router: routerShape.isRequired,
     };
 
     constructor(props, context) {

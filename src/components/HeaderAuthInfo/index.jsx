@@ -10,7 +10,7 @@ const HeaderAuthInfoSmart = ({ user }) => (
 );
 
 HeaderAuthInfoSmart.propTypes = {
-    user: PropTypes.objectOrObservableObject,
+    user: PropTypes.objectOrObservableObject.isRequired,
 };
 
 export default inject(stores2props)(

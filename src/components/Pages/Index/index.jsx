@@ -11,7 +11,7 @@ const IndexSmart = ({ router, children }) => (
 );
 
 IndexSmart.propTypes = {
-    router: routerShape,
+    router: routerShape.isRequired,
     children: PropTypes.node,
 };
 
