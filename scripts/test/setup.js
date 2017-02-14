@@ -19,8 +19,9 @@ Object.keys(lib).forEach(item => {
     global[item] = lib[item];
 });
 
-const document = global.document = jsdom('');
+const document = jsdom('');
 
+global.document = document;
 global.window = document.defaultView;
 
 Object.keys(document.defaultView).forEach(property => {
