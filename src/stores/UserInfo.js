@@ -52,4 +52,8 @@ export default class UserInfoStore {
         const uid = this.userInfo.uid;
         return Boolean(uid) || uid === 0;
     }
+
+    _serialize() {
+        return this.user;
+    }
 }

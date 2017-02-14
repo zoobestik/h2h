@@ -15,12 +15,19 @@ export default class PageStore {
     }
 
     @action merge = data => {
-        Object.keys(data || {}).forEach(key => {
-            if (allowed.indexOf(key) !== -1) {
+        Object.keys(data || {})
+            .filter(key => allowed.indexOf(key) !== -1)
+            .forEach(key => {
                 this[key] = data[key];
-            }
-        });
+            });
 
         return this;
+    };
+
+    _serialize() {
+        return allowed.reduce((result, key) => {
+            result[key] = this[key]; // eslint-disable-line no-param-reassign
+            return result;
+        }, {});
     }
 }
