@@ -5,6 +5,9 @@
 Thumbs.db
 *.swp
 
+# reports
+*.report.html
+
 # packages and libs
 node_modules
 npm-debug.log
@@ -15,3 +18,4 @@ dist
 
 # caches
 .eslintcache
+
