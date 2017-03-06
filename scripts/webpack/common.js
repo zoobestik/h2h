@@ -10,10 +10,6 @@ const styleExtractPlugin = new ExtractTextPlugin({
     allChunks: false,
 });
 
-export const pluginOptions = {
-    postcss: () => postcssProcessors,
-};
-
 const publicPath = process.env.URL_PUBLIC_PATH || '/h2h';
 
 export default {
@@ -74,7 +70,9 @@ export default {
         }),
 
         new LoaderOptionsPlugin({
-            options: pluginOptions,
+            options: {
+                postcss: () => postcssProcessors,
+            },
         }),
     ],
 };

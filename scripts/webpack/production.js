@@ -1,12 +1,9 @@
 import { optimize } from 'webpack';
-import csso from 'postcss-csso';
 import CompressionPlugin from 'compression-webpack-plugin';
-import base, { pluginOptions } from './common';
+import CSSOCompressPlugin from 'csso-webpack-plugin';
+import base from './common';
 
 const { OccurrenceOrderPlugin, UglifyJsPlugin } = optimize;
-const { postcss } = pluginOptions;
-
-pluginOptions.postcss = (...args) => [].concat(postcss(...args), csso);
 
 export default {
     ...base,
@@ -32,6 +29,7 @@ export default {
             sourceMap: false,
         }),
 
+        new CSSOCompressPlugin(),
         new OccurrenceOrderPlugin(),
 
         new CompressionPlugin({

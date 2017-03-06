@@ -63,6 +63,7 @@
     "chai": "^3.5.0",
     "compression-webpack-plugin": "^0.3.2",
     "cross-env": "^3.2.3",
+    "csso-webpack-plugin": "^1.0.0-alpha",
     "del": "^2.2.2",
     "enzyme": "^2.7.1",
     "eslint": "^3.17.0",
