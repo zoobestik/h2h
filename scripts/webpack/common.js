@@ -36,21 +36,23 @@ export default {
         ],
     },
     module: {
-        loaders: [
+        rules: [
             {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
-                loader: 'babel-loader',
-                options: {
-                    ...babelrc,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        ...babelrc,
+                    },
                 },
             },
             {
                 test: /\.p?css$/,
                 exclude: /node_modules/,
-                loader: ExtractTextPlugin.extract({
-                    fallbackLoader: 'style-loader',
-                    loader: [
+                use: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: [
                         'raw-loader',
                         'postcss-loader',
                     ],
