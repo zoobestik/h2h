@@ -1,4 +1,4 @@
-import { PropTypes } from 'react';
+import PropTypes from 'prop-types';
 import withRouter from 'react-router/lib/withRouter';
 import { routerShape } from 'react-router/lib/PropTypes';
 import Index from './component';

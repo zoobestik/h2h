@@ -1,5 +1,6 @@
 import block from 'bem-cn';
-import { PropTypes, PureComponent } from 'react';
+import { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import { getPublicPath } from 'app/lib/paths';
 import Standings from 'components/Standings';
 import Tabs from 'components/Tabs';

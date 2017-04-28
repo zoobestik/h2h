@@ -13,6 +13,7 @@ export default {
         alias: {
             react: 'preact-compat',
             'react-dom': 'preact-compat',
+            'create-react-class': `${process.cwd()}/src/lib/create-react-class`,
         },
     },
 
@@ -29,7 +30,7 @@ export default {
             sourceMap: false,
         }),
 
-        new CSSOCompressPlugin(),
+        new CSSOCompressPlugin({ sourceMap: true }),
         new OccurrenceOrderPlugin(),
 
         new CompressionPlugin({

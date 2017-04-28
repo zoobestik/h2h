@@ -1,4 +1,5 @@
-import { PureComponent, PropTypes } from 'react';
+import { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 
 export default class ScoresTab extends PureComponent {
     static propTypes = {

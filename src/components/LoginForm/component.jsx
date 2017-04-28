@@ -1,5 +1,6 @@
 import block from 'bem-cn';
-import { PropTypes, PureComponent } from 'react';
+import { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import Form from 'components/Form';
 
 const b = block('login-form');

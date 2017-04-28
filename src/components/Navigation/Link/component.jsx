@@ -1,4 +1,5 @@
-import { PropTypes, PureComponent } from 'react';
+import { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import Link from 'react-router/lib/Link';
 import { itemLinkClass } from 'components/Navigation';
 

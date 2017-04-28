@@ -1,5 +1,6 @@
 import block from 'bem-cn';
-import { PropTypes, PureComponent } from 'react';
+import { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 
 import Header from 'components/Header';
 import Footer from 'components/Footer';

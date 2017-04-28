@@ -1,11 +1,11 @@
-import { Component, PropTypes } from 'react';
+import { Component } from 'react';
+import PropTypes from 'prop-types';
 import { useStrict } from 'mobx';
 import { Provider } from 'mobx-react';
 import PageStore from 'app/stores/Page';
 import UserInfoStore from 'app/stores/UserInfo';
-import Routes from 'components/Routes';
-
 import './index.pcss';
+import Routes from 'components/Routes'; // eslint-disable-line import/first
 
 useStrict(true);
 

@@ -1,4 +1,5 @@
-import { PropTypes, Component } from 'react';
+import { Component } from 'react';
+import PropTypes from 'prop-types';
 import { computed, runInAction, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import SingleTimeRequest from 'app/stores/SingleTimeRequest';

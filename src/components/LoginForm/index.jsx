@@ -1,4 +1,5 @@
-import { PureComponent, PropTypes } from 'react';
+import { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import { inject, observer } from 'mobx-react';
 import { getPublicPath } from 'app/lib/paths';
 import LoginForm from './component';
