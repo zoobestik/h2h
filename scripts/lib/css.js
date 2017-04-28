@@ -2,7 +2,7 @@ import autoprefixer from 'autoprefixer';
 import nested from 'postcss-nested';
 import imports from 'postcss-import';
 
-export const postcssProcessors = [
+export const postcssPlugins = [
     imports,
     autoprefixer({
         browsers: [ // @ToDo: move to package.json

@@ -8,15 +8,6 @@ const { OccurrenceOrderPlugin, UglifyJsPlugin } = optimize;
 export default {
     ...base,
 
-    resolve: {
-        ...base.resolve,
-        alias: {
-            react: 'preact-compat',
-            'react-dom': 'preact-compat',
-            'create-react-class': `${process.cwd()}/src/lib/create-react-class`,
-        },
-    },
-
     plugins: [].concat(
         new UglifyJsPlugin({
             compressor: {

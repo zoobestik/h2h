@@ -1,7 +1,7 @@
 import stylelint from 'stylelint';
 import { string as formatter } from 'stylelint/lib/formatters';
 import { ignorePatternConfig } from '../../lib/ignore';
-import { postcssProcessors as processors } from '../../lib/css';
+import { postcssPlugins as processors } from '../../lib/css';
 
 /**
  * Task for css lints

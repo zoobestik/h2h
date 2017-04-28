@@ -16,7 +16,7 @@ export const purify = Component => (
 );
 
 export const classify = (classes, Child = 'div') =>
-    ({ className, ...props }) => // eslint-disable-line react/prop-types
+    ({ className, ...props }) => (// eslint-disable-line react/prop-types
         <Child
             { ...props }
             className={
@@ -25,4 +25,5 @@ export const classify = (classes, Child = 'div') =>
                     .filter(cls => cls)
                     .join(' ')
             }
-        />;
+        />
+    );

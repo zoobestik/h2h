@@ -1,7 +1,7 @@
 import path from 'path';
-import { optimize, DefinePlugin, LoaderOptionsPlugin } from 'webpack';
+import { optimize, DefinePlugin } from 'webpack';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
-import { postcssProcessors } from '../lib/css';
+import { postcssPlugins } from '../lib/css';
 
 const babelrc = require('../../.babelrc.json');
 
@@ -50,7 +50,12 @@ export default {
                     fallback: 'style-loader',
                     use: [
                         'raw-loader',
-                        'postcss-loader',
+                        {
+                            loader: 'postcss-loader',
+                            options: {
+                                plugins: postcssPlugins,
+                            },
+                        },
                     ],
                 }),
             },
@@ -67,12 +72,6 @@ export default {
         new optimize.CommonsChunkPlugin({
             name: 'common',
             // minChunks: Infinity,
-        }),
-
-        new LoaderOptionsPlugin({
-            options: {
-                postcss: () => postcssProcessors,
-            },
         }),
     ],
 };

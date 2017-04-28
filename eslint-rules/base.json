@@ -62,11 +62,6 @@
             }
         ],
 
-        "react/jsx-space-before-closing": [
-            "error",
-            "never"
-        ],
-
         "react/prefer-stateless-function": [
             "error",
             { "ignorePureComponents": true }
