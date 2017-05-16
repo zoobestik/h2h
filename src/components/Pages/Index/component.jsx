@@ -1,5 +1,5 @@
 import block from 'bem-cn';
-import { PureComponent } from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { getPublicPath } from 'app/lib/paths';
 import Standings from 'components/Standings';
@@ -25,18 +25,19 @@ const tabs = [
     },
 ];
 
-export default class Index extends PureComponent {
+export default class Index extends Component {
     static propTypes = {
         children: PropTypes.node,
+        standings: PropTypes.arrayOf(PropTypes.object),
         url: PropTypes.string,
     };
 
     render() {
-        const { children, url } = this.props;
+        const { children, standings, url } = this.props;
         return (
             <div className={ b() }>
                 <div className={ classTables() }>
-                    <Standings className={ classStandings() } leagueId={ 0 }/>
+                    <Standings className={ classStandings() } teams={ standings }/>
                     <Tabs
                         className={ classInformation() }
                         tabs={ tabs.map(tab => ({

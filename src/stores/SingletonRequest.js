@@ -1,7 +1,7 @@
 import { action, computed, observable } from 'mobx';
 import { generateId } from 'app/lib';
 
-export default class SingleTimeRequest {
+export default class SingletonRequest {
     @observable id;
     @observable defer;
 
@@ -56,4 +56,4 @@ export default class SingleTimeRequest {
     }
 }
 
-export const createExecutor = fn => new SingleTimeRequest().createExecutor(fn);
+export const create = fn => new SingletonRequest().createExecutor(fn);

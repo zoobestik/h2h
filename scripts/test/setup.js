@@ -8,7 +8,7 @@ chai.use(sinon);
 require.extensions['.css'] = () => null;
 require.extensions['.pcss'] = () => null;
 
-const { window } = new JSDOM('<!doctype html><html><head></head><body></body></html>');
+const { window } = new JSDOM('<!doctype html><html><head></head><main></main></html>');
 
 global.window = window;
 global.document = window.document;

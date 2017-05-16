@@ -27,7 +27,7 @@ describe('Header', () => {
         '</header>');
     });
 
-    it('authorized', () => {
+    it('login', () => {
         const header = shallow(<Header isAuth/>);
         expect(header.html()).to.equal('<header class="header">' +
             '<div class="header__wrapper">' +

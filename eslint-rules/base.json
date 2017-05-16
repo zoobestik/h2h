@@ -63,7 +63,7 @@
         ],
 
         "react/prefer-stateless-function": [
-            "error",
+            "off",
             { "ignorePureComponents": true }
         ],
 

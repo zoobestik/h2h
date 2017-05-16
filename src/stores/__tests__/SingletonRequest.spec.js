@@ -1,16 +1,16 @@
 /* eslint-env mocha */
 import { expect } from 'chai';
-import SingleTimeRequest, { createExecutor } from '../SingleTimeRequest';
+import SingletonRequest, { create } from '../SingletonRequest';
 
-describe('SingleTimeRequest', () => {
+describe('SingletonRequest', () => {
     describe('isProgress', () => {
         it('should be false on init', () => {
-            const request = new SingleTimeRequest();
+            const request = new SingletonRequest();
             expect(request.isProgress).to.equal(false);
         });
 
         it('should be true in progress', () => {
-            const request = new SingleTimeRequest();
+            const request = new SingletonRequest();
 
             request.send(new Promise(() => {}));
 
@@ -18,7 +18,7 @@ describe('SingleTimeRequest', () => {
         });
 
         it('should be true after complete', () => {
-            const request = new SingleTimeRequest();
+            const request = new SingletonRequest();
             return request.send(new Promise(r => r()))
                 .then(() => expect(request.isProgress).to.equal(true));
         });
@@ -28,7 +28,7 @@ describe('SingleTimeRequest', () => {
         it('should resolved by last request', async () => {
             let count = 0;
             const fn = result => expect(result).to.equal(2);
-            const request = new SingleTimeRequest();
+            const request = new SingletonRequest();
 
             const promises = [
                 request.send(new Promise(revolve => {
@@ -43,11 +43,11 @@ describe('SingleTimeRequest', () => {
         });
     });
 
-    describe('createExecutor', () => {
+    describe('create', () => {
         it('should resolved by last request', async () => {
             let count = 0;
             const fn = result => expect(result).to.equal(2);
-            const request = createExecutor(() => new Promise(revolve => revolve(count++)));
+            const request = create(() => new Promise(revolve => revolve(count++)));
 
             const promises = [
                 request().then(fn),
@@ -59,7 +59,7 @@ describe('SingleTimeRequest', () => {
         });
 
         it('should be coorect params in fn', async () => {
-            const request = createExecutor((o1, o2) => {
+            const request = create((o1, o2) => {
                 expect(o1).to.equal(1);
                 expect(o2).to.equal(2);
                 return new Promise(() => {});

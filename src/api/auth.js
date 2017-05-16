@@ -1,8 +1,11 @@
 export const login = () => new Promise(resolve => {
     setTimeout(() => {
         resolve({
-            uid: 3,
-            login: 'zoobestik',
+            crc: '123',
+            user: {
+                uid: 3,
+                login: 'zoobestik',
+            },
         });
     }, 10000);
 });

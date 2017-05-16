@@ -5,7 +5,6 @@ import IndexRoute from 'react-router/lib/IndexRoute';
 import IndexRedirect from 'react-router/lib/IndexRedirect';
 import { getPublicPath } from 'app/lib/paths';
 
-import App from './App';
 import Layout from './Layout';
 import NoMatch from './Pages/NoMatch';
 
@@ -16,7 +15,7 @@ const loader = module => cb => cb(null, module);
 
 export const Routes = (
     <Route>
-        <Route path={ getPublicPath() } component={ App }>
+        <Route path={ getPublicPath() }>
             <Route component={ ({ children }) => <Layout>{ children }</Layout> }>
                 <IndexRedirect to="explore/"/>
                 <Route path="explore/" getComponent={ (location, cb) => loader(IndexPage)(cb) }>

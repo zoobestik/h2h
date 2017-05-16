@@ -4,10 +4,10 @@ import { inject, observer } from 'mobx-react';
 import { getPublicPath } from 'app/lib/paths';
 import LoginForm from './component';
 
-const stores2props = ({ userInfo }) => ({
-    isAuth: userInfo.isAuth,
-    isLoading: userInfo.isProgress,
-    onSubmit: userInfo.authorize.bind(userInfo),
+const stores2props = ({ auth }) => ({
+    isAuth: auth.isAuth,
+    isLoading: auth.isProgress,
+    onSubmit: auth.login,
 });
 
 class LoginFormSmart extends PureComponent {
