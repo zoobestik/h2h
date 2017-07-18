@@ -1,5 +1,5 @@
 import { observable } from 'mobx';
-import Standings from 'components/Pages/Index/stores/Standings';
+import Standings from 'components/IndexPage/stores/Standings';
 
 export default class IndexPageStore {
     @observable standings = null;

@@ -1,18 +1,17 @@
 import PropTypes from 'prop-types';
-import withRouter from 'react-router/lib/withRouter';
-import { routerShape } from 'react-router/lib/PropTypes';
+import Route from 'react-router/Route';
+import withRouter from 'react-router/withRouter';
 import NavigationLink from './component';
 
-const NavigationLinkSmart = ({ to, children, router }) => (
-    <NavigationLink to={ to } isActive={ router.isActive(to) } isCurrent={ router.isActive(to, true) }>
-        { children }
-    </NavigationLink>
+const NavigationLinkSmart = ({ to, ...props }) => (
+    <Route path={ to }>
+        { ({ match }) => <NavigationLink to={ to } { ...props } isActive={ match } isCurrent={ match }/> }
+    </Route>
 );
 
 NavigationLinkSmart.propTypes = {
     children: PropTypes.node,
     to: PropTypes.any.isRequired,
-    router: routerShape.isRequired,
 };
 
 export default withRouter(NavigationLinkSmart);

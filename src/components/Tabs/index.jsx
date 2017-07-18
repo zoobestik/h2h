@@ -1,7 +1,7 @@
 import block from 'bem-cn';
 import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import Link from 'react-router/lib/Link';
+import Link from 'react-router-dom/Link';
 
 import './index.pcss';
 
@@ -22,17 +22,16 @@ export default class Tabs extends PureComponent {
     }
 
     getTabsView() {
-        const { tabs } = this.props;
-
-        return tabs.map(({ to, caption, isActive }) => (
+        return this.props.tabs.map(({ to, caption, isActive }) => (
             <li
                 key={ to }
                 className={ classTab({ active: Boolean(isActive) })() }
-            >{
-                isActive ?
+            >
+                { isActive ?
                     caption :
                     <Link className={ classLink() } to={ to }>{ caption }</Link>
-            }</li>
+                }
+            </li>
         ));
     }
 

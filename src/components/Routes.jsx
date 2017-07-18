@@ -1,33 +1,20 @@
-import Router from 'react-router/lib/Router';
-import Route from 'react-router/lib/Route';
-import Redirect from 'react-router/lib/Redirect';
-import IndexRoute from 'react-router/lib/IndexRoute';
-import IndexRedirect from 'react-router/lib/IndexRedirect';
-import { getPublicPath } from 'app/lib/paths';
+import Route from 'react-router/es/Route';
+import Redirect from 'react-router/es/Redirect';
+import { getPublicUrl } from 'app/lib';
 
-import Layout from './Layout';
-import NoMatch from './Pages/NoMatch';
+import Layout from 'components/Layout';
+import IndexRoute from 'components/IndexPage';
+import SignIn from 'components/Pages/SignIn';
+import NoMatch from 'components/Pages/NoMatch';
 
-import IndexPage, { IndexDayTab, IndexScoresTab } from './Pages/Index';
-import SignIn from './Pages/SignIn';
-
-const loader = module => cb => cb(null, module);
-
-export const Routes = (
-    <Route>
-        <Route path={ getPublicPath() }>
-            <Route component={ ({ children }) => <Layout>{ children }</Layout> }>
-                <IndexRedirect to="explore/"/>
-                <Route path="explore/" getComponent={ (location, cb) => loader(IndexPage)(cb) }>
-                    <IndexRoute getComponent={ (location, cb) => loader(IndexDayTab)(cb) }/>
-                    <Route path="scores/" getComponent={ (location, cb) => loader(IndexScoresTab)(cb) }/>
-                </Route>
-                <Route path="login/" getComponent={ (location, cb) => loader(SignIn)(cb) }/>
-                <Route path="*" component={ NoMatch }/>
-            </Route>
-        </Route>
-        <Redirect from="*" to={ getPublicPath() }/>
+export default props => (
+    <Route path={ getPublicUrl() } { ...props }>
+        <Layout>
+            <Route path="/explore" component={ IndexRoute }/>
+            <Route path="/login" component={ SignIn }/>
+            <Route exact path="/" component={ () => <Redirect exact from="/" to="explore/"/> }/>
+            { /* <Redirect exact from="/" to="explore/"/> */ }
+            <Route path="*" component={ NoMatch }/>
+        </Layout>
     </Route>
 );
-
-export default props => <Router { ...props }>{ Routes }</Router>;

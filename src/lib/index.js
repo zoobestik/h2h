@@ -26,3 +26,5 @@ export function compose(...funcs) {
     const rest = funcs.slice(0, -1);
     return (...args) => rest.reduceRight((composed, f) => f(composed), last(...args));
 }
+
+export const getPublicUrl = path => (process.env.URL_PUBLIC_PATH || '') + (path || '/');

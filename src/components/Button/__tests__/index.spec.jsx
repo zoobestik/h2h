@@ -1,7 +1,7 @@
 /* eslint-env mocha */
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
-import Link from 'react-router/lib/Link';
+import Link from 'react-router-dom/Link';
 import Button from '../';
 
 describe('Button', () => {

@@ -68,11 +68,11 @@
         ],
 
         "react/react-in-jsx-scope": "off",
-
         "react/forbid-prop-types": "off",
 
         "import/no-extraneous-dependencies": "off",
 
-        "jsx-a11y/label-has-for": "warn"
+        "jsx-a11y/label-has-for": "warn",
+        "jsx-a11y/href-no-hash": "off"
     }
 }

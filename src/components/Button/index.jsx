@@ -1,7 +1,7 @@
 import block from 'bem-cn';
 import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import Link from 'react-router/lib/Link';
+import Link from 'react-router-dom/Link';
 
 export const b = block('button');
 

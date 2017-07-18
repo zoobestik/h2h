@@ -2,13 +2,9 @@ import { Component } from 'react';
 import PropTypesReact from 'prop-types';
 import { computed, toJS } from 'mobx';
 import { inject, observer } from 'mobx-react';
-import withRouter from 'react-router/lib/withRouter';
-import { routerShape } from 'react-router/lib/PropTypes';
-import IndexPageStore from 'components/Pages/Index/stores/IndexPage';
-import Index from 'components/Pages/Index/component';
-
-export IndexDayTab from './components/DayTab';
-export IndexScoresTab from './components/ScoresTab';
+import withRouter from 'react-router/withRouter';
+import IndexPageStore from 'components/IndexPage/stores/IndexPage';
+import Index from 'components/IndexPage/component';
 
 const initialState = {
     standings: { id: 0 },
@@ -19,7 +15,7 @@ const stores2props = ({ page }) => ({ page });
 class IndexSmart extends Component {
     static propTypes = {
         page: PropTypesReact.object,
-        router: routerShape.isRequired,
+        router: PropTypesReact.object.isRequired,
         children: PropTypesReact.node,
     };
 

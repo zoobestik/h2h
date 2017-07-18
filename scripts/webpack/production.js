@@ -1,5 +1,5 @@
 import { optimize } from 'webpack';
-import CompressionPlugin from 'compression-webpack-plugin';
+import CompressionPlugin from 'zopfli-webpack-plugin';
 import CSSOCompressPlugin from 'csso-webpack-plugin';
 import base from './common';
 
@@ -8,18 +8,20 @@ const { OccurrenceOrderPlugin, UglifyJsPlugin } = optimize;
 export default {
     ...base,
 
-    /*
     resolve: {
         ...base.resolve,
         alias: {
             react: 'preact-compat',
             'react-dom': 'preact-compat',
-            'create-react-class': `${process.cwd()}/src/lib/create-react-class`,
+            // 'create-react-class': `${process.cwd()}/src/lib/create-react-class`,
         },
     },
-    */
 
-    plugins: [].concat(
+    plugins: [
+        new OccurrenceOrderPlugin(),
+
+        ...base.plugins,
+
         new UglifyJsPlugin({
             compressor: {
                 pure_getters: true,
@@ -33,16 +35,10 @@ export default {
         }),
 
         new CSSOCompressPlugin({ sourceMap: true }),
-        new OccurrenceOrderPlugin(),
 
         new CompressionPlugin({
-            asset: '[path].gz[query]',
             algorithm: 'zopfli',
             test: /\.js$|\.css$|\.html$/,
-            threshold: 10240,
-            minRatio: 0.8,
         }),
-
-        base.plugins,
-    ),
+    ],
 };

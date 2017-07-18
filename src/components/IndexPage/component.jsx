@@ -1,10 +1,13 @@
 import block from 'bem-cn';
 import { Component } from 'react';
 import PropTypes from 'prop-types';
-import { getPublicPath } from 'app/lib/paths';
+import Route from 'react-router/es/Route';
+import { getPublicUrl } from 'app/lib';
 import Standings from 'components/Standings';
 import Tabs from 'components/Tabs';
 import SocialPane from 'components/SocialPane';
+import IndexDayTab from 'components/IndexPage/components/DayTab';
+import IndexScoresTab from 'components/IndexPage/components/ScoresTab';
 
 import './index.pcss';
 
@@ -16,24 +19,23 @@ const classSocial = b('social');
 
 const tabs = [
     {
-        to: getPublicPath('/explore/'),
+        to: getPublicUrl('/explore/'),
         caption: 'Match Day',
     },
     {
-        to: getPublicPath('/explore/scores/'),
+        to: getPublicUrl('/explore/scores/'),
         caption: 'Scores',
     },
 ];
 
-export default class Index extends Component {
+export default class IndexPage extends Component {
     static propTypes = {
-        children: PropTypes.node,
         standings: PropTypes.arrayOf(PropTypes.object),
         url: PropTypes.string,
     };
 
     render() {
-        const { children, standings, url } = this.props;
+        const { standings, url } = this.props;
         return (
             <div className={ b() }>
                 <div className={ classTables() }>
@@ -45,7 +47,10 @@ export default class Index extends Component {
                             isActive: tab.to === url,
                         })) }
                     >
-                        { children }
+                        <Route>
+                            <Route path="/" component={ IndexDayTab }/>
+                            <Route path="scores/" component={ IndexScoresTab }/>
+                        </Route>
                     </Tabs>
                 </div>
                 <SocialPane className={ classSocial() }/>

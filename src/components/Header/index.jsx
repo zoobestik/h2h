@@ -5,4 +5,6 @@ const stores2props = ({ auth }) => ({
     isAuth: auth.isAuth,
 });
 
-export default inject(stores2props)(observer(Header));
+const HeaderSmart = props => <Header { ...props }/>;
+
+export default inject(stores2props)(observer(HeaderSmart));

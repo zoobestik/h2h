@@ -1,11 +1,9 @@
 import { Component } from 'react';
-import withRouter from 'react-router/lib/withRouter';
-import { routerShape } from 'react-router/lib/PropTypes';
+import withRouter from 'react-router/withRouter';
 import LoginForm from 'components/LoginForm';
 
 class SignIn extends Component {
     static propTypes = {
-        router: routerShape.isRequired,
     };
 
     constructor(props, context) {

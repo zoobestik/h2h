@@ -1,8 +1,9 @@
 import block from 'bem-cn';
 import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { getPublicPath } from 'app/lib/paths';
-import NavigationLink from 'components/Navigation/Link';
+import { getPublicUrl } from 'app/lib';
+// import NavigationLink from 'components/Navigation/Link';
+import NavigationLink from 'components/Navigation/Link/component';
 
 import './index.pcss';
 
@@ -11,9 +12,9 @@ export const itemClass = b('item');
 export const itemLinkClass = b('link');
 
 export const items = [
-    { to: getPublicPath('/explore/'), children: 'Explore' },
-    { to: getPublicPath('/standings/'), children: 'League Table' },
-    { to: getPublicPath('/calendar/'), children: 'Calendar' },
+    { to: getPublicUrl('/explore/'), children: 'Explore' },
+    { to: getPublicUrl('/standings/'), children: 'League Table' },
+    { to: getPublicUrl('/calendar/'), children: 'Calendar' },
     // { to: '/news/', children: 'News' },
 ];
 
