@@ -1,7 +1,4 @@
-/* eslint-env mocha */
-import { expect } from 'chai';
-import { shallow } from 'enzyme';
-
+/* eslint-env jest */
 const Button = props => <span { ...props }/>;
 
 const HeaderSignIn = global.componentWithMocks(`${__dirname}/..`, {
@@ -11,7 +8,7 @@ const HeaderSignIn = global.componentWithMocks(`${__dirname}/..`, {
 describe('HeaderSignIn', () => {
     it('default', () => {
         const header = shallow(<HeaderSignIn className="some-random-class"/>);
-        expect(header.html()).to.equal('<div class="header-sign-in some-random-class">' +
+        expect(header.html()).toBe('<div class="header-sign-in some-random-class">' +
             '<a>Sign In</a>' +
             '<a class="header-sign-in__help">' +
                 '<img class="header-sign-in__help-icon" alt="sign in icon" src="data:image/svg+xml;utf8,%3Csvg%20xmln' +

@@ -1,11 +1,10 @@
-/* eslint-env mocha */
-import { expect } from 'chai';
+/* eslint-env jest */
 import { compose, generateId } from '../index';
 
 describe('utils functions', () => {
     describe('generateId', () => {
         it('generate two random ids', () => {
-            expect(generateId()).to.not.equal(generateId());
+            expect(generateId()).not.toBe(generateId());
         });
     });
 
@@ -13,9 +12,9 @@ describe('utils functions', () => {
         it('composes from right to left', () => {
             const double = x => x * 2;
             const square = x => x * x;
-            expect(compose(square)(5)).to.equal(25);
-            expect(compose(square, double)(5)).to.equal(100);
-            expect(compose(double, square, double)(5)).to.equal(200);
+            expect(compose(square)(5)).toBe(25);
+            expect(compose(square, double)(5)).toBe(100);
+            expect(compose(double, square, double)(5)).toBe(200);
         });
 
         it('composes functions from right to left', () => {
@@ -24,26 +23,26 @@ describe('utils functions', () => {
             const c = next => x => next(`${x}c`);
             const final = x => x;
 
-            expect(compose(a, b, c)(final)('')).to.equal('abc');
-            expect(compose(b, c, a)(final)('')).to.equal('bca');
-            expect(compose(c, a, b)(final)('')).to.equal('cab');
+            expect(compose(a, b, c)(final)('')).toBe('abc');
+            expect(compose(b, c, a)(final)('')).toBe('bca');
+            expect(compose(c, a, b)(final)('')).toBe('cab');
         });
 
         it('can be seeded with multiple arguments', () => {
             const square = x => x * x;
             const add = (x, y) => x + y;
-            expect(compose(square, add)(1, 2)).to.equal(9);
+            expect(compose(square, add)(1, 2)).toBe(9);
         });
 
         it('returns the first given argument if given no functions', () => {
-            expect(compose()(1, 2)).to.equal(1);
-            expect(compose()(3)).to.equal(3);
-            expect(compose()()).to.equal(undefined);
+            expect(compose()(1, 2)).toBe(1);
+            expect(compose()(3)).toBe(3);
+            expect(compose()()).toBe(undefined);
         });
 
         it('returns the first function if given only one', () => {
             const fn = () => {};
-            expect(compose(fn)).to.equal(fn);
+            expect(compose(fn)).toBe(fn);
         });
     });
 });

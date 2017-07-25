@@ -2,9 +2,6 @@ import AuthStore from 'components/App/stores/Auth';
 import PageStore from 'components/App/stores/Page';
 
 export default class AppStore {
-    auth;
-    page;
-
     constructor(data) {
         const state = data || {};
         this.auth = new AuthStore(state.auth);

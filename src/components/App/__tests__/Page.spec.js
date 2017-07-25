@@ -1,6 +1,4 @@
-/* eslint-env mocha */
-import { beforeEach } from 'mocha';
-import { expect } from 'chai';
+/* eslint-env jest */
 import { isObservable } from 'mobx';
 import Page from '../stores/Page';
 
@@ -14,9 +12,9 @@ describe('PageStore', () => {
 
     describe('should correct init data', () => {
         it('by default', () => {
-            expect(page.title).to.equal('');
-            expect(page.main).to.equal(null);
-            expect(page.valueOf()).to.deep.equal({ title: '', main: null });
+            expect(page.title).toBe('');
+            expect(page.main).toBe(null);
+            expect(page.valueOf()).toEqual({ title: '', main: null });
         });
 
         it('by constructor', () => {
@@ -27,13 +25,13 @@ describe('PageStore', () => {
 
             page = new Page(state);
 
-            expect(page.main).to.equal(ok);
-            expect(page.title).to.equal(ok);
-            expect(page.valueOf()).to.deep.equal(state);
+            expect(page.main).toBe(ok);
+            expect(page.title).toBe(ok);
+            expect(page.valueOf()).toEqual(state);
         });
 
         it('some props should be observable', () => {
-            expect(isObservable(page, 'title')).to.equal(true);
+            expect(isObservable(page, 'title')).toBe(true);
         });
     });
 });

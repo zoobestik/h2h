@@ -1,6 +1,4 @@
-/* eslint-env mocha */
-import { expect } from 'chai';
-import { shallow } from 'enzyme';
+/* eslint-env jest */
 
 const HeaderSignIn = props => <div data-component="HeaderSignIn" { ...props }/>;
 const HeaderAuthInfo = props => <div data-component="HeaderAuthInfo" { ...props }/>;
@@ -15,7 +13,7 @@ const Header = global.componentWithMocks(`${__dirname}/../component`, {
 describe('Header', () => {
     it('default', () => {
         const header = shallow(<Header className="some-random-class"/>);
-        expect(header.html()).to.equal('<header class="header some-random-class">' +
+        expect(header.html()).toBe('<header class="header some-random-class">' +
             '<div class="header__wrapper">' +
                 '<p class="header__logo">H2H Logo</p>' +
                 '<nav class="header__navigation">' +
@@ -29,7 +27,7 @@ describe('Header', () => {
 
     it('login', () => {
         const header = shallow(<Header isAuth/>);
-        expect(header.html()).to.equal('<header class="header">' +
+        expect(header.html()).toBe('<header class="header">' +
             '<div class="header__wrapper">' +
                 '<p class="header__logo">H2H Logo</p>' +
                 '<nav class="header__navigation">' +

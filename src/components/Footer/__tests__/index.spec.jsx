@@ -1,12 +1,10 @@
-/* eslint-env mocha */
-import { expect } from 'chai';
-import { shallow } from 'enzyme';
+/* eslint-env jest */
 import Footer from '../';
 
 describe('Footer', () => {
     it('default', () => {
         const footer = shallow(<Footer/>);
-        expect(footer.html()).to.equal('<footer class="footer">' +
+        expect(footer.html()).toBe('<footer class="footer">' +
             '<p class="footer__years">© 2014 – 2015</p>' +
             '<p class="footer__source">Fork me on ' +
                 '<a target="_blank" rel="noopener noreferrer" ' +
@@ -17,6 +15,6 @@ describe('Footer', () => {
 
     it('with @className', () => {
         const footer = shallow(<Footer className="some-random-class">Click Me</Footer>);
-        expect(footer.is('footer.some-random-class')).to.equal(true);
+        expect(footer.is('footer.some-random-class')).toBe(true);
     });
 });

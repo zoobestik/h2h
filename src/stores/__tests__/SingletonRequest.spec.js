@@ -1,12 +1,11 @@
-/* eslint-env mocha */
-import { expect } from 'chai';
+/* eslint-env jest */
 import SingletonRequest, { create } from '../SingletonRequest';
 
 describe('SingletonRequest', () => {
     describe('isProgress', () => {
         it('should be false on init', () => {
             const request = new SingletonRequest();
-            expect(request.isProgress).to.equal(false);
+            expect(request.isProgress).toBe(false);
         });
 
         it('should be true in progress', () => {
@@ -14,20 +13,20 @@ describe('SingletonRequest', () => {
 
             request.send(new Promise(() => {}));
 
-            expect(request.isProgress).to.equal(true);
+            expect(request.isProgress).toBe(true);
         });
 
         it('should be true after complete', () => {
             const request = new SingletonRequest();
             return request.send(new Promise(r => r()))
-                .then(() => expect(request.isProgress).to.equal(true));
+                .then(() => expect(request.isProgress).toBe(true));
         });
     });
 
     describe('send', () => {
         it('should resolved by last request', async () => {
             let count = 0;
-            const fn = result => expect(result).to.equal(2);
+            const fn = result => expect(result).toBe(2);
             const request = new SingletonRequest();
 
             const promises = [
@@ -46,7 +45,7 @@ describe('SingletonRequest', () => {
     describe('create', () => {
         it('should resolved by last request', async () => {
             let count = 0;
-            const fn = result => expect(result).to.equal(2);
+            const fn = result => expect(result).toBe(2);
             const request = create(() => new Promise(revolve => revolve(count++)));
 
             const promises = [
@@ -60,8 +59,8 @@ describe('SingletonRequest', () => {
 
         it('should be coorect params in fn', async () => {
             const request = create((o1, o2) => {
-                expect(o1).to.equal(1);
-                expect(o2).to.equal(2);
+                expect(o1).toBe(1);
+                expect(o2).toBe(2);
                 return new Promise(() => {});
             });
 

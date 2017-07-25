@@ -1,12 +1,10 @@
-/* eslint-env mocha */
-import { expect } from 'chai';
-import { shallow } from 'enzyme';
+/* eslint-env jest */
 import HeaderAuthInfo from '../component';
 
 describe('HeaderAuthInfo', () => {
     it('default', () => {
         const header = shallow(<HeaderAuthInfo className="some-random-class" login="user"/>);
-        expect(header.html()).to.equal('<div class="header-auth-info some-random-class">' +
+        expect(header.html()).toBe('<div class="header-auth-info some-random-class">' +
             'user' +
             '<img class="header-auth-info__avatar" alt="user avatar" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%2' +
             '2http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2226%22%20height%3D%2226%22%20viewBox%3D%220%200%202' +
@@ -20,7 +18,7 @@ describe('HeaderAuthInfo', () => {
 
     it('with @avatarUrl', () => {
         const header = shallow(<HeaderAuthInfo login="user" avatarUrl="/user"/>);
-        expect(header.html()).to.equal('<div class="header-auth-info">' +
+        expect(header.html()).toBe('<div class="header-auth-info">' +
             'user' +
             '<img class="header-auth-info__avatar" alt="user avatar" src="/user" height="30" width="30"/>' +
         '</div>');

@@ -1,13 +1,10 @@
-/* eslint-env mocha */
-import { expect } from 'chai';
-import { spy } from 'sinon';
-import { shallow, mount } from 'enzyme';
+/* eslint-env jest */
 import Form from '../component';
 
 describe('Form', () => {
     it('default', () => {
         const form = shallow(<Form action="/url" crc="123">Some content</Form>);
-        expect(form.html()).to.equal('<form method="post" action="/url">' +
+        expect(form.html()).toBe('<form method="post" action="/url">' +
             '<input type="hidden" name="crc" value="123"/>' +
             'Some content' +
         '</form>');
@@ -15,7 +12,7 @@ describe('Form', () => {
 
     it('with @className', () => {
         const form = shallow(<Form className="some-random-class"/>);
-        expect(form.is('form.some-random-class')).to.equal(true);
+        expect(form.is('form.some-random-class')).toBe(true);
     });
 
     describe('check @onSubmit', () => {
@@ -30,9 +27,9 @@ describe('Form', () => {
 
             form.simulate('submit', { preventDefault });
 
-            expect(preventDefault.calledOnce).to.equal(true);
-            expect(onSubmit.calledOnce).to.equal(true);
-            expect(onSubmit.firstCall.args[0]).to.deep.equal({
+            expect(preventDefault.calledOnce).toBe(true);
+            expect(onSubmit.calledOnce).toBe(true);
+            expect(onSubmit.firstCall.args[0]).toEqual({
                 url: '/url/',
                 method: 'post',
                 data: {
@@ -49,7 +46,7 @@ describe('Form', () => {
 
             form.simulate('submit', { preventDefault });
 
-            expect(preventDefault.called).to.equal(false);
+            expect(preventDefault.called).toBe(false);
         });
     });
 });
