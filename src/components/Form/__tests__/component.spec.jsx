@@ -17,8 +17,8 @@ describe('Form', () => {
 
     describe('check @onSubmit', () => {
         it('with callback', () => {
-            const onSubmit = spy();
-            const preventDefault = spy();
+            const onSubmit = jest.fn();
+            const preventDefault = jest.fn();
 
             const form = mount(<Form action="/url/" crc="123" onSubmit={ onSubmit }>
                 <input name="name1" type="text" defaultValue="value1"/>
@@ -27,9 +27,9 @@ describe('Form', () => {
 
             form.simulate('submit', { preventDefault });
 
-            expect(preventDefault.calledOnce).toBe(true);
-            expect(onSubmit.calledOnce).toBe(true);
-            expect(onSubmit.firstCall.args[0]).toEqual({
+            expect(preventDefault.mocks.calls.length).toBe(1);
+            expect(onSubmit.mocks.calls.length).toBe(1);
+            expect(onSubmit.mocks.calls[0][0]).toEqual({
                 url: '/url/',
                 method: 'post',
                 data: {
@@ -41,12 +41,12 @@ describe('Form', () => {
         });
 
         it('without callback', () => {
-            const preventDefault = spy();
+            const preventDefault = jest.fn();
             const form = mount(<Form/>);
 
             form.simulate('submit', { preventDefault });
 
-            expect(preventDefault.called).toBe(false);
+            expect(preventDefault.mock.calls.length).toBe(1);
         });
     });
 });

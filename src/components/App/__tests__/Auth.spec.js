@@ -4,11 +4,16 @@ import UserStore from 'app/stores/User';
 import AuthStore from '../stores/Auth';
 
 jest.mock('app/api/auth');
+import { login } from 'app/api/auth';
 
 describe('AuthStore', () => {
     const currentUser = () => ({ uid: 0, props: { xxx: 1 } });
     const nextUser = () => ({ uid: 100, login: 'test' });
     const getAuth = () => ({ crc: '123', user: currentUser() });
+
+    beforeEach(() => {
+        jest.clearAllMocks();
+    });
 
     describe('constructor', () => {
         it('with default state', () => {
@@ -62,11 +67,10 @@ describe('AuthStore', () => {
         const store = new AuthStore();
         const query = { foo: 'bar' };
 
-        // expect(loginMock).toEqual(query);
+        login.mockReturnValueOnce(Promise.resolve(getAuth()));
 
-        await store.login(query);
+        await expect(store.login(query)).resolves.toEqual(getAuth());
         expect(store.user).toEqual(new UserStore(currentUser()));
-        console.log(require('app/api/auth'));
-        // console.log(loginMock.mock.calls);
+        expect(login.mock.calls[0]).toEqual([query]);
     });
 });

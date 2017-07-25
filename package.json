@@ -44,10 +44,6 @@
     },
     "transformIgnorePatterns": [
       "node_modules/(?!app|components)"
-    ],
-    "unmockedModulePathPatterns": [
-      "<rootDir>/node_modules/react",
-      "<rootDir>/node_modules/react-dom"
     ]
   },
   "dependencies": {

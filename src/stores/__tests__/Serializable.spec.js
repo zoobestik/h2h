@@ -33,7 +33,7 @@ describe('Serializable', () => {
     });
 
     it('set', () => {
-        const change = spy();
+        const change = jest.fn();
         const store = new Serializable({ uid: 100 });
         const disposer = observe(store.data, change);
 
@@ -45,13 +45,14 @@ describe('Serializable', () => {
 
         disposer();
 
-        expect(change.callCount).toBe(2);
+        const changeCalls = change.mock.calls;
+        expect(changeCalls.length).toBe(2);
 
-        const firstChange = change.args[0][0];
+        const firstChange = changeCalls[0][0];
         expect(firstChange.name).toBe('uid');
         expect(firstChange.newValue).toBe(200);
 
-        const secondChange = change.args[1][0];
+        const secondChange = changeCalls[1][0];
         expect(secondChange.name).toBe('uid');
         expect(secondChange.newValue).toBe(300);
     });

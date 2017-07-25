@@ -1,14 +1,5 @@
 /* eslint-env jest */
-
-const HeaderSignIn = props => <div data-component="HeaderSignIn" { ...props }/>;
-const HeaderAuthInfo = props => <div data-component="HeaderAuthInfo" { ...props }/>;
-const Navigation = props => <div { ...props }/>;
-
-const Header = global.componentWithMocks(`${__dirname}/../component`, {
-    'components/HeaderSignIn': HeaderSignIn,
-    'components/HeaderAuthInfo': HeaderAuthInfo,
-    'components/Navigation': Navigation,
-});
+import Header from '../component';
 
 describe('Header', () => {
     it('default', () => {

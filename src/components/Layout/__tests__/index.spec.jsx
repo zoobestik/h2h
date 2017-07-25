@@ -1,11 +1,5 @@
 /* eslint-env jest */
-const Header = props => <div { ...props }/>;
-const Footer = props => <div { ...props }/>;
-
-const Layout = global.componentWithMocks(`${__dirname}/..`, {
-    'components/Header': Header,
-    'components/Footer': Footer,
-});
+import Layout from '../';
 
 describe('Layout', () => {
     it('default', () => {

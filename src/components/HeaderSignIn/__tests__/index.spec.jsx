@@ -1,9 +1,5 @@
 /* eslint-env jest */
-const Button = props => <span { ...props }/>;
-
-const HeaderSignIn = global.componentWithMocks(`${__dirname}/..`, {
-    'components/Button': Button,
-});
+import HeaderSignIn from '../';
 
 describe('HeaderSignIn', () => {
     it('default', () => {
