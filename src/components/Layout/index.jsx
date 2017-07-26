@@ -1,5 +1,5 @@
 import block from 'bem-cn';
-import { PureComponent } from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import Header from 'components/Header';
@@ -12,7 +12,7 @@ export const headerClass = b('header');
 export const mainClass = b('main');
 export const footerClass = b('footer');
 
-export default class Layout extends PureComponent {
+export default class Layout extends Component {
     static propTypes = {
         className: PropTypes.string,
         children: PropTypes.node,

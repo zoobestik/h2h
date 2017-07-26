@@ -15,7 +15,7 @@ const stores2props = ({ page }) => ({ page });
 class IndexSmart extends Component {
     static propTypes = {
         page: PropTypesReact.object,
-        router: PropTypesReact.object.isRequired,
+        location: PropTypesReact.object.isRequired,
         children: PropTypesReact.node,
     };
 
@@ -41,9 +41,9 @@ class IndexSmart extends Component {
     }
 
     render() {
-        const { router, children } = this.props;
+        const { location, children } = this.props;
         return (
-            <Index url={ router.location.pathname } standings={ toJS(this.standings) }>{children}</Index>
+            <Index url={ location.pathname } standings={ toJS(this.standings) }>{children}</Index>
         );
     }
 }

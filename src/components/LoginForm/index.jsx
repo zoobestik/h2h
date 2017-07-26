@@ -1,7 +1,7 @@
 import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { inject, observer } from 'mobx-react';
-import { getPublicUrl } from 'app/lib';
+import { url } from 'app/lib';
 import LoginForm from './component';
 
 const stores2props = ({ auth }) => ({
@@ -28,7 +28,7 @@ class LoginFormSmart extends PureComponent {
         const { isAuth, onNextReady } = props || this.props;
 
         if (isAuth && onNextReady) {
-            onNextReady(getPublicUrl('/'));
+            onNextReady(url('/'));
         }
     }
 
