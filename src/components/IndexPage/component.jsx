@@ -2,7 +2,8 @@ import block from 'bem-cn';
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 import Route from 'react-router/es/Route';
-import { url } from 'app/lib';
+import Switch from 'react-router/es/Switch';
+import { pubUrl } from 'app/lib';
 import Standings from 'components/Standings';
 import Tabs from 'components/Tabs';
 import SocialPane from 'components/SocialPane';
@@ -19,11 +20,11 @@ const classSocial = b('social');
 
 const tabs = [
     {
-        to: url('/explore/'),
+        to: pubUrl('/explore/'),
         caption: 'Match Day',
     },
     {
-        to: url('/explore/scores/'),
+        to: pubUrl('/explore/scores/'),
         caption: 'Scores',
     },
 ];
@@ -47,10 +48,10 @@ export default class IndexPage extends Component {
                             isActive: tab.to === url,
                         })) }
                     >
-                        {/*<Route>*/}
-                            {/*<Route path="/" component={ IndexDayTab }/>*/}
-                            {/*<Route path="scores/" component={ IndexScoresTab }/>*/}
-                        {/*</Route>*/}
+                        <Switch>
+                            <Route path="/" component={ IndexDayTab }/>
+                            <Route path="scores/" component={ IndexScoresTab }/>
+                        </Switch>
                     </Tabs>
                 </div>
                 <SocialPane className={ classSocial() }/>

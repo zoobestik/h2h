@@ -1,15 +1,15 @@
 /* eslint-env jest */
-import SingletonRequest, { create } from '../SingletonRequest';
+import ThrottleRequest, { create } from '../ThrottleRequest';
 
-describe('SingletonRequest', () => {
+describe('ThrottleRequest', () => {
     describe('isProgress', () => {
         it('should be false on init', () => {
-            const request = new SingletonRequest();
+            const request = new ThrottleRequest();
             expect(request.isProgress).toBe(false);
         });
 
         it('should be true in progress', () => {
-            const request = new SingletonRequest();
+            const request = new ThrottleRequest();
 
             request.send(new Promise(() => {}));
 
@@ -17,7 +17,7 @@ describe('SingletonRequest', () => {
         });
 
         it('should be true after complete', () => {
-            const request = new SingletonRequest();
+            const request = new ThrottleRequest();
             return request.send(new Promise(r => r()))
                 .then(() => expect(request.isProgress).toBe(true));
         });
@@ -27,7 +27,7 @@ describe('SingletonRequest', () => {
         it('should resolved by last request', async () => {
             let count = 0;
             const fn = result => expect(result).toBe(2);
-            const request = new SingletonRequest();
+            const request = new ThrottleRequest();
 
             const promises = [
                 request.send(new Promise(revolve => {

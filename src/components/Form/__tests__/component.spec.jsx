@@ -1,18 +1,16 @@
 /* eslint-env jest */
+import renderer from 'react-test-renderer';
 import Form from '../component';
 
 describe('Form', () => {
     it('default', () => {
-        const form = shallow(<Form action="/url" crc="123">Some content</Form>);
-        expect(form.html()).toBe('<form method="post" action="/url">' +
-            '<input type="hidden" name="crc" value="123"/>' +
-            'Some content' +
-        '</form>');
+        const form = renderer.create(<Form action="/url" crc="123">Some content</Form>);
+        expect(form.toJSON()).toMatchSnapshot();
     });
 
     it('with @className', () => {
-        const form = shallow(<Form className="some-random-class"/>);
-        expect(form.is('form.some-random-class')).toBe(true);
+        const form = renderer.create(<Form className="some-random-class"/>);
+        expect(form.toJSON()).toMatchSnapshot();
     });
 
     describe('check @onSubmit', () => {

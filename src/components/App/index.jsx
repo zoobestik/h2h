@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { useStrict } from 'mobx';
 import { Provider } from 'mobx-react';
 import AppStore from 'components/App/stores/App';
+import ErrorBoundary from 'components/ErrorBoundary';
 import './index.pcss';
 import Routes from 'components/Routes'; // eslint-disable-line import/first
 
@@ -10,15 +11,20 @@ useStrict(true);
 
 export default class App extends Component {
     static propTypes = {
-        store: PropTypes.object,
+        store: PropTypes.shape({
+            auth: PropTypes.object,
+            page: PropTypes.object,
+        }),
     };
 
     render() {
-        const { store, ...props } = this.props;
+        const { store: { auth, page }, ...props } = this.props;
         return (
-            <Provider page={ store.page } auth={ store.auth }>
-                <Routes { ...props }/>
-            </Provider>
+            <ErrorBoundary>
+                <Provider page={ page } auth={ auth }>
+                    <Routes { ...props }/>
+                </Provider>
+            </ErrorBoundary>
         );
     }
 }

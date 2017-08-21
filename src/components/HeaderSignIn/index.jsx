@@ -1,8 +1,8 @@
 import block from 'bem-cn';
 import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import Link from 'react-router-dom/Link';
-import { url } from 'app/lib';
+import Link from 'react-router-dom/es/Link';
+import { pubUrl } from 'app/lib';
 
 import './index.pcss';
 
@@ -34,8 +34,8 @@ export default class HeaderSignIn extends PureComponent {
         const { className } = this.props;
         return (
             <div className={ b.mix(className)() }>
-                <Link to={ url('/login/') }>Sign In</Link>
-                <Link className={ classHelp() } to={ url('/help/') }>
+                <Link to={ pubUrl('/login/') }>Sign In</Link>
+                <Link className={ classHelp() } to={ pubUrl('/help/') }>
                     <img className={ classHelpIcon() } alt="sign in icon" src={ helpIcon } height="30" width="30"/>
                 </Link>
             </div>

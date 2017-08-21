@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Form default 1`] = `
+<form
+  action="/url"
+  method="post"
+  onSubmit={[Function]}
+>
+  <input
+    name="crc"
+    type="hidden"
+    value="123"
+  />
+  Some content
+</form>
+`;
+
+exports[`Form with @className 1`] = `
+<form
+  className="some-random-class"
+  method="post"
+  onSubmit={[Function]}
+>
+  <input
+    name="crc"
+    type="hidden"
+    value={undefined}
+  />
+</form>
+`;

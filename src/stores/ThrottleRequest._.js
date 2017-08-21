@@ -1,7 +1,7 @@
 import { action, computed, observable } from 'mobx';
 import { generateId } from 'app/lib';
 
-export default class SingletonRequest {
+export default class ThrottleRequest {
     @observable id;
     @observable defer;
 
@@ -45,15 +45,19 @@ export default class SingletonRequest {
         return (...args) => this.send(fn(...args));
     }
 
-    send(promise) {
-        const id = this.createRequest();
+    send(request, ...args) {
+        const prevId = this.id;
+        const id = this.createRequest(request, args);
+        const promise = this.defer.promise;
 
-        promise
-            .then(this.processRequest(id, 'resolve'))
-            .catch(this.processRequest(id, 'reject'));
+        if (prevId !== id) {
+            promise
+                .then(this.processRequest(id, 'resolve'))
+                .catch(this.processRequest(id, 'reject'));
+        }
 
-        return this.defer.promise;
+        return promise;
     }
 }
 
-export const create = fn => new SingletonRequest().createExecutor(fn);
+export const create = fn => new ThrottleRequest().createExecutor(fn);

@@ -5,4 +5,8 @@ const stores2props = ({ auth }) => ({
     crc: auth.crc,
 });
 
-export default inject(stores2props)(observer(Form));
+const FormSmart = props => <Form { ...props }/>;
+
+export default inject(stores2props)(
+    observer(FormSmart)
+);

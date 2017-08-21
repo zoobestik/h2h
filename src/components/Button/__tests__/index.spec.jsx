@@ -1,5 +1,5 @@
 /* eslint-env jest */
-import Link from 'react-router-dom/Link';
+import Link from 'react-router-dom/es/Link';
 import Button from '../';
 
 describe('Button', () => {

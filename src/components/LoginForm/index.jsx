@@ -1,7 +1,7 @@
-import { PureComponent } from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { inject, observer } from 'mobx-react';
-import { url } from 'app/lib';
+import { pubUrl } from 'app/lib';
 import LoginForm from './component';
 
 const stores2props = ({ auth }) => ({
@@ -10,11 +10,16 @@ const stores2props = ({ auth }) => ({
     onSubmit: auth.login,
 });
 
-class LoginFormSmart extends PureComponent {
+class LoginFormSmart extends Component {
     static propTypes = {
         onNextReady: PropTypes.func,
         isAuth: PropTypes.bool,
     };
+
+    constructor(...args) {
+        super(...args);
+        this.request = new DebounceRequest();
+    }
 
     componentWillMount() {
         this.checkUrl();
@@ -28,16 +33,18 @@ class LoginFormSmart extends PureComponent {
         const { isAuth, onNextReady } = props || this.props;
 
         if (isAuth && onNextReady) {
-            onNextReady(url('/'));
+            onNextReady(pubUrl('/'));
         }
     }
 
     render() {
         const { onNextReady: _onNextReady, isAuth, ...props } = this.props;
         return (
-            <LoginForm locked={ isAuth } { ...props }/>
+            <LoginForm isLoading={ isAuth } { ...props }/>
         );
     }
 }
 
-export default inject(stores2props)(observer(LoginFormSmart));
+export default inject(stores2props)(
+    observer(LoginFormSmart)
+);

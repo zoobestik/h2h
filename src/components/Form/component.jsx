@@ -29,7 +29,7 @@ export default class Form extends PureComponent {
 
         return (
             <form method="post" { ...props } onSubmit={ this.onSubmit }>
-                <input type="hidden" name="crc" value={ crc }/>
+                <input type="hidden" name="crc" value={ crc || '' }/>
                 { children }
             </form>
         );

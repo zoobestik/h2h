@@ -27,4 +27,4 @@ export function compose(...funcs) {
     return (...args) => rest.reduceRight((composed, f) => f(composed), last(...args));
 }
 
-export const url = path => (process.env.URL_PUBLIC_PATH || '') + (path || '/');
+export const pubUrl = path => (process.env.URL_PUBLIC_PATH || '') + (path || '/');

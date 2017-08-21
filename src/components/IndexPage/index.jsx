@@ -48,4 +48,6 @@ class IndexSmart extends Component {
     }
 }
 
-export default withRouter(inject(stores2props)(observer(IndexSmart)));
+export default withRouter(inject(stores2props)(
+    observer(IndexSmart))
+);

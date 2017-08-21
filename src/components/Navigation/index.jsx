@@ -1,7 +1,7 @@
 import block from 'bem-cn';
 import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { url } from 'app/lib';
+import { pubUrl } from 'app/lib';
 // import NavigationLink from 'components/Navigation/Link';
 import NavigationLink from 'components/Navigation/Link/component';
 
@@ -12,9 +12,9 @@ export const itemClass = b('item');
 export const itemLinkClass = b('link');
 
 export const items = [
-    { to: url('/explore/'), children: 'Explore' },
-    { to: url('/standings/'), children: 'League Table' },
-    { to: url('/calendar/'), children: 'Calendar' },
+    { to: pubUrl('/explore/'), children: 'Explore' },
+    { to: pubUrl('/standings/'), children: 'League Table' },
+    { to: pubUrl('/calendar/'), children: 'Calendar' },
     // { to: '/news/', children: 'News' },
 ];
 
