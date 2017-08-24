@@ -1,32 +1,22 @@
 import { Component } from 'react';
-import PropTypes from 'prop-types';
-import { useStrict } from 'mobx';
-import { Provider } from 'mobx-react';
-import AppStore from 'components/App/stores/App';
+import { Provider, PropTypes } from 'mobx-react';
 import ErrorBoundary from 'components/ErrorBoundary';
 import './index.pcss';
 import Routes from 'components/Routes'; // eslint-disable-line import/first
 
-useStrict(true);
-
 export default class App extends Component {
     static propTypes = {
-        store: PropTypes.shape({
-            auth: PropTypes.object,
-            page: PropTypes.object,
-        }),
+        store: PropTypes.observableObject,
     };
 
     render() {
-        const { store: { auth, page }, ...props } = this.props;
+        const { store, ...props } = this.props;
         return (
             <ErrorBoundary>
-                <Provider page={ page } auth={ auth }>
+                <Provider store={ store }>
                     <Routes { ...props }/>
                 </Provider>
             </ErrorBoundary>
         );
     }
 }
-
-export const Store = AppStore;

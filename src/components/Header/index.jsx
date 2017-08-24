@@ -1,8 +1,8 @@
 import { inject, observer } from 'mobx-react';
 import Header from './component';
 
-const stores2props = ({ auth }) => ({
-    isAuth: auth.isAuth,
+const stores2props = ({ store: { user } }) => ({
+    isAuth: Boolean(user),
 });
 
 const HeaderSmart = props => <Header { ...props }/>;

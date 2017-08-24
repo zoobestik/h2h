@@ -1,7 +1,7 @@
 const mockTeam = (id, num) => ({
     id: `league${id}t${num}`,
     name: `Team ${num}`,
-    points: num * 100,
+    points: (num * 100).toString(),
 });
 
 export const load = id => new Promise(resolve => {

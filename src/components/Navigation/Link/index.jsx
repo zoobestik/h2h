@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
-import Route from 'react-router/Route';
-import withRouter from 'react-router/withRouter';
+import Route from 'react-router/es/Route';
+import withRouter from 'react-router/es/withRouter';
 import NavigationLink from './component';
 
 const NavigationLinkSmart = ({ to, ...props }) => (

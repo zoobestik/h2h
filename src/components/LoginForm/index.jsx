@@ -1,50 +1,34 @@
-import { Component } from 'react';
+import block from 'bem-cn';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { inject, observer } from 'mobx-react';
-import { pubUrl } from 'app/lib';
-import LoginForm from './component';
+import Form from 'components/Form';
 
-const stores2props = ({ auth }) => ({
-    isAuth: auth.isAuth,
-    isLoading: auth.isProgress,
-    onSubmit: auth.login,
-});
+const b = block('login-form');
 
-class LoginFormSmart extends Component {
+export default class LoginForm extends PureComponent {
     static propTypes = {
-        onNextReady: PropTypes.func,
-        isAuth: PropTypes.bool,
+        className: PropTypes.string,
+        id: PropTypes.string,
+        isLoading: PropTypes.bool,
+        password: PropTypes.string,
+        onId: PropTypes.func,
+        onPassword: PropTypes.func,
     };
 
-    constructor(...args) {
-        super(...args);
-        this.request = new DebounceRequest();
-    }
-
-    componentWillMount() {
-        this.checkUrl();
-    }
-
-    componentWillReceiveProps(props) {
-        this.checkUrl(props);
-    }
-
-    checkUrl(props) {
-        const { isAuth, onNextReady } = props || this.props;
-
-        if (isAuth && onNextReady) {
-            onNextReady(pubUrl('/'));
-        }
-    }
-
     render() {
-        const { onNextReady: _onNextReady, isAuth, ...props } = this.props;
+        const { className, id, isLoading, password, onId, onPassword, ...props } = this.props;
         return (
-            <LoginForm isLoading={ isAuth } { ...props }/>
+            <Form method="post" { ...props } className={ b.mix(className)() }>
+                <label>
+                    Login
+                    <input name="id" type="text" onChange={ onId } value={ id }/>
+                </label>
+                <label>
+                    Password
+                    <input name="password" type="password" onChange={ onPassword } value={ password }/>
+                </label>
+                <button type="submit" disabled={ isLoading }>login</button>
+            </Form>
         );
     }
 }
-
-export default inject(stores2props)(
-    observer(LoginFormSmart)
-);

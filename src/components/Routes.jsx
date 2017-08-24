@@ -5,7 +5,7 @@ import { pubUrl } from 'app/lib';
 
 import Layout from 'components/Layout';
 import ErrorPageBoundary from 'components/ErrorBoundary';
-import IndexPage from 'components/IndexPage';
+import IndexPage from 'components/Pages/Index';
 import SignIn from 'components/Pages/SignIn';
 import NoMatch from 'components/Pages/NoMatch';
 
