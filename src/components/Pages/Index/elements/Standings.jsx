@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { toJS } from 'mobx';
-import { PropTypes, inject, observer } from 'mobx-react';
+import { inject, observer, PropTypes } from 'mobx-react';
 import Standings from 'components/Standings';
 
 const stores2props = ({ page }) => ({ standings: page.standings });

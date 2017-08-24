@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { PropTypes, Provider, inject, observer } from 'mobx-react';
+import { inject, observer, PropTypes, Provider } from 'mobx-react';
 import Store from 'components/Pages/Index/store';
 import Index from 'components/Pages/Index/component';
 
