@@ -11,7 +11,6 @@ export default class Form extends PureComponent {
 
     constructor(props) {
         super(props);
-
         this.onSubmit = this.onSubmit.bind(this);
     }
 

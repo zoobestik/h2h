@@ -1,19 +1,16 @@
-import ReactPropTypes from 'prop-types';
 import { inject, observer, PropTypes } from 'mobx-react';
 import HeaderAuthInfo from './component';
 
-const stores2props = ({ auth }) => ({
-    user: auth.user,
-    login: auth.userInfo.displayLogin,
+const stores2props = ({ store }) => ({
+    user: store.user,
 });
 
-const HeaderAuthInfoSmart = ({ user, login }) => (
-    <HeaderAuthInfo { ...user } login={ login }/>
+const HeaderAuthInfoSmart = ({ user }) => (
+    <HeaderAuthInfo { ...user } login={ user.displayLogin }/>
 );
 
 HeaderAuthInfoSmart.propTypes = {
     user: PropTypes.objectOrObservableObject.isRequired,
-    login: ReactPropTypes.string,
 };
 
 export default inject(stores2props)(
