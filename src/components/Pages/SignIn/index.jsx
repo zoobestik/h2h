@@ -8,22 +8,27 @@ import { login } from 'app/api/auth';
 import Store from 'components/Pages/SignIn/store';
 import LoginForm from 'components/LoginForm';
 
-const stores2props = ({ store }) => ({ store });
+const stores2props = ({ store }) => ({
+    setPage: store.page.replace,
+    setUser: store.setUser,
+    user: store.user,
+});
 
 class SignInSmart extends Component {
     static propTypes = {
-        store: PropTypes.observableObject,
+        user: PropTypes.observableObject,
+        setPage: ReactPropTypes.func,
+        setUser: ReactPropTypes.func,
         readyUrl: ReactPropTypes.string,
     };
 
     constructor(...args) {
         super(...args);
-        this.viewStore = Store.create();
         this.onSubmit = this.onSubmit.bind(this);
     }
 
     componentWillMount() {
-        this.page = this.viewStore;
+        this.props.setPage(Store.create());
     }
 
     onSubmit({ id, password }) {
@@ -37,19 +42,11 @@ class SignInSmart extends Component {
     }
 
     @computed get user() {
-        return this.props.store.user;
+        return this.props.user;
     }
 
     set user(data) {
-        this.props.store.setUser(data);
-    }
-
-    @computed get page() {
-        return this.props.store.page;
-    }
-
-    set page(page) {
-        this.props.store.page.replace(page);
+        this.props.setUser(data);
     }
 
     get redirectUrl() {

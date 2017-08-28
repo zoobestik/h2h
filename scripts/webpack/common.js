@@ -13,6 +13,7 @@ const styleExtractPlugin = new ExtractTextPlugin({
 const publicPath = process.env.URL_PUBLIC_PATH || '/h2h';
 
 export default {
+    devtool: 'source-map',
     entry: {
         index: [
             './src/client',
@@ -53,6 +54,7 @@ export default {
                         {
                             loader: 'postcss-loader',
                             options: {
+                                sourceMap: true,
                                 plugins: postcssPlugins,
                             },
                         },

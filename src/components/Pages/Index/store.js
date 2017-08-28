@@ -8,7 +8,7 @@ const StandingsItem = types.model('StandingsItem', {
     points: types.string,
 });
 
-export default createMergeType('PageViewStanding', {
+export default createMergeType('PageIndexView', {
     id: types.string,
     standings: types.maybe(types.array(StandingsItem)),
 })
@@ -32,9 +32,12 @@ export default createMergeType('PageViewStanding', {
                 }
                 return this;
             },
+
             setStandings(data) { store.standings = data; },
             setStandingsError() {},
 
-            afterCreate() { this.fetch(); },
+            afterCreate() {
+                this.fetch();
+            },
         });
     });

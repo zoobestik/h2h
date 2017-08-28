@@ -2,7 +2,6 @@ import block from 'bem-cn';
 import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { pubUrl } from 'app/lib';
-// import NavigationLink from 'components/Navigation/Link';
 import NavigationLink from 'components/Navigation/Link/component';
 
 import './index.pcss';

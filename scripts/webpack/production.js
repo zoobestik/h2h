@@ -31,10 +31,10 @@ export default {
                 warnings: false,
             },
             comments: false,
-            sourceMap: false,
+            sourceMap: true,
         }),
 
-        new CSSOCompressPlugin({ sourceMap: true }),
+        new CSSOCompressPlugin(),
 
         new CompressionPlugin({
             algorithm: 'zopfli',

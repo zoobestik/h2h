@@ -1,5 +1,5 @@
-import Link from 'react-router-dom/es/Link';
 import { pubUrl } from 'app/lib';
+import Link from 'react-router-dom/es/Link';
 
 export default () => (
     <div>

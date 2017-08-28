@@ -1,13 +1,14 @@
 import { Component } from 'react';
-import { inject, observer, PropTypes, Provider } from 'mobx-react';
+import PropTypes from 'prop-types';
+import { inject, observer, Provider } from 'mobx-react';
 import Store from 'components/Pages/Index/store';
 import Index from 'components/Pages/Index/component';
 
-const stores2props = ({ store }) => ({ page: store.page });
+const stores2props = ({ store }) => ({ setPage: store.page.replace });
 
 class IndexSmart extends Component {
     static propTypes = {
-        page: PropTypes.observableObject,
+        setPage: PropTypes.func,
     };
 
     constructor(...args) {
@@ -16,7 +17,7 @@ class IndexSmart extends Component {
     }
 
     componentWillMount() {
-        this.props.page.replace(this.store);
+        this.props.setPage(this.store);
     }
 
     render() {

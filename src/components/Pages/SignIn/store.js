@@ -1,3 +1,3 @@
 import { createMergeType } from 'app/lib/union';
 
-export default createMergeType('PageViewSignIn');
+export default createMergeType('PageSignInView');
