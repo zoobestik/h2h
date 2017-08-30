@@ -8,8 +8,6 @@ export default types.model('Page', {
     title: types.string,
     content: typesUnion(PageIndexView, PageSignInView, PageNoMatchView),
 })
-    .actions(self => ({
-        replace(state) {
-            self.content = state; // eslint-disable-line no-param-reassign
-        },
+    .actions(store => ({
+        replace: content => store.content = content, // eslint-disable-line no-return-assign, no-param-reassign
     }));

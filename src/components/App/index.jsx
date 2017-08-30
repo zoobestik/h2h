@@ -14,7 +14,7 @@ export default class App extends Component {
         return (
             <ErrorBoundary>
                 <Provider store={ store }>
-                    <Routes { ...props }/>
+                    <Routes store={ store }/>
                 </Provider>
             </ErrorBoundary>
         );

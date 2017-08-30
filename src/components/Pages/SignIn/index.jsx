@@ -9,26 +9,25 @@ import Store from 'components/Pages/SignIn/store';
 import LoginForm from 'components/LoginForm';
 
 const stores2props = ({ store }) => ({
-    setPage: store.page.replace,
     setUser: store.setUser,
     user: store.user,
 });
 
+@observer
 class SignInSmart extends Component {
     static propTypes = {
         user: PropTypes.observableObject,
-        setPage: ReactPropTypes.func,
         setUser: ReactPropTypes.func,
         readyUrl: ReactPropTypes.string,
     };
 
+    static createStore() {
+        return Store.create();
+    }
+
     constructor(...args) {
         super(...args);
         this.onSubmit = this.onSubmit.bind(this);
-    }
-
-    componentWillMount() {
-        this.props.setPage(Store.create());
     }
 
     onSubmit({ id, password }) {
@@ -50,10 +49,7 @@ class SignInSmart extends Component {
     }
 
     get redirectUrl() {
-        if (this.isAuth) {
-            return this.props.readyUrl || pubUrl('/');
-        }
-        return null;
+        return this.isAuth ? this.props.readyUrl || pubUrl('/') : null;
     }
 
     render() {
@@ -63,6 +59,4 @@ class SignInSmart extends Component {
     }
 }
 
-export default inject(stores2props)(
-    observer(SignInSmart)
-);
+export default inject(stores2props)(SignInSmart);
