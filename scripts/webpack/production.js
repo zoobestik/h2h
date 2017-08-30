@@ -19,10 +19,10 @@ export default {
     },
 
     plugins: [
+        ...base.plugins,
+
         new OccurrenceOrderPlugin(),
         new ModuleConcatenationPlugin(),
-
-        ...base.plugins,
 
         new UglifyJSPlugin({
             parallel: {
