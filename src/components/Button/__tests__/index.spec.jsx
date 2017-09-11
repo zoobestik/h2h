@@ -1,5 +1,5 @@
 /* eslint-env jest */
-import Link from 'react-router-dom/es/Link';
+import Link from 'inferno-router/lib/Link';
 import Button from '../';
 
 describe('Button', () => {

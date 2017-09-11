@@ -1,28 +1,26 @@
 /* eslint-env browser */
 import { render } from 'react-dom';
+import { createBrowserHistory } from 'history';
 import { useStrict } from 'mobx';
-import * as mobxStateTree from 'mobx-state-tree';
-import Router from 'react-router-dom/es/BrowserRouter';
+import * as storeTreeUtils from 'mobx-state-tree';
 import App from 'components/App';
 import Store from 'components/App/store';
+import api from 'app/api';
 
 useStrict(true);
 
-const store = Store.create(global.INITIAL_STATE || {
-    page: {
-        title: document.title,
-        content: {
-            key: 'PageNoMatchView',
-        },
-    },
+const state = global.INITIAL_STATE || {
+    title: document.title,
+    route: { state: { key: 'PageNoMatchView' } },
+    user: null,
+};
+
+const store = Store.create(state, {
+    ...api,
+    history: createBrowserHistory(),
 });
 
 global.store = store;
-global.mobxStateTree = mobxStateTree;
+global.storeTreeUtils = storeTreeUtils;
 
-render(
-    <Router>
-        <App store={ store }/>
-    </Router>,
-    document.getElementById('app'),
-);
+render(<App store={ store }/>, document.getElementById('app'));

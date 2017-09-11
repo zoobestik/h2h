@@ -1,9 +1,8 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
-import withRouter from 'react-router/es/withRouter';
 import Tabs from 'components/Tabs';
 
-class TabsSmart extends Component {
+export default class TabsSmart extends Component {
     static propTypes = {
         tabs: PropTypes.arrayOf(PropTypes.object).isRequired,
         match: PropTypes.object.isRequired,
@@ -25,5 +24,3 @@ class TabsSmart extends Component {
         );
     }
 }
-
-export default withRouter(TabsSmart);

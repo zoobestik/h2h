@@ -14,7 +14,6 @@ export default {
         alias: {
             react: 'preact-compat',
             'react-dom': 'preact-compat',
-            // 'create-react-class': `${process.cwd()}/src/lib/create-react-class`,
         },
     },
 

@@ -10,11 +10,11 @@ export default class App extends Component {
     };
 
     render() {
-        const { store, ...props } = this.props;
+        const { store } = this.props;
         return (
             <ErrorBoundary>
                 <Provider store={ store }>
-                    <Routes store={ store }/>
+                    <Routes/>
                 </Provider>
             </ErrorBoundary>
         );

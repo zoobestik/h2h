@@ -2,11 +2,19 @@ import { Component } from 'react';
 import ReactPropTypes from 'prop-types';
 import { computed } from 'mobx';
 import { inject, observer, PropTypes } from 'mobx-react';
-import Redirect from 'react-router/es/Redirect';
 import { pubUrl } from 'app/lib';
 import { login } from 'app/api/auth';
 import Store from 'components/Pages/SignIn/store';
 import LoginForm from 'components/LoginForm';
+
+const routes = [
+    {
+        pattern: '/login/',
+        data: {
+            method: 'GET',
+        },
+    },
+];
 
 const stores2props = ({ store }) => ({
     setUser: store.setUser,
@@ -21,9 +29,8 @@ class SignInSmart extends Component {
         readyUrl: ReactPropTypes.string,
     };
 
-    static createStore() {
-        return Store.create();
-    }
+    static store = Store;
+    static routes = routes;
 
     constructor(...args) {
         super(...args);
@@ -53,8 +60,8 @@ class SignInSmart extends Component {
     }
 
     render() {
-        const url = this.redirectUrl;
-        if (url) return <Redirect to={ url }/>;
+        // const url = this.redirectUrl;
+        // if (url) return <Redirect to={ url }/>;
         return <LoginForm isLoading={ this.isAuth } onSubmit={ this.onSubmit }/>;
     }
 }

@@ -1,6 +1,5 @@
 import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import Link from 'react-router-dom/es/Link';
 import { itemLinkClass } from 'components/Navigation';
 
 export default class NavigationLink extends PureComponent {
@@ -14,13 +13,13 @@ export default class NavigationLink extends PureComponent {
     render() {
         const { to, isActive, isCurrent, children, ...props } = this.props;
         return (
-            <Link
+            <a
                 { ...props }
                 className={ itemLinkClass({ active: Boolean(isActive) })() }
-                to={ isCurrent ? null : to }
+                href={ isCurrent ? null : to }
             >
                 { children }
-            </Link>
+            </a>
         );
     }
 }

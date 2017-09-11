@@ -1,7 +1,6 @@
 import block from 'bem-cn';
 import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import Link from 'react-router-dom/es/Link';
 
 import './index.pcss';
 
@@ -29,7 +28,7 @@ export default class Tabs extends PureComponent {
             >
                 { isActive ?
                     caption :
-                    <Link className={ classLink() } to={ to }>{ caption }</Link>
+                    <a className={ classLink() } href={ to }>{ caption }</a>
                 }
             </li>
         ));

@@ -1,6 +1,5 @@
-import { types } from 'mobx-state-tree';
+import { getEnv, types } from 'mobx-state-tree';
 import { createMergeType } from 'app/lib/union';
-import { load } from 'app/api/league';
 
 const StandingsItem = types.model('StandingsItem', {
     id: types.string,
@@ -14,30 +13,23 @@ export default createMergeType('PageIndexView', {
 })
     .actions(self => {
         const store = self;
-        let request = null;
-
-        const fetchLeague = async () => {
-            try {
-                return await load(store.id);
-            } finally {
-                request = null;
-            }
-        };
-
         return ({
             fetch() {
-                if (request === null) {
-                    store.standings = null;
-                    fetchLeague(store.id).then(this.setStandings, this.setStandingsError);
-                }
-                return this;
+                const { league } = getEnv(store);
+                league.load(store.id)
+                    .then(store.setStandings, store.setStandingsError);
             },
 
-            setStandings(data) { store.standings = data; },
-            setStandingsError() {},
+            setStandings(data) {
+                store.standings = data;
+            },
 
-            afterCreate() {
-                this.fetch();
+            setStandingsError() {
+
+            },
+
+            afterAttach() {
+                store.fetch();
             },
         });
     });

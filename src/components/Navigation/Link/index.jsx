@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
-import Route from 'react-router/es/Route';
-import withRouter from 'react-router/es/withRouter';
+import Route from 'inferno-router/lib/Route';
 import NavigationLink from './component';
 
 const NavigationLinkSmart = ({ to, ...props }) => (
@@ -14,4 +13,4 @@ NavigationLinkSmart.propTypes = {
     to: PropTypes.any.isRequired,
 };
 
-export default withRouter(NavigationLinkSmart);
+export default NavigationLinkSmart;
