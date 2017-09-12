@@ -1,7 +1,5 @@
 import susanin from 'susanin';
-import { inject, observer, Provider } from 'mobx-react';
 import { typesUnion } from 'app/lib/union';
-import Routes from 'components/Routes/component';
 import PageIndexView from 'components/Pages/Index';
 import PageSignInView from 'components/Pages/SignIn';
 import PageNoMatchView from 'components/Pages/NoMatch';
@@ -12,7 +10,7 @@ export const pages = {
     PageNoMatchView,
 };
 
-export const stores = Object.values(pages).map(page => page.store);
+export const stores = Object.values(pages).map(({ store }) => store);
 export const typeRoutes = typesUnion(...stores);
 
 export const router = susanin();
@@ -35,14 +33,3 @@ export const locationToRoute = location => {
     const Store = (pages[page] || PageNoMatchView).store;
     return Store.create(params);
 };
-
-const stores2props = ({ store }) => ({
-    pages,
-    page: store.route.state,
-});
-
-export default inject(stores2props)(observer(props => (
-    <Provider page={ props.page }>
-        <Routes { ...props }/>
-    </Provider>
-)));

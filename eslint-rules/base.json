@@ -23,6 +23,8 @@
 
         "no-plusplus": "off",
 
+        "no-return-assign": "off",
+
         "no-unused-vars": [
             "error",
             {

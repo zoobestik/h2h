@@ -36,6 +36,8 @@ export default {
                     unsafe_Func: true,
                     unsafe_math: true,
                     unsafe_regexp: true,
+                    unsafe_arrows: true,
+                    toplevel: true,
                     pure_getters: true,
                     drop_console: true,
                 },
